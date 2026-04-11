@@ -1,0 +1,15 @@
+title: "Clawiki"
+description: "A structured, cross-referenced literature review knowledge base maintained with Claude Code."
+theme: jekyll-theme-slate
+markdown: kramdown
+kramdown:
+  input: GFM
+exclude:
+  - ".claude/"
+  - "Gemfile"
+  - "Gemfile.lock"
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
