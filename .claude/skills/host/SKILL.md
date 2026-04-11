@@ -44,9 +44,7 @@ for path in glob.glob('wiki/papers/*.md') + glob.glob('wiki/queries/*.md'):
 ```bash
 N=$(find wiki/papers -name "*.md" | wc -l | tr -d ' ')
 M=$(find raw -name "*.pdf" | wc -l | tr -d ' ')
-DATE=$(date +%Y-%m-%d)
-grep -q "^## $DATE" wiki/log.md || printf "\n## $DATE\n" >> wiki/log.md
-echo "- **host** | pushed main — $N wiki pages, $M PDFs" >> wiki/log.md
+echo "- [$(date +%Y-%m-%d)] **host** | pushed main — $N wiki pages, $M PDFs" >> wiki/log.md
 ```
 
 ### Step 4 — Commit and push

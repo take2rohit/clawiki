@@ -31,10 +31,6 @@ layout: default
 ---
 
 # Activity Log
-
-An append-only record of every operation performed on this knowledge base.
-
----
 ```
 
 **Files created:** `wiki/log.md`, `wiki/overview.md`, `bibtex/references.bib`
@@ -132,9 +128,7 @@ Tell the user how many papers were discovered. Show the index table. Suggest `/i
 
 Append to `wiki/log.md`:
 ```bash
-DATE=$(date +%Y-%m-%d)
-grep -q "^## $DATE" wiki/log.md || printf "\n## $DATE\n" >> wiki/log.md
-echo "- **init** | \"{topic}\" — discovered N papers, workspace ready (no PDFs downloaded)" >> wiki/log.md
+echo "- [$(date +%Y-%m-%d)] **init** | \"{topic}\" — discovered N papers, workspace ready (no PDFs downloaded)" >> wiki/log.md
 ```
 
 **Files modified:** `wiki/log.md`

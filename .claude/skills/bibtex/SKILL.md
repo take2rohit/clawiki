@@ -29,7 +29,5 @@ Export: **$ARGUMENTS**
 
 5. **Append to `wiki/log.md`:**
    ```bash
-   DATE=$(date +%Y-%m-%d)
-   grep -q "^## $DATE" wiki/log.md || printf "\n## $DATE\n" >> wiki/log.md
-   echo "- **bibtex** | exported N entries to bibtex/references.bib" >> wiki/log.md
+   echo "- [$(date +%Y-%m-%d)] **bibtex** | exported N entries to bibtex/references.bib" >> wiki/log.md
    ```

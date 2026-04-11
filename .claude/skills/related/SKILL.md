@@ -37,9 +37,7 @@ Read [reference.md](../literature-review/reference.md) for tools reference.
 
 8. **Append to `wiki/log.md`:**
    ```bash
-   DATE=$(date +%Y-%m-%d)
-   grep -q "^## $DATE" wiki/log.md || printf "\n## $DATE\n" >> wiki/log.md
-   echo "- **related** | {slug} — found N related papers, added as discovered" >> wiki/log.md
+   echo "- [$(date +%Y-%m-%d)] **related** | {slug} — found N related papers, added as discovered" >> wiki/log.md
    ```
 
 9. **Recommend next commands:**

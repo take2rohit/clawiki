@@ -113,9 +113,7 @@ Update the header stats: add `, K discovered` to the papers count and update `La
 
 Append to `wiki/log.md`:
 ```bash
-DATE=$(date +%Y-%m-%d)
-grep -q "^## $DATE" wiki/log.md || printf "\n## $DATE\n" >> wiki/log.md
-echo "- **discover** | \"{query}\" — added N discovered rows, {dup} duplicates skipped" >> wiki/log.md
+echo "- [$(date +%Y-%m-%d)] **discover** | \"{query}\" — added N discovered rows, {dup} duplicates skipped" >> wiki/log.md
 ```
 
 ---
