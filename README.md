@@ -1,6 +1,9 @@
-# Clawiki
+# World Models Literature Review
 
-A literature review system built as [Claude Code](https://claude.ai/code) skills. Give it a topic — it finds papers, downloads PDFs, and builds a cross-referenced knowledge base you can query, compare, and synthesize.
+> Branch: `world_models` | Papers: 22 ingested, 21 discovered (43 total) | Created: 2026-04-10
+> Live: run `/host` to publish
+
+A Clawiki knowledge base covering world models for reinforcement learning, autonomous driving, embodied AI, and JEPA-style predictive architectures. See `main` branch for full documentation and quick-start guide.
 
 Inspired by [karpathy/llm-wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).
 
