@@ -171,8 +171,8 @@ layout: default
 
 # Activity Log
 
-- [YYYY-MM-DD] **verb** | subject — details
-- [YYYY-MM-DD] **verb** | subject — details
+- [YYYY-MM-DD HH:MM] **verb** | subject — details
+- [YYYY-MM-DD HH:MM] **verb** | subject — details
 ```
 
 **Append** (one line per operation):
