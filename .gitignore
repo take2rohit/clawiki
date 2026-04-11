@@ -1,6 +1,4 @@
 .DS_Store
-wiki/
-raw/
 bibtex/
 .claude/settings.local.json
 wiki/.obsidian/
