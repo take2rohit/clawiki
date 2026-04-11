@@ -49,7 +49,7 @@ title: "Literature Review Index"
 
 # Literature Review Index
 
-> Last updated: YYYY-MM-DD | Papers: N ingested, M downloaded | Topics: K | Methods: J
+**Last updated:** YYYY-MM-DD · **Papers:** N ingested, M downloaded · **Topics:** K · **Methods:** J
 
 ## Overview & Log
 
@@ -57,21 +57,26 @@ title: "Literature Review Index"
 - [Activity Log](log.md) — append-only record of every operation
 
 ## Papers
+
 | ID | Title | Year | Venue | 1st Author (Inst.) | Last Author (Inst.) | Citations | Status | PDF | Wiki | Notes |
 |----|-------|------|-------|-------------------|---------------------|-----------|--------|-----|------|-------|
 | P001 | Paper Title | 2024 | NeurIPS | Hafner (Google DeepMind) | Lillicrap (Google DeepMind) | ~4.2k | ingested | [PDF](../raw/hafner-2023-jmlr.pdf) | [Notes](papers/hafner-2023-jmlr.md) | [seminal] |
 | P002 | Another Paper | 2025 | arXiv | Chen (MIT) | — | — | downloaded | [PDF](../raw/chen-2025-arxiv.pdf) | — | |
 
 ## Topics
+
 (bulleted list with dual-format links and one-line descriptions)
 
 ## Methods
+
 (bulleted list)
 
 ## Benchmarks
+
 (bulleted list)
 
 ## Queries / Syntheses
+
 (bulleted list with dates)
 ```
 

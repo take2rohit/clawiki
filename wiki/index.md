@@ -5,7 +5,7 @@ title: "Literature Review Index"
 
 # Literature Review Index
 
-> Last updated: 2026-04-10 | Papers: 5 ingested | Topics: 1 | Methods: 3
+**Last updated:** 2026-04-10 · **Papers:** 5 ingested · **Topics:** 1 · **Methods:** 3
 
 ## Overview & Log
 
@@ -13,6 +13,7 @@ title: "Literature Review Index"
 - [Activity Log](log.md) — append-only record of every operation
 
 ## Papers
+
 | ID | Title | Year | Venue | 1st Author (Inst.) | Last Author (Inst.) | Citations | Status | PDF | Wiki | Notes |
 |----|-------|------|-------|-------------------|---------------------|-----------|--------|-----|------|-------|
 | P001 | A Survey of Large Language Models for Financial Applications: Progress, Prospects and Challenges | 2024 | arXiv | Yuqi Nie (Princeton) | Stefan Zohren (Oxford) | ~100 | ingested | [PDF](../raw/nie-2024-llm-finance-survey.pdf) | [Notes](papers/nie-2024-llm-finance-survey.md) | [survey] |
@@ -22,11 +23,13 @@ title: "Literature Review Index"
 | P005 | Orchestration Framework for Financial Agents: From Algorithmic Trading to Agentic Trading | 2025 | NeurIPS 2025 WS | Jifeng Li (Columbia) | Xiao-Yang Liu (Columbia) | — | ingested | [PDF](../raw/li-2025-orchestration-financial.pdf) | [Notes](papers/li-2025-orchestration-financial.md) | |
 
 ## Topics
+
 | Topic | Papers |
 |-------|--------|
 | [LLM Financial Agents](topics/llm-financial-agents.md) | P001, P002, P003, P004, P005 |
 
 ## Methods
+
 | Method | Papers |
 |--------|--------|
 | [Manager-Analyst Hierarchy](methods/manager-analyst-hierarchy.md) | P003, P004 |
