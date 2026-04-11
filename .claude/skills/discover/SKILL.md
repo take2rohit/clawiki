@@ -96,7 +96,7 @@ Sort descending, take top N.
 
 ## Phase 5 — Update index
 
-Add one row per discovered paper to the Papers table in `wiki/index.md`:
+Add one row per discovered paper to the Papers table in `wiki/index.md`, appended **directly after the last existing row — no blank lines between rows**. Blank lines break markdown table rendering.
 
 ```
 | P0XX | {Title} | {Year} | {Venue} | {FirstAuthor} ({1stInst.}) | {LastAuthor} ({LastInst.}) | {Citations} | discovered | [arXiv]({url}) | — | |
