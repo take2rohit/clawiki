@@ -1,6 +1,6 @@
 ---
 name: lit-init
-description: "Bootstrap a literature review workspace. Searches for papers on the given topic, discovers them into the wiki index (no PDF downloads), and creates the full workspace structure. The starting point for any new research area."
+description: "Bootstrap a literature review workspace. Creates a new topic branch, searches for papers, discovers them into the wiki index (no PDF downloads), and sets up the full workspace structure. The starting point for any new research area."
 argument-hint: "<research_topic> [--top <N>] [--year <range>]"
 ---
 
@@ -10,10 +10,35 @@ Bootstrap and populate workspace for: **$ARGUMENTS**
 
 > **TOOL RULES — READ FIRST:**
 > - **Search:** Use **WebSearch** (Claude's built-in tool). Spawn searches **in parallel**.
-> - **No Bash/curl during init.** No PDF downloads. Discovery only.
+> - **No Bash/curl during init** except for branch setup. No PDF downloads. Discovery only.
 > - **No Python scripts ever.** No `python`, `pip`, no `.py` script files.
 > - **No direct API calls.** Do not call `api.semanticscholar.org`, `export.arxiv.org/api`, or any API endpoint.
 > - **Abstracts:** Use **WebFetch** on arXiv HTML pages (`https://arxiv.org/abs/XXXX`) — regular web pages, not API endpoints.
+
+---
+
+## Phase 0 — Create topic branch
+
+Generate a short branch name from the topic, create the branch, and ensure `wiki/` and `raw/` are tracked on it.
+
+```bash
+# Generate branch name: lowercase, underscores, max 30 chars
+BRANCH=$(echo "{topic}" | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9' '_' | sed 's/^_//;s/_$//' | cut -c1-30)
+
+# Abort if branch already exists
+if git show-ref --verify --quiet refs/heads/$BRANCH; then
+  echo "Branch '$BRANCH' already exists. Delete it or use a different topic name."
+  exit 1
+fi
+
+git checkout -b $BRANCH
+
+# Remove wiki/ and raw/ from .gitignore if present (main ignores them; topic branches track them)
+sed -i '' '/^wiki\/$/d; /^raw\/$/d' .gitignore
+git add .gitignore
+```
+
+Tell the user: "Created branch `{branch}` — all work for this review will live here."
 
 ---
 
@@ -131,4 +156,14 @@ Append to `wiki/log.md`:
 echo "- [$(date "+%Y-%m-%d %H:%M")] **init** -	\"{topic}\" — discovered N papers, workspace ready (no PDFs downloaded)" >> wiki/log.md
 ```
 
-**Files modified:** `wiki/log.md`
+Create `README.md` at the repo root on this branch:
+```markdown
+# {Topic} Literature Review
+
+> Branch: `{branch_name}` | Papers discovered: N | Created: {today}
+> Live: run `/host` to publish
+
+A Clawiki knowledge base. See `main` branch for full documentation and quick-start guide.
+```
+
+**Files modified:** `wiki/log.md`, `README.md`

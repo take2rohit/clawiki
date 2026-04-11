@@ -1,22 +1,26 @@
 ---
 name: host
-description: "Commit any uncommitted wiki/raw changes, push main to GitHub Pages, and verify the build. Everything lives on main — no branch switching."
+description: "Commit any uncommitted wiki/raw changes, push the current topic branch to GitHub Pages, and verify the build. Must be on a topic branch — refuses if on main."
 user-invocable: true
 ---
 
 # Host Knowledge Base to GitHub Pages
 
-Everything — wiki, PDFs, Jekyll config — lives on `main`. Running `/host` is just a commit + push + build check.
+Publishes the current topic branch to GitHub Pages. Never runs on `main`.
 
 ## Workflow
 
-### Step 1 — Verify on main
+### Step 1 — Verify branch
 
 ```bash
-git branch --show-current
+BRANCH=$(git branch --show-current)
+if [ "$BRANCH" = "main" ]; then
+  echo "Error: /host cannot publish from main. main is a template."
+  echo "Switch to a topic branch first: /lit-switch"
+  exit 1
+fi
+echo "Publishing branch: $BRANCH"
 ```
-
-Must be on `main`. If not, stop and warn the user.
 
 ### Step 2 — Pre-flight: fix Jekyll Liquid conflicts
 
@@ -42,9 +46,9 @@ for path in glob.glob('wiki/papers/*.md') + glob.glob('wiki/queries/*.md'):
 ### Step 3 — Append to wiki/log.md
 
 ```bash
-N=$(find wiki/papers -name "*.md" | wc -l | tr -d ' ')
-M=$(find raw -name "*.pdf" | wc -l | tr -d ' ')
-echo "- [$(date "+%Y-%m-%d %H:%M")] **host** -	pushed main — $N wiki pages, $M PDFs" >> wiki/log.md
+N=$(find wiki/papers -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+M=$(find raw -name "*.pdf" 2>/dev/null | wc -l | tr -d ' ')
+echo "- [$(date "+%Y-%m-%d %H:%M")] **host** -	pushed $BRANCH — $N wiki pages, $M PDFs" >> wiki/log.md
 ```
 
 ### Step 4 — Commit and push
@@ -52,15 +56,15 @@ echo "- [$(date "+%Y-%m-%d %H:%M")] **host** -	pushed main — $N wiki pages, $M
 ```bash
 git add -A
 git diff --staged --quiet || git commit -m "chore: sync knowledge base [$(date "+%Y-%m-%d %H:%M")]"
-git push origin main
+git push -u origin $BRANCH
 ```
 
 ### Step 5 — Enable GitHub Pages (first run only)
 
 ```bash
 REPO=$(gh repo view --json owner,name --jq '"\(.owner.login)/\(.name)"')
-gh api repos/$REPO/pages --method POST --field "source[branch]=main" --field "source[path]=/" 2>/dev/null \
-  || gh api repos/$REPO/pages --method PUT  --field "source[branch]=main" --field "source[path]=/" 2>/dev/null \
+gh api repos/$REPO/pages --method POST --field "source[branch]=$BRANCH" --field "source[path]=/" 2>/dev/null \
+  || gh api repos/$REPO/pages --method PUT  --field "source[branch]=$BRANCH" --field "source[path]=/" 2>/dev/null \
   || true
 ```
 
@@ -81,17 +85,28 @@ If errored: check `$ERR`. Common causes:
 - **Liquid syntax error** → a wiki file has unescaped `{{` — re-run Step 2, commit, push
 - **YAML exception** → malformed front matter in a wiki file — run `/lint`
 
-### Step 7 — Report
+### Step 7 — Report and update README
 
-Print the live URL:
 ```bash
-gh api repos/$REPO/pages --jq '.html_url'
+URL=$(gh api repos/$REPO/pages --jq '.html_url' 2>/dev/null)
+echo "Live at: $URL"
 ```
 
-Tell the user: built ✅ or errored ❌, and the URL.
+Write the live URL into this branch's `README.md`:
+```bash
+if [ -n "$URL" ] && [ -f README.md ]; then
+  sed -i '' "s|> Live:.*|> Live: $URL|" README.md
+  git add README.md
+  git diff --staged --quiet || git commit -m "docs: update live URL in README"
+  git push origin $BRANCH
+fi
+```
+
+Tell the user: built ✅ or errored ❌, the URL, and the branch name.
 
 ## Notes
 
 - `wiki/index.md` is served at `/wiki/` (not `/`). The root `index.md` redirects `/` → `/wiki/`. Both are needed.
 - `[[wikilinks]]` render as plain text on the web — Jekyll 3 limitation.
 - Running `/host` again is safe: only changed files get committed.
+- GitHub Pages can only serve one branch at a time. Switching branches with `/lit-switch` then running `/host` will re-point Pages to the new branch.

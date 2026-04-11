@@ -1,12 +1,16 @@
 # Clawiki — Workspace Rules
 
-## Everything lives on `main`
+## Branch model
 
-`wiki/`, `raw/`, `_config.yml`, and `index.md` are all tracked on `main`. There is no separate publishing branch.
+`main` is a clean template — it contains only skills, config, and docs. Never commit `wiki/` or `raw/` to `main`.
+
+Each `/lit-init` creates a **topic branch** (e.g. `world_models`, `jepa_research`). All research work — wiki pages, PDFs, logs — lives on that branch. Use `/lit-switch` to move between reviews.
 
 ## Hosting
 
-Run `/host` to commit any uncommitted changes, push to `main`, and verify the GitHub Pages build. The site at `http://rohitlal.com/clawiki/` rebuilds automatically on every push.
+Run `/host` from a topic branch to commit changes, push, and verify the GitHub Pages build. The site rebuilds automatically. `/host` refuses to run on `main`.
+
+Use `/lit-switch` to pick which review is live — switching branches and running `/host` re-points GitHub Pages to that branch.
 
 ## Hard rules
 
