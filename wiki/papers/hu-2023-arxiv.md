@@ -145,6 +145,7 @@ GAIA-1 demonstrates the following emergent properties:
 ---
 
 ## BibTeX
+{% raw %}
 ```bibtex
 @article{hu2023gaia,
   title={{GAIA-1}: A Generative World Model for Autonomous Driving},
@@ -153,3 +154,4 @@ GAIA-1 demonstrates the following emergent properties:
   year={2023}
 }
 ```
+{% endraw %}

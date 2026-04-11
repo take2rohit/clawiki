@@ -1,14 +1,14 @@
 ---
 name: host
-description: "Publish the knowledge base to GitHub Pages by syncing wiki/ and raw/ to the web branch. Always works on the web branch — never touches main. Fully autonomous: enables GitHub Pages automatically on first run."
+description: "Publish the knowledge base to GitHub Pages by syncing wiki/ and raw/ to the web branch. Always works on the web branch — never touches main. Fully autonomous: enables GitHub Pages, polls the build, and fixes errors."
 user-invocable: true
 ---
 
 # Host Knowledge Base to GitHub Pages
 
-> **BRANCH RULE: This skill ALWAYS operates on the `web` branch. Never commit `wiki/`, `raw/`, or any knowledge base files to `main`. Only `.claude/skills/` content belongs on `main`.**
+> **BRANCH RULE: This skill ALWAYS operates on the `web` branch via a git worktree. The `main` working directory is NEVER touched — wiki/ and raw/ files are safe.**
 
-The wiki link format (`../raw/`, `papers/slug.md`) is already compatible with Obsidian, GitHub.com, and GitHub Pages — no link rewriting is needed. `wiki/index.md` is served at `/wiki/` and all relative links resolve correctly from there.
+The wiki link format (`../raw/`, `papers/slug.md`) is compatible with Obsidian, GitHub.com, and GitHub Pages with no rewriting. `wiki/index.md` is served at `/wiki/` and all relative links resolve correctly from there.
 
 ## Workflow
 
@@ -19,39 +19,42 @@ git branch --show-current
 git status
 ```
 
-Confirm we are on `main`. If there are uncommitted changes, warn the user but continue — do not stash or commit them.
+Confirm we are on `main`. If there are uncommitted changes, warn the user but continue.
 
-### Step 2 — Switch to `web` branch
+**IMPORTANT:** Do NOT use `git checkout` to switch to the web branch — this would delete wiki/ and raw/ from the filesystem. Use a worktree instead (Step 2).
 
-```bash
-git checkout web 2>/dev/null || git checkout -b web main
-```
-
-Bring in any new skills from `main`:
+### Step 2 — Set up a git worktree for `web`
 
 ```bash
-git merge main --no-edit -X theirs 2>/dev/null || true
+WORKTREE=$(mktemp -d)
+git worktree add "$WORKTREE" web 2>/dev/null || git worktree add "$WORKTREE" -b web main
 ```
 
-`-X theirs` resolves conflicts by preferring `main`'s files. We immediately overwrite `.gitignore` next anyway.
+All subsequent steps operate inside `$WORKTREE`, not in the main working directory. The main working directory (with wiki/ and raw/) is untouched throughout.
 
-### Step 3 — Write `.gitignore` for `web` branch
+### Step 3 — Sync wiki/ and raw/ into the worktree
 
-Overwrite `.gitignore` (removes `wiki/` and `raw/` ignore lines so they get tracked):
-
+```bash
+rsync -a --delete wiki/   "$WORKTREE/wiki/"
+rsync -a --delete raw/    "$WORKTREE/raw/"
 ```
+
+### Step 4 — Write `.gitignore` in the worktree
+
+```bash
+cat > "$WORKTREE/.gitignore" << 'EOF'
 .DS_Store
 bibtex/
 .claude/settings.local.json
 wiki/.obsidian/
 .obsidian/
+EOF
 ```
 
-### Step 4 — Write `_config.yml`
+### Step 5 — Write `_config.yml` in the worktree
 
-Create or overwrite `_config.yml` at the repo root:
-
-```yaml
+```bash
+cat > "$WORKTREE/_config.yml" << 'EOF'
 title: "Clawiki"
 description: "A structured, cross-referenced literature review knowledge base maintained with Claude Code."
 theme: minima
@@ -67,89 +70,134 @@ defaults:
       path: ""
     values:
       layout: default
+EOF
 ```
 
-### Step 5 — Write static root `index.md` (first run only)
+### Step 6 — Write static root `index.md` (once only)
 
-Check if a root `index.md` already exists with the redirect. If not, write it:
+Only write if it doesn't already exist in the worktree:
 
-```html
+```bash
+if [ ! -f "$WORKTREE/index.md" ]; then
+cat > "$WORKTREE/index.md" << 'EOF'
 ---
 layout: default
 title: "Literature Review"
 ---
 <meta http-equiv="refresh" content="0; url=wiki/">
 <p>→ <a href="wiki/">Open the Literature Review Index</a></p>
+EOF
+fi
 ```
 
-This file is written **once** and never needs updating. The actual content is `wiki/index.md`, served at `/wiki/` — no copy, no link rewriting.
+### Step 7 — Pre-flight: fix Jekyll Liquid conflicts in wiki files
 
-### Step 6 — Append to `wiki/log.md` (before switching branches)
+Jekyll 3 (used by GitHub Pages) processes Liquid `{{` and `{%` tags before markdown rendering, even inside code fences. BibTeX entries often contain `{{Title}}` patterns that break the build.
 
-Count wiki pages and PDFs:
+Run this scan-and-fix inside the worktree before committing:
 
 ```bash
-find wiki/papers -name "*.md" | wc -l
-find raw -name "*.pdf" | wc -l
+# Find any BibTeX blocks in wiki/papers/*.md that contain {{ and wrap with {% raw %}...{% endraw %} if not already wrapped
+for f in "$WORKTREE"/wiki/papers/*.md "$WORKTREE"/wiki/queries/*.md; do
+  if grep -q '{{' "$f" 2>/dev/null; then
+    # Check if already wrapped
+    if ! grep -q '{% raw %}' "$f"; then
+      # Wrap the BibTeX block: add {% raw %} after ```bibtex and {% endraw %} after closing ```
+      python3 -c "
+import re, sys
+content = open('$f').read()
+# Wrap any bibtex code fence that contains {{ with raw/endraw
+def wrap_bibtex(m):
+    block = m.group(0)
+    if '{{' in block and '{% raw %}' not in block:
+        return '\n{% raw %}\n' + block.strip() + '\n{% endraw %}\n'
+    return block
+fixed = re.sub(r'\`\`\`bibtex.*?\`\`\`', wrap_bibtex, content, flags=re.DOTALL)
+open('$f', 'w').write(fixed)
+print(f'Fixed: $f')
+"
+    fi
+  fi
+done
 ```
 
-Append:
-```
-## [{today}] host | pushed web branch — {N} wiki pages, {M} PDFs
-```
-
-### Step 7 — Stage and commit
+### Step 8 — Append to `wiki/log.md` in the worktree
 
 ```bash
+N=$(find "$WORKTREE/wiki/papers" -name "*.md" | wc -l | tr -d ' ')
+M=$(find "$WORKTREE/raw" -name "*.pdf" | wc -l | tr -d ' ')
+echo "## [$(date +%Y-%m-%d)] host | pushed web branch — $N wiki pages, $M PDFs" >> "$WORKTREE/wiki/log.md"
+```
+
+### Step 9 — Stage and commit in the worktree
+
+```bash
+cd "$WORKTREE"
 git add -A
 git diff --staged --quiet || git commit -m "chore: sync knowledge base [$(date +%Y-%m-%d)]"
 ```
 
-Only commits if there are actual changes (idempotent).
-
-### Step 8 — Push to origin
+### Step 10 — Push to origin
 
 ```bash
+cd "$WORKTREE"
 git push -u origin web
 ```
 
-### Step 9 — Enable GitHub Pages automatically
+### Step 11 — Remove the worktree (clean up)
+
+```bash
+cd -   # back to repo root
+git worktree remove "$WORKTREE" --force
+```
+
+### Step 12 — Enable GitHub Pages automatically
 
 ```bash
 REPO=$(gh repo view --json owner,name --jq '"\(.owner.login)/\(.name)"')
-```
-
-Try to enable Pages (first run), or update branch if already enabled:
-
-```bash
-gh api repos/$REPO/pages --method POST -f source[branch]=web -f source[path]=/ 2>/dev/null \
-  || gh api repos/$REPO/pages --method PUT  -f source[branch]=web -f source[path]=/ 2>/dev/null \
+gh api repos/$REPO/pages --method POST --field "source[branch]=web" --field "source[path]=/" 2>/dev/null \
+  || gh api repos/$REPO/pages --method PUT  --field "source[branch]=web" --field "source[path]=/" 2>/dev/null \
   || true
 ```
 
-Get the live URL:
+### Step 13 — Poll the build and fix errors
+
+Poll the GitHub Pages build until it completes (up to 5 minutes):
 
 ```bash
-gh api repos/$REPO/pages --jq '.html_url' 2>/dev/null
+for i in $(seq 1 30); do
+  RESULT=$(gh api repos/$REPO/pages/builds/latest --jq '{status:.status,error:.error.message}')
+  STATUS=$(echo "$RESULT" | python3 -c "import sys,json;d=json.load(sys.stdin);print(d['status'])")
+  ERR=$(echo "$RESULT" | python3 -c "import sys,json;d=json.load(sys.stdin);print(d['error'] or '')")
+  echo "Build status: $STATUS — $ERR"
+  if [ "$STATUS" = "built" ]; then break; fi
+  if [ "$STATUS" = "errored" ]; then
+    echo "Build failed: $ERR"
+    break
+  fi
+  sleep 10
+done
 ```
 
-### Step 10 — Return to `main`
+**If the build errors:**
 
-```bash
-git checkout main
-```
+1. Check the error message for clues (`$ERR`).
+2. Common causes and fixes:
+   - **"Liquid syntax error"**: A wiki file has `{{` or `{%` not inside `{% raw %}` — re-run Step 7, commit, push, and re-poll.
+   - **"YAML exception"**: A wiki file has malformed front matter — find it with `grep -r '---' wiki/ | head`, inspect and fix.
+   - **"File not found"**: A broken relative link — run `/lint` to detect and fix.
+3. After fixing, re-run from Step 9 (using the same worktree is gone; use git archive to push a fix directly).
 
-### Step 11 — Report to user
+### Step 14 — Report to user
 
 Tell the user:
-- The `web` branch was pushed
-- The live URL (e.g. `https://take2rohit.github.io/clawiki/`)
-- GitHub Pages may take 1–2 minutes to build on first deploy
-- Note: `[[wikilinks]]` in paper pages appear as plain text on the web (not hyperlinks) — Jekyll limitation, not a bug
+- Build result: built ✅ or errored ❌
+- Live URL from `gh api repos/$REPO/pages --jq '.html_url'`
+- Note: `[[wikilinks]]` in paper pages appear as plain text on the web — Jekyll 3 limitation, not a bug
 
-### Notes
+## Notes
 
-- PDFs in `raw/` are served at `/raw/<slug>.pdf` — paper pages link to them with `../../raw/` which resolves correctly
-- `wiki/index.md` is the real homepage, served at `/wiki/`; the root `index.md` just redirects there
-- The `web` branch `.gitignore` intentionally differs from `main`
-- Running `/host` again is safe and idempotent — only changed files get committed
+- **No branch switching**: `git worktree` keeps wiki/ and raw/ safe in the main working directory at all times
+- **Idempotent**: Running `/host` again only commits and pushes changed files
+- **The `web` branch `.gitignore` differs from `main`** — this is intentional and maintained by the skill
+- **After ingest**: new BibTeX entries may have `{{` — Step 7 auto-fixes them before every push

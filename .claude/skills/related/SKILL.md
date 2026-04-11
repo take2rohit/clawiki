@@ -27,7 +27,7 @@ Read [reference.md](../literature-review/reference.md) for tools reference.
 
 5. **Deduplicate** against existing `wiki/index.md` entries (any status).
 
-6. **Add rows to `wiki/index.md`** for each newly found paper with status `discovered`, appended **directly after the last existing row — no blank lines between rows**. Blank lines break markdown table rendering.
+6. **Add rows to `wiki/index.md`** for each newly found paper with status `discovered`:
    ```
    | P0XX | {Title} | {Year} | {Venue} | {FirstAuthor} ({1stInst.}) | {LastAuthor} ({LastInst.}) | {Citations} | discovered | [arXiv]({url}) | — | |
    ```

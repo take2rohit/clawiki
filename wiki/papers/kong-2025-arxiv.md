@@ -243,6 +243,7 @@ Key cross-track findings:
 ---
 
 ## BibTeX
+{% raw %}
 ```bibtex
 @article{kong2025survey3d4d,
   title     = {{3D} and {4D} World Modeling: {A} Survey},
@@ -253,3 +254,4 @@ Key cross-track findings:
   url       = {https://arxiv.org/abs/2509.07996}
 }
 ```
+{% endraw %}

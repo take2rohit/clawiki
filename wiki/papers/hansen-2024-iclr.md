@@ -185,6 +185,7 @@ All ablations conducted on three hardest single-task and 80-task multi-task sett
 ---
 
 ## BibTeX
+{% raw %}
 ```bibtex
 @inproceedings{hansen2024tdmpc2,
   title={{TD-MPC2}: Scalable, Robust World Models for Continuous Control},
@@ -193,3 +194,4 @@ All ablations conducted on three hardest single-task and 80-task multi-task sett
   year={2024}
 }
 ```
+{% endraw %}

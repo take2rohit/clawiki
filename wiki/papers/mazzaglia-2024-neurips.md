@@ -203,6 +203,7 @@ Data-free GenRL achieves performance close to offline GenRL (~5% lower overall),
 ---
 
 ## BibTeX
+{% raw %}
 ```bibtex
 @inproceedings{mazzaglia2024genrl,
   title={{GenRL}: Multimodal-foundation World Models for Generalization in Embodied Agents},
@@ -211,3 +212,4 @@ Data-free GenRL achieves performance close to offline GenRL (~5% lower overall),
   year={2024}
 }
 ```
+{% endraw %}
