@@ -20,7 +20,9 @@ Must be on `main`. If not, stop and warn the user.
 
 ### Step 2 — Pre-flight: fix Jekyll Liquid conflicts
 
-Jekyll 3 processes `{{` as Liquid before markdown, even inside code fences. Scan wiki/papers for any BibTeX blocks with `{{` not already wrapped in `{% raw %}`:
+Jekyll 3 processes `{{` as Liquid before markdown, even inside code fences. It also processes ALL `.md` files at the repo root unless excluded. Ensure `CLAUDE.md` is in the `exclude` list in `_config.yml` — it contains `{% raw %}` examples that Jekyll will try to parse.
+
+Scan wiki/papers for any BibTeX blocks with `{{` not already wrapped in `{% raw %}`:
 
 ```python
 import re, glob
