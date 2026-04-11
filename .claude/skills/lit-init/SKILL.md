@@ -72,7 +72,30 @@ Select top N (default 20, override with `--top`). The final set must always incl
 
 ## Phase 3 — Create the index
 
-Create `wiki/index.md` with a row for every discovered paper. Set status to `discovered` for all rows. Use the arXiv URL as the PDF link. See the [schema](../literature-review/SKILL.md) for the full column format.
+Create `wiki/index.md` with the following structure. See the [schema](../literature-review/SKILL.md) for the full column format.
+
+Start the file with:
+```markdown
+---
+layout: default
+title: "Literature Review Index"
+---
+
+# Literature Review Index
+
+> Last updated: {today} | Papers: N discovered | Topics: 0 | Methods: 0
+
+## Overview & Log
+
+- [Overview](overview.md) — high-level synthesis of the research landscape
+- [Activity Log](log.md) — append-only record of every operation
+
+## Papers
+| ID | Title | Year | Venue | 1st Author (Inst.) | Last Author (Inst.) | Citations | Status | PDF | Wiki | Notes |
+|----|-------|------|-------|-------------------|---------------------|-----------|--------|-----|------|-------|
+```
+
+Then add a row for every discovered paper (status `discovered`, arXiv URL as PDF link):
 
 Each row:
 ```

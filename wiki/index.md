@@ -2,6 +2,11 @@
 
 > Last updated: 2026-04-10 | Papers: 22 ingested, 0 downloaded, 21 discovered | Topics: 5 | Methods: 13
 
+## Overview & Log
+
+- [Overview](overview.md) — high-level synthesis of the research landscape
+- [Activity Log](log.md) — append-only record of every operation
+
 ## Papers
 
 | ID | Title | Year | Venue | 1st Author (Inst.) | Last Author (Inst.) | Citations | Status | PDF | Wiki | Notes |
