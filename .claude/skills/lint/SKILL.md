@@ -63,7 +63,7 @@ Auto-fix deterministic issues. Ask user before deleting any files. Report heuris
 
 **Append to `wiki/log.md`:**
 ```bash
-echo "- [$(date +%Y-%m-%d)] **lint** | N issues found, M auto-fixed" >> wiki/log.md
+echo "- [$(date "+%Y-%m-%d %H:%M")] **lint** | N issues found, M auto-fixed" >> wiki/log.md
 ```
 
 **Recommend next commands** at the end of the report:

@@ -128,7 +128,7 @@ Tell the user how many papers were discovered. Show the index table. Suggest `/i
 
 Append to `wiki/log.md`:
 ```bash
-echo "- [$(date +%Y-%m-%d)] **init** | \"{topic}\" — discovered N papers, workspace ready (no PDFs downloaded)" >> wiki/log.md
+echo "- [$(date "+%Y-%m-%d %H:%M")] **init** | \"{topic}\" — discovered N papers, workspace ready (no PDFs downloaded)" >> wiki/log.md
 ```
 
 **Files modified:** `wiki/log.md`

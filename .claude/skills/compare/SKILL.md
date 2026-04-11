@@ -36,7 +36,7 @@ Compare: **$ARGUMENTS**
 
 6. **Append to `wiki/log.md`:**
    ```bash
-   echo "- [$(date +%Y-%m-%d)] **compare** | {slug1} vs {slug2} — written to wiki/queries/{filename}" >> wiki/log.md
+   echo "- [$(date "+%Y-%m-%d %H:%M")] **compare** | {slug1} vs {slug2} — written to wiki/queries/{filename}" >> wiki/log.md
    ```
 
 7. **Recommend next commands:**

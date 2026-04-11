@@ -133,7 +133,7 @@ Also backfill any `—` values in the `1st Author (Inst.)`, `Last Author (Inst.)
 
 **`wiki/log.md`:** append one line:
 ```bash
-echo "- [$(date +%Y-%m-%d)] **ingest** | {slug} — {title}, {N} sections written, cross-referenced {M} existing pages" >> wiki/log.md
+echo "- [$(date "+%Y-%m-%d %H:%M")] **ingest** | {slug} — {title}, {N} sections written, cross-referenced {M} existing pages" >> wiki/log.md
 ```
 
 ## Quality checklist before finishing

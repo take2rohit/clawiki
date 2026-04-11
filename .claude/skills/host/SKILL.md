@@ -44,14 +44,14 @@ for path in glob.glob('wiki/papers/*.md') + glob.glob('wiki/queries/*.md'):
 ```bash
 N=$(find wiki/papers -name "*.md" | wc -l | tr -d ' ')
 M=$(find raw -name "*.pdf" | wc -l | tr -d ' ')
-echo "- [$(date +%Y-%m-%d)] **host** | pushed main — $N wiki pages, $M PDFs" >> wiki/log.md
+echo "- [$(date "+%Y-%m-%d %H:%M")] **host** | pushed main — $N wiki pages, $M PDFs" >> wiki/log.md
 ```
 
 ### Step 4 — Commit and push
 
 ```bash
 git add -A
-git diff --staged --quiet || git commit -m "chore: sync knowledge base [$(date +%Y-%m-%d)]"
+git diff --staged --quiet || git commit -m "chore: sync knowledge base [$(date "+%Y-%m-%d %H:%M")]"
 git push origin main
 ```
 

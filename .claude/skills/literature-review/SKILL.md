@@ -177,10 +177,10 @@ layout: default
 
 **Append** (one line per operation):
 ```bash
-echo "- [$(date +%Y-%m-%d)] **verb** | details" >> wiki/log.md
+echo "- [$(date "+%Y-%m-%d %H:%M")] **verb** | details" >> wiki/log.md
 ```
 
-**Entry format:** `- [YYYY-MM-DD] **verb** | subject — details`
+**Entry format:** `- [YYYY-MM-DD HH:MM] **verb** | subject — details`
 
 ## GitHub Pages compatibility
 

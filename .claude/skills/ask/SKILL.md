@@ -51,5 +51,5 @@ Question: **$ARGUMENTS**
 
 7. **Append to `wiki/log.md`:**
    ```bash
-   echo "- [$(date +%Y-%m-%d)] **ask** | \"{question}\" — answered from N sources, confidence: {level}" >> wiki/log.md
+   echo "- [$(date "+%Y-%m-%d %H:%M")] **ask** | \"{question}\" — answered from N sources, confidence: {level}" >> wiki/log.md
    ```
