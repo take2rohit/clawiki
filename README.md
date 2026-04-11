@@ -55,6 +55,7 @@ The LLM **incrementally builds and maintains a persistent wiki** — structured 
 | `/gaps` | Find missing coverage, broken cross-references | `wiki/log.md` (report only, no structural changes) |
 | `/lint` | Health-check, fix broken links, remove singleton tags | `wiki/index.md`, `wiki/papers/*.md` (tag fixes), `wiki/log.md` |
 | `/bibtex [id\|all]` | Export citations to `bibtex/references.bib` | `bibtex/references.bib`, `wiki/log.md` |
+| `/host` | Publish the knowledge base to GitHub Pages via the `web` branch | `web` branch: `wiki/`, `raw/`, `_config.yml`, root `index.md` |
 
 ## Discovery Flow
 
@@ -101,6 +102,16 @@ downloaded  ──>  (ingest reads PDF + creates wiki page)      ──>  ingest
 - Nothing else. No API keys, no dependencies.
 
 Clone, open in Claude Code, run `/lit-init`.
+
+## Hosting on GitHub Pages
+
+```bash
+/host   # pushes wiki/ + raw/ to the web branch, rebuilds GitHub Pages
+```
+
+First-time setup: after the first `/host`, go to repo **Settings → Pages → Branch: `web` → Save**. Every subsequent `/host` auto-updates the site.
+
+**Branch policy:** `main` contains only skills. `wiki/` and `raw/` only live on the `web` branch. See `CLAUDE.md` for the full rules.
 
 ## Tips
 

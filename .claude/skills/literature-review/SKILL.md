@@ -42,6 +42,11 @@ A persistent, compounding knowledge base for academic literature review, followi
 `wiki/index.md` is the **only** place that tracks all papers and their status. There is no CSV or database.
 
 ```markdown
+---
+layout: default
+title: "Literature Review Index"
+---
+
 # Literature Review Index
 
 > Last updated: YYYY-MM-DD | Papers: N ingested, M downloaded | Topics: K | Methods: J
