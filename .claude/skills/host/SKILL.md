@@ -57,9 +57,7 @@ EOF
 cat > "$WORKTREE/_config.yml" << 'EOF'
 title: "Clawiki"
 description: "A structured, cross-referenced literature review knowledge base maintained with Claude Code."
-remote_theme: pages-themes/hacker@v0.2.0
-plugins:
-  - jekyll-remote-theme
+theme: jekyll-theme-slate
 markdown: kramdown
 kramdown:
   input: GFM

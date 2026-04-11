@@ -145,6 +145,7 @@ Which components actually matter? What happens when you remove each one? Summari
 
 ## BibTeX
 
+{% raw %}
 ```bibtex
 @article{key2024,
   title={},
@@ -153,3 +154,4 @@ Which components actually matter? What happens when you remove each one? Summari
   year={2024}
 }
 ```
+{% endraw %}

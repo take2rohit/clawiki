@@ -161,6 +161,15 @@ Append-only. Parseable with `grep "^## \[" wiki/log.md | tail -10`.
 ## [YYYY-MM-DD] verb | subject — details
 ```
 
+## GitHub Pages compatibility
+
+All wiki content is hosted via `/host` on a `web` branch with Jekyll (`jekyll-theme-slate`). Two rules keep everything compatible:
+
+1. **BibTeX blocks must use `{% raw %}...{% endraw %}`** around every ` ```bibtex ``` ` block. Jekyll processes Liquid tags before markdown, so `{{Title}}` patterns in BibTeX break the build. The paper template already includes this. Always use it.
+2. **The repo must be public** for free GitHub Pages. Private repos require a paid GitHub plan.
+
+The link format (`../raw/`, `papers/slug.md`) works in Obsidian, GitHub.com, and GitHub Pages without any changes.
+
 ## Rules
 
 1. **Never modify files in `raw/`.** Immutable sources of truth.
