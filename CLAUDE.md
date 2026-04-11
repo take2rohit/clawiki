@@ -29,11 +29,7 @@ web:
 
 ## Hosting
 
-Run `/host` to publish the knowledge base to GitHub Pages.
-
-**First-time setup:** After the first `/host` push, go to repo Settings → Pages → Source: Deploy from branch → Branch: `web` → Folder: `/ (root)` → Save.
-
-After that, every `/host` run auto-updates the live site. No other manual steps needed.
+Run `/host` to publish the knowledge base to GitHub Pages. It is fully autonomous — it pushes the `web` branch and enables GitHub Pages automatically using the `gh` CLI. No manual setup required.
 
 ## Hard rules
 

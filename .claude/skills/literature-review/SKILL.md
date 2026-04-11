@@ -93,6 +93,8 @@ title: "Literature Review Index"
 | `downloaded` | `[PDF](../raw/{name}.pdf)` | `—` | PDF saved locally, not yet read |
 | `ingested` | `[PDF](../raw/{name}.pdf)` | `[Notes](papers/{name}.md)` | Read, extracted, full wiki page created |
 
+**Link format is universal.** `../raw/` and `papers/{slug}.md` resolve correctly in Obsidian (vault at repo root), GitHub.com (viewing wiki/index.md), and GitHub Pages (Jekyll serves wiki/index.md at /wiki/). Never change this format — no rewriting needed for hosting.
+
 **Status lifecycle:** `discovered` → `/ingest discovered` (downloads PDF + creates wiki page) → `ingested`
 
 **Commands:**

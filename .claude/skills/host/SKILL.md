@@ -1,6 +1,6 @@
 ---
 name: host
-description: "Publish the knowledge base to GitHub Pages by syncing wiki/ and raw/ to the web branch. Always works on the web branch — never touches main."
+description: "Publish the knowledge base to GitHub Pages by syncing wiki/ and raw/ to the web branch. Always works on the web branch — never touches main. Fully autonomous: enables GitHub Pages automatically on first run."
 user-invocable: true
 ---
 
@@ -8,13 +8,18 @@ user-invocable: true
 
 > **BRANCH RULE: This skill ALWAYS operates on the `web` branch. Never commit `wiki/`, `raw/`, or any knowledge base files to `main`. Only `.claude/skills/` content belongs on `main`.**
 
+The wiki link format (`../raw/`, `papers/slug.md`) is already compatible with Obsidian, GitHub.com, and GitHub Pages — no link rewriting is needed. `wiki/index.md` is served at `/wiki/` and all relative links resolve correctly from there.
+
 ## Workflow
 
 ### Step 1 — Confirm starting state
 
-Run `git branch --show-current` to confirm we are on `main`. If on any other branch, warn the user and stop.
+```bash
+git branch --show-current
+git status
+```
 
-Run `git status` to check for uncommitted changes. If there are staged changes on `main`, warn the user before proceeding (do not commit or stash them — just warn).
+Confirm we are on `main`. If there are uncommitted changes, warn the user but continue — do not stash or commit them.
 
 ### Step 2 — Switch to `web` branch
 
@@ -22,19 +27,17 @@ Run `git status` to check for uncommitted changes. If there are staged changes o
 git checkout web 2>/dev/null || git checkout -b web main
 ```
 
-If `web` already exists, check it out. If not, create it from `main`.
-
-Then bring in the latest skills from `main`:
+Bring in any new skills from `main`:
 
 ```bash
 git merge main --no-edit -X theirs 2>/dev/null || true
 ```
 
-`-X theirs` resolves conflicts by preferring main's version — we will immediately overwrite `.gitignore` in the next step anyway.
+`-X theirs` resolves conflicts by preferring `main`'s files. We immediately overwrite `.gitignore` next anyway.
 
-### Step 3 — Write `.gitignore` for the `web` branch
+### Step 3 — Write `.gitignore` for `web` branch
 
-Overwrite `.gitignore` with this exact content (removes the `wiki/` and `raw/` ignore lines so they get tracked):
+Overwrite `.gitignore` (removes `wiki/` and `raw/` ignore lines so they get tracked):
 
 ```
 .DS_Store
@@ -44,9 +47,9 @@ wiki/.obsidian/
 .obsidian/
 ```
 
-### Step 4 — Write `_config.yml` at repo root
+### Step 4 — Write `_config.yml`
 
-Create or overwrite `_config.yml`:
+Create or overwrite `_config.yml` at the repo root:
 
 ```yaml
 title: "Clawiki"
@@ -66,29 +69,36 @@ defaults:
       layout: default
 ```
 
-### Step 5 — Build root `index.md` from `wiki/index.md`
+### Step 5 — Write static root `index.md` (first run only)
 
-Read `wiki/index.md`. Write a root `index.md` at the repo root with:
+Check if a root `index.md` already exists with the redirect. If not, write it:
 
-1. A Jekyll front matter header at the top:
-   ```yaml
-   ---
-   layout: default
-   title: "Literature Review Index"
-   ---
-   ```
+```html
+---
+layout: default
+title: "Literature Review"
+---
+<meta http-equiv="refresh" content="0; url=wiki/">
+<p>→ <a href="wiki/">Open the Literature Review Index</a></p>
+```
 
-2. The full content of `wiki/index.md` (append after front matter), with the following link substitutions so paths resolve correctly from the root:
-   - `../raw/` → `raw/`
-   - `](papers/` → `](wiki/papers/`
-   - `](topics/` → `](wiki/topics/`
-   - `](methods/` → `](wiki/methods/`
-   - `](benchmarks/` → `](wiki/benchmarks/`
-   - `](queries/` → `](wiki/queries/`
+This file is written **once** and never needs updating. The actual content is `wiki/index.md`, served at `/wiki/` — no copy, no link rewriting.
 
-   Apply substitutions using `sed` on the content before writing.
+### Step 6 — Append to `wiki/log.md` (before switching branches)
 
-### Step 6 — Stage and commit
+Count wiki pages and PDFs:
+
+```bash
+find wiki/papers -name "*.md" | wc -l
+find raw -name "*.pdf" | wc -l
+```
+
+Append:
+```
+## [{today}] host | pushed web branch — {N} wiki pages, {M} PDFs
+```
+
+### Step 7 — Stage and commit
 
 ```bash
 git add -A
@@ -97,33 +107,49 @@ git diff --staged --quiet || git commit -m "chore: sync knowledge base [$(date +
 
 Only commits if there are actual changes (idempotent).
 
-### Step 7 — Push to origin
+### Step 8 — Push to origin
 
 ```bash
 git push -u origin web
 ```
 
-### Step 8 — Return to `main`
+### Step 9 — Enable GitHub Pages automatically
+
+```bash
+REPO=$(gh repo view --json owner,name --jq '"\(.owner.login)/\(.name)"')
+```
+
+Try to enable Pages (first run), or update branch if already enabled:
+
+```bash
+gh api repos/$REPO/pages --method POST -f source[branch]=web -f source[path]=/ 2>/dev/null \
+  || gh api repos/$REPO/pages --method PUT  -f source[branch]=web -f source[path]=/ 2>/dev/null \
+  || true
+```
+
+Get the live URL:
+
+```bash
+gh api repos/$REPO/pages --jq '.html_url' 2>/dev/null
+```
+
+### Step 10 — Return to `main`
 
 ```bash
 git checkout main
 ```
 
-### Step 9 — Report to user
+### Step 11 — Report to user
 
 Tell the user:
-- The `web` branch was pushed to origin
-- GitHub Pages URL format: `https://<username>.github.io/<repo>/`
-- **First-time setup:** Go to repo Settings → Pages → Source: Deploy from branch → Branch: `web` → Folder: `/ (root)` → Save
-- After setup, the site is live and every future `/host` run auto-updates it
-- Note: `[[wikilinks]]` in paper pages render as plain text on the web (not clickable) — this is a Jekyll limitation without plugins, not a bug
+- The `web` branch was pushed
+- The live URL (e.g. `https://take2rohit.github.io/clawiki/`)
+- GitHub Pages may take 1–2 minutes to build on first deploy
+- Note: `[[wikilinks]]` in paper pages appear as plain text on the web (not hyperlinks) — Jekyll limitation, not a bug
 
 ### Notes
 
-- PDFs in `raw/` are included on the `web` branch and linked from paper pages as `/raw/<slug>.pdf`
-- The `web` branch `.gitignore` intentionally differs from `main` — do not sync them
-- The `web` branch always includes everything in `main` (skills, README, CLAUDE.md) plus the knowledge base
-- Append to `wiki/log.md` before switching branches:
-  ```
-  ## [{today}] host | pushed web branch to origin — {N} wiki pages, {M} PDFs
-  ```
+- PDFs in `raw/` are served at `/raw/<slug>.pdf` — paper pages link to them with `../../raw/` which resolves correctly
+- `wiki/index.md` is the real homepage, served at `/wiki/`; the root `index.md` just redirects there
+- The `web` branch `.gitignore` intentionally differs from `main`
+- Running `/host` again is safe and idempotent — only changed files get committed
