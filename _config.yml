@@ -6,6 +6,7 @@ kramdown:
   input: GFM
 exclude:
   - ".claude/"
+  - "CLAUDE.md"
   - "Gemfile"
   - "Gemfile.lock"
 defaults:
