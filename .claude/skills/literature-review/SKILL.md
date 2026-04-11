@@ -171,16 +171,16 @@ layout: default
 
 # Activity Log
 
-- [YYYY-MM-DD HH:MM] **verb** | subject — details
-- [YYYY-MM-DD HH:MM] **verb** | subject — details
+- [YYYY-MM-DD HH:MM] **verb** -	subject — details
+- [YYYY-MM-DD HH:MM] **verb** -	subject — details
 ```
 
 **Append** (one line per operation):
 ```bash
-echo "- [$(date "+%Y-%m-%d %H:%M")] **verb** | details" >> wiki/log.md
+echo "- [$(date "+%Y-%m-%d %H:%M")] **verb** -	details" >> wiki/log.md
 ```
 
-**Entry format:** `- [YYYY-MM-DD HH:MM] **verb** | subject — details`
+**Entry format:** `- [YYYY-MM-DD HH:MM] **verb** -	subject — details`
 
 ## GitHub Pages compatibility
 

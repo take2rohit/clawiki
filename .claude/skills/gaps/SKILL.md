@@ -46,7 +46,7 @@ description: "Identify research gaps, missing citations, contradictions, and ope
 
 5. **Append to `wiki/log.md`:**
    ```bash
-   echo "- [$(date "+%Y-%m-%d %H:%M")] **gaps** | N gaps identified across M dimensions" >> wiki/log.md
+   echo "- [$(date "+%Y-%m-%d %H:%M")] **gaps** -	N gaps identified across M dimensions" >> wiki/log.md
    ```
 
 6. **Recommend next commands** at the end:
