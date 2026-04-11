@@ -160,11 +160,31 @@ Templates are in [templates/](templates/). Read them when creating new pages:
 
 ## Log Format (`wiki/log.md`)
 
-Append-only. Parseable with `grep "^## \[" wiki/log.md | tail -10`.
+Append-only. `wiki/log.md` has YAML frontmatter and groups entries by date. Parseable with `grep "^- \*\*" wiki/log.md | tail -10`.
 
+**Structure:**
+```markdown
+---
+title: "Activity Log"
+layout: default
+---
+
+# Activity Log
+
+## YYYY-MM-DD
+
+- **verb** | subject — details
+- **verb** | subject — details
 ```
-## [YYYY-MM-DD] verb | subject — details
+
+**Append logic** (use in every skill that writes to the log):
+```bash
+DATE=$(date +%Y-%m-%d)
+grep -q "^## $DATE" wiki/log.md || printf "\n## $DATE\n" >> wiki/log.md
+echo "- **verb** | details" >> wiki/log.md
 ```
+
+**Entry format:** `- **verb** | subject — details`
 
 ## GitHub Pages compatibility
 

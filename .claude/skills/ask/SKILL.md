@@ -50,6 +50,8 @@ Question: **$ARGUMENTS**
      ```
 
 7. **Append to `wiki/log.md`:**
-   ```
-   ## [{today}] ask | "{question}" — answered from N sources, confidence: {level}
+   ```bash
+   DATE=$(date +%Y-%m-%d)
+   grep -q "^## $DATE" wiki/log.md || printf "\n## $DATE\n" >> wiki/log.md
+   echo "- **ask** | \"{question}\" — answered from N sources, confidence: {level}" >> wiki/log.md
    ```

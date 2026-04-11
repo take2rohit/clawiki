@@ -21,7 +21,21 @@ Bootstrap and populate workspace for: **$ARGUMENTS**
 
 Create directories: `raw/`, `wiki/papers/`, `wiki/topics/`, `wiki/methods/`, `wiki/benchmarks/`, `wiki/queries/`, `bibtex/`.
 
-Create `wiki/log.md`, `wiki/overview.md` (placeholder), and empty `bibtex/references.bib`.
+Create `wiki/overview.md` (placeholder) and empty `bibtex/references.bib`.
+
+Create `wiki/log.md` with this exact content:
+```markdown
+---
+title: "Activity Log"
+layout: default
+---
+
+# Activity Log
+
+An append-only record of every operation performed on this knowledge base.
+
+---
+```
 
 **Files created:** `wiki/log.md`, `wiki/overview.md`, `bibtex/references.bib`
 
@@ -117,8 +131,10 @@ List seminal and survey papers first in the table, then remaining papers by desc
 Tell the user how many papers were discovered. Show the index table. Suggest `/ingest all` to download PDFs and build wiki pages.
 
 Append to `wiki/log.md`:
-```
-## [{today}] init | "{topic}" — discovered N papers, workspace ready (no PDFs downloaded)
+```bash
+DATE=$(date +%Y-%m-%d)
+grep -q "^## $DATE" wiki/log.md || printf "\n## $DATE\n" >> wiki/log.md
+echo "- **init** | \"{topic}\" — discovered N papers, workspace ready (no PDFs downloaded)" >> wiki/log.md
 ```
 
 **Files modified:** `wiki/log.md`

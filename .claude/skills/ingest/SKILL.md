@@ -132,8 +132,10 @@ Also backfill any `—` values in the `1st Author (Inst.)`, `Last Author (Inst.)
 **`wiki/overview.md`:** update if this paper materially shifts the landscape — new SOTA, new paradigm, new benchmark, or contradicts existing understanding.
 
 **`wiki/log.md`:** append one line:
-```
-## [{today}] ingest | {slug} — {title}, {N} sections written, cross-referenced {M} existing pages
+```bash
+DATE=$(date +%Y-%m-%d)
+grep -q "^## $DATE" wiki/log.md || printf "\n## $DATE\n" >> wiki/log.md
+echo "- **ingest** | {slug} — {title}, {N} sections written, cross-referenced {M} existing pages" >> wiki/log.md
 ```
 
 ## Quality checklist before finishing

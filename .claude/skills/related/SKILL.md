@@ -36,8 +36,10 @@ Read [reference.md](../literature-review/reference.md) for tools reference.
 7. **Present results** as a scored table (same format as `/discover` output).
 
 8. **Append to `wiki/log.md`:**
-   ```
-   ## [{today}] related | {slug} — found N related papers, added as discovered
+   ```bash
+   DATE=$(date +%Y-%m-%d)
+   grep -q "^## $DATE" wiki/log.md || printf "\n## $DATE\n" >> wiki/log.md
+   echo "- **related** | {slug} — found N related papers, added as discovered" >> wiki/log.md
    ```
 
 9. **Recommend next commands:**

@@ -35,8 +35,10 @@ Compare: **$ARGUMENTS**
 5. **Update `wiki/index.md`** — add to Queries/Syntheses section.
 
 6. **Append to `wiki/log.md`:**
-   ```
-   ## [{today}] compare | {slug1} vs {slug2} — written to wiki/queries/{filename}
+   ```bash
+   DATE=$(date +%Y-%m-%d)
+   grep -q "^## $DATE" wiki/log.md || printf "\n## $DATE\n" >> wiki/log.md
+   echo "- **compare** | {slug1} vs {slug2} — written to wiki/queries/{filename}" >> wiki/log.md
    ```
 
 7. **Recommend next commands:**

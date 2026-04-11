@@ -112,8 +112,10 @@ Add one row per discovered paper to the Papers table in `wiki/index.md`:
 Update the header stats: add `, K discovered` to the papers count and update `Last updated`.
 
 Append to `wiki/log.md`:
-```
-## [{today}] discover | "{query}" — added N discovered rows, {dup} duplicates skipped
+```bash
+DATE=$(date +%Y-%m-%d)
+grep -q "^## $DATE" wiki/log.md || printf "\n## $DATE\n" >> wiki/log.md
+echo "- **discover** | \"{query}\" — added N discovered rows, {dup} duplicates skipped" >> wiki/log.md
 ```
 
 ---

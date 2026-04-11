@@ -62,8 +62,10 @@ Produce a summary table:
 Auto-fix deterministic issues. Ask user before deleting any files. Report heuristic issues as a prioritized action list.
 
 **Append to `wiki/log.md`:**
-```
-## [{today}] lint | N issues found, M auto-fixed
+```bash
+DATE=$(date +%Y-%m-%d)
+grep -q "^## $DATE" wiki/log.md || printf "\n## $DATE\n" >> wiki/log.md
+echo "- **lint** | N issues found, M auto-fixed" >> wiki/log.md
 ```
 
 **Recommend next commands** at the end of the report:
