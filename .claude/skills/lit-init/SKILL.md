@@ -118,7 +118,7 @@ title: "Literature Review Index"
 
 # Literature Review Index
 
-> Last updated: {today} | Papers: N discovered | Topics: 0 | Methods: 0
+**Last updated:** {today} · **Papers:** N discovered · **Topics:** 0 · **Methods:** 0
 
 ## Overview & Log
 
@@ -126,6 +126,7 @@ title: "Literature Review Index"
 - [Activity Log](log.md) — append-only record of every operation
 
 ## Papers
+
 | ID | Title | Year | Venue | 1st Author (Inst.) | Last Author (Inst.) | Citations | Status | PDF | Wiki | Notes |
 |----|-------|------|-------|-------------------|---------------------|-----------|--------|-----|------|-------|
 ```
@@ -160,7 +161,8 @@ Create `README.md` at the repo root on this branch:
 ```markdown
 # {Topic} Literature Review
 
-> Branch: `{branch_name}` | Papers discovered: N | Created: {today}
+**Branch:** `{branch_name}` · **Papers discovered:** N · **Created:** {today}
+
 > Live: run `/host` to publish
 
 A Clawiki knowledge base. See `main` branch for full documentation and quick-start guide.
