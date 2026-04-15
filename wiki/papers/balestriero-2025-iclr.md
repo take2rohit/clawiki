@@ -15,8 +15,13 @@ created: 2026-04-10
 updated: 2026-04-10
 cites:
   - lecun-2022-openreview
+  - assran-2023-cvpr
 cited_by:
   - maes-2026-arxiv
+  - zimmermann-2025-arxiv
+  - nam-2026-arxiv
+  - zhang-2026-arxiv
+  - li-2025-iclr
 ---
 
 # LeJEPA: Provable and Scalable Self-Supervised Learning Without the Heuristics

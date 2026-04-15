@@ -19,6 +19,8 @@ cites:
   - hafner-2023-arxiv
 cited_by:
   - maes-2026-arxiv
+  - terver-2025-iclr
+  - bagatella-2025-iclr
 ---
 
 # TD-MPC2: Scalable, Robust World Models for Continuous Control

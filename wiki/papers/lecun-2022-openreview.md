@@ -14,11 +14,23 @@ created: 2026-04-10
 updated: 2026-04-10
 cites: []
 cited_by:
+  - assran-2023-cvpr
   - bar-2024-cvpr
+  - bardes-2024-tmlr
   - ding-2024-csur
   - li-2025-arxiv
   - balestriero-2025-iclr
   - maes-2026-arxiv
+  - nam-2026-arxiv
+  - hauri-2026-iclrws
+  - li-2025-iclr
+  - terver-2025-iclr
+  - chen-2025-iclr
+  - destrade-2025-workshop
+  - ghaemi-2025-neurips
+  - zhang-2026-arxiv
+  - bagatella-2025-iclr
+  - assran-2025-arxiv
 ---
 
 # A Path Towards Autonomous Machine Intelligence

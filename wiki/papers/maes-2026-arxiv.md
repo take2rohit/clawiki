@@ -18,13 +18,17 @@ created: 2026-04-10
 updated: 2026-04-10
 cites:
   - lecun-2022-openreview
+  - assran-2023-cvpr
   - balestriero-2025-iclr
   - ha-2018-neurips
   - micheli-2023-iclr
   - alonso-2024-neurips
   - hansen-2022-icml
   - hansen-2024-iclr
-cited_by: []
+  - terver-2025-iclr
+cited_by:
+  - nam-2026-arxiv
+  - zhang-2026-arxiv
 ---
 
 # LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels

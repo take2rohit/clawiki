@@ -26,6 +26,7 @@ cited_by:
   - mazzaglia-2024-neurips
   - ding-2024-csur
   - li-2025-arxiv
+  - hauri-2026-iclrws
 ---
 
 # Mastering Atari with Discrete World Models (DreamerV2)

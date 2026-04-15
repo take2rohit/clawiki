@@ -18,6 +18,9 @@ cites: []
 cited_by:
   - hansen-2024-iclr
   - maes-2026-arxiv
+  - terver-2025-iclr
+  - bagatella-2025-iclr
+  - zhang-2026-arxiv
 ---
 
 # Temporal Difference Learning for Model Predictive Control

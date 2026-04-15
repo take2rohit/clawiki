@@ -19,7 +19,9 @@ updated: 2026-04-10
 cites:
   - lecun-2022-openreview
   - alonso-2024-neurips
-cited_by: []
+cited_by:
+  - terver-2025-iclr
+  - zhang-2026-arxiv
 ---
 
 # Navigation World Models

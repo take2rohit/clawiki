@@ -29,6 +29,9 @@ cited_by:
   - mazzaglia-2024-neurips
   - ding-2024-csur
   - li-2025-arxiv
+  - terver-2025-iclr
+  - zhang-2026-arxiv
+  - destrade-2025-workshop
 ---
 
 # Learning Latent Dynamics for Planning from Pixels (PlaNet)

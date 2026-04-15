@@ -25,6 +25,10 @@ cited_by:
   - ding-2024-csur
   - li-2025-arxiv
   - hansen-2024-iclr
+  - hauri-2026-iclrws
+  - terver-2025-iclr
+  - bagatella-2025-iclr
+  - zhang-2026-arxiv
 ---
 
 # Mastering Diverse Domains through World Models (DreamerV3)
