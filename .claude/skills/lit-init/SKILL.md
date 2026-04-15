@@ -10,8 +10,8 @@ Bootstrap and populate workspace for: **$ARGUMENTS**
 
 > **TOOL RULES — READ FIRST:**
 > - **Search:** Use **WebSearch** (Claude's built-in tool). Spawn searches **in parallel**.
-> - **No Bash/curl during init** except for branch setup. No PDF downloads. Discovery only.
-> - **No Python scripts ever.** No `python`, `pip`, no `.py` script files.
+> - **Bash/curl:** Allowed for branch setup and **PDF downloads**. Do **not** use Python scripts.
+> - **No Python scripts ever.** No `python`, `pip`, no `.py` files.
 > - **No direct API calls.** Do not call `api.semanticscholar.org`, `export.arxiv.org/api`, or any API endpoint.
 > - **Abstracts:** Use **WebFetch** on arXiv HTML pages (`https://arxiv.org/abs/XXXX`) — regular web pages, not API endpoints.
 
@@ -105,6 +105,24 @@ Select top N (default 20, override with `--top`). The final set must always incl
 
 ---
 
+## Phase 2.5 — Download PDFs
+
+For each discovered paper with an arXiv ID, download the PDF in parallel batches (up to 10 concurrent downloads):
+
+```bash
+curl -sL "https://arxiv.org/pdf/{arxiv_id}" -o "raw/{slug}.pdf"
+```
+
+**Slug format:** `{first_author_lastname}-{year}-{venue_short}.pdf` (lowercase, e.g. `hafner-2021-iclr.pdf`).
+
+After each batch, verify: `file raw/{slug}.pdf` must report "PDF document" and size > 0.
+- If download succeeds: mark as `downloaded`, PDF column = `[PDF](../raw/{slug}.pdf)`
+- If download fails: mark as `discovered`, PDF column = `[arXiv]({arxiv_url})`, log and continue
+
+Do **not** hold up the batch for a single failed download.
+
+---
+
 ## Phase 3 — Create the index
 
 Create `wiki/index.md` with the following structure. See the [schema](../literature-review/SKILL.md) for the full column format.
@@ -118,7 +136,7 @@ title: "Literature Review Index"
 
 # Literature Review Index
 
-**Last updated:** {today} · **Papers:** N discovered · **Topics:** 0 · **Methods:** 0
+> Last updated: {today} | Papers: 0 ingested, D downloaded, F discovered | Topics: 0 | Methods: 0
 
 ## Overview & Log
 
@@ -126,18 +144,19 @@ title: "Literature Review Index"
 - [Activity Log](log.md) — append-only record of every operation
 
 ## Papers
-
 | ID | Title | Year | Venue | 1st Author (Inst.) | Last Author (Inst.) | Citations | Status | PDF | Wiki | Notes |
 |----|-------|------|-------|-------------------|---------------------|-----------|--------|-----|------|-------|
 ```
 
-Then add a row for every discovered paper (status `discovered`, arXiv URL as PDF link):
+Then add a row for every paper:
 
 Each row:
 ```
-| P0XX | {Title} | {Year} | {Venue} | {FirstAuthor} ({1stInst.}) | {LastAuthor} ({LastInst.}) | {Citations} | discovered | [arXiv]({url}) | — | {Notes} |
+| P0XX | {Title} | {Year} | {Venue} | {FirstAuthor} ({1stInst.}) | {LastAuthor} ({LastInst.}) | {Citations} | {status} | {pdf_link} | — | {Notes} |
 ```
 
+- `Status`: `downloaded` if PDF was saved to `raw/`, `discovered` if download failed or no arXiv ID
+- `PDF`: `[PDF](../raw/{slug}.pdf)` if downloaded, `[arXiv]({arxiv_url})` if discovered-only
 - `1st Author (Inst.)` / `Last Author (Inst.)`: from arXiv HTML affiliations. Use `—` if not found.
 - `Citations`: from Semantic Scholar search snippet or page. Use `~Nk` notation. Use `—` if not found.
 - `Notes`: `[seminal]` and/or `[survey]` tags as appropriate. Leave blank otherwise.
@@ -150,19 +169,18 @@ List seminal and survey papers first in the table, then remaining papers by desc
 
 ## Phase 4 — Report
 
-Tell the user how many papers were discovered. Show the index table. Suggest `/ingest all` to download PDFs and build wiki pages.
+Tell the user how many papers were found and downloaded. Show the index table. Suggest `/ingest all` to build wiki pages from the downloaded PDFs.
 
 Append to `wiki/log.md`:
 ```bash
-echo "- [$(date "+%Y-%m-%d %H:%M")] **init** -	\"{topic}\" — discovered N papers, workspace ready (no PDFs downloaded)" >> wiki/log.md
+echo "- [$(date "+%Y-%m-%d %H:%M")] **init** -	\"{topic}\" — found N papers ({D} downloaded, {F} discovered-only), workspace ready" >> wiki/log.md
 ```
 
 Create `README.md` at the repo root on this branch:
 ```markdown
 # {Topic} Literature Review
 
-**Branch:** `{branch_name}` · **Papers discovered:** N · **Created:** {today}
-
+> Branch: `{branch_name}` | Papers discovered: N | Created: {today}
 > Live: run `/host` to publish
 
 A Clawiki knowledge base. See `main` branch for full documentation and quick-start guide.

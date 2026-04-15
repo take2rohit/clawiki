@@ -94,44 +94,62 @@ Sort descending, take top N.
 
 ---
 
-## Phase 5 — Update index
+## Phase 5 — Download PDFs
+
+For each discovered paper with an arXiv ID, download the PDF in parallel batches (up to 10 concurrent downloads):
+
+```bash
+curl -sL "https://arxiv.org/pdf/{arxiv_id}" -o "raw/{slug}.pdf"
+```
+
+**Slug format:** `{first_author_lastname}-{year}-{venue_short}.pdf` (lowercase, e.g. `smith-2025-neurips.pdf`).
+
+After each batch, verify downloads: `file raw/{slug}.pdf` must report "PDF document" and file size > 0.
+- If download succeeds: status = `downloaded`, PDF column = `[PDF](../raw/{slug}.pdf)`
+- If download fails: status = `discovered`, PDF column = `[arXiv]({arxiv_url})`, log the failure and move on
+
+Do **not** hold up the batch for a single failed download.
+
+---
+
+## Phase 6 — Update index
 
 Add one row per discovered paper to the Papers table in `wiki/index.md`:
 
 ```
-| P0XX | {Title} | {Year} | {Venue} | {FirstAuthor} ({1stInst.}) | {LastAuthor} ({LastInst.}) | {Citations} | discovered | [arXiv]({url}) | — | |
+| P0XX | {Title} | {Year} | {Venue} | {FirstAuthor} ({1stInst.}) | {LastAuthor} ({LastInst.}) | {Citations} | {status} | {pdf_link} | — | |
 ```
 
 - `1st Author (Inst.)` / `Last Author (Inst.)`: from Phase 3 arXiv HTML. Use `—` if not found.
 - `Citations`: from Phase 3 Semantic Scholar search. Use `~Nk` notation. Use `—` if not found.
 - `Notes`: leave blank for discover (no seminal/survey tagging here)
-- PDF column: `[arXiv]({arxiv_url})` if arXiv ID known, otherwise `—`
+- PDF column: `[PDF](../raw/{slug}.pdf)` if download succeeded, `[arXiv]({arxiv_url})` otherwise
 - Wiki column: `—` (no page yet)
-- Status: `discovered`
+- Status: `downloaded` if PDF was saved, `discovered` if download failed or no arXiv ID
 
-Update the header stats: add `, K discovered` to the papers count and update `Last updated`.
+Update the header stats: add `, K downloaded, J discovered` to the papers count and update `Last updated`.
 
 Append to `wiki/log.md`:
 ```bash
-echo "- [$(date "+%Y-%m-%d %H:%M")] **discover** -	\"{query}\" — added N discovered rows, {dup} duplicates skipped" >> wiki/log.md
+echo "- [$(date "+%Y-%m-%d %H:%M")] **discover** -	\"{query}\" — added N rows ({D} downloaded, {F} discovered), {dup} duplicates skipped" >> wiki/log.md
 ```
 
 ---
 
-## Phase 6 — Report to user
+## Phase 7 — Report to user
 
 ```
 ## Discovery Results — "{query}" ({today})
 
-Searched: {N} parallel queries | Candidates: {total} | Duplicates skipped: {dup} | Added: {N}
+Searched: {N} parallel queries | Candidates: {total} | Duplicates skipped: {dup} | Added: {N} ({D} downloaded, {F} discovered-only)
 
-| Score | ID   | Title                          | Year | Venue        | 1st Author (Inst.)        | Last Author (Inst.)       | Citations | arXiv      |
-|-------|------|--------------------------------|------|--------------|---------------------------|---------------------------|-----------|------------|
-|    94 | P011 | What Drives Success in JEPA-WM | 2025 | ICLR 2026    | LeCun (Meta AI)           | Assran (Meta AI)          | ~1.2k     | 2512.24497 |
-|    88 | P012 | seq-JEPA                       | 2025 | NeurIPS 2025 | Chen (MIT)                | Isola (MIT)               | —         | 2505.03176 |
+| Score | ID   | Title                          | Year | Venue        | 1st Author (Inst.)        | Last Author (Inst.)       | Citations | Status     | arXiv      |
+|-------|------|--------------------------------|------|--------------|---------------------------|---------------------------|-----------|------------|------------|
+|    94 | P011 | What Drives Success in JEPA-WM | 2025 | ICLR 2026    | LeCun (Meta AI)           | Assran (Meta AI)          | ~1.2k     | downloaded | 2512.24497 |
+|    88 | P012 | seq-JEPA                       | 2025 | NeurIPS 2025 | Chen (MIT)                | Isola (MIT)               | —         | downloaded | 2505.03176 |
 ...
 
-To ingest all discovered papers:  /ingest discovered
+To ingest all downloaded papers:   /ingest all
 To ingest one:                     /ingest {arxiv_id or P-ID}
 To discover more:                  /discover --cite-expand
 ```
