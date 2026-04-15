@@ -25,9 +25,13 @@ Read [reference.md](../literature-review/reference.md) for download details.
 - **`/ingest all`**: Find every row with Status `downloaded` or `discovered`. Process `downloaded` first, then `discovered`.
 - **`/ingest <name>`**: Match `<name>` against the index by P-ID, arXiv ID, slug, or partial title. If not in the index, use **WebSearch** to find the paper, download the PDF via Bash `curl`, add a row, then proceed.
 
+### Handling `downloaded` papers
+
+Papers with status `downloaded` already have a PDF in `raw/` but no wiki page. These are ready for immediate ingestion — skip to the per-paper ingestion workflow below.
+
 ### Handling `discovered` papers
 
-Papers with status `discovered` have an index row (with arXiv URL) but **no wiki page**. Before ingesting:
+Papers with status `discovered` have an index row (with arXiv URL) but **no PDF and no wiki page**. Before ingesting:
 
 1. Read the index row — get the arXiv URL from the PDF column (format: `[arXiv](url)`).
 2. **Download the PDF using Bash `curl`**: `curl -L https://arxiv.org/pdf/{arxiv_id} -o raw/{slug}.pdf`
