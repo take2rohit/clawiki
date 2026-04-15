@@ -1,46 +1,60 @@
 ---
-title: "3D and 4D World Modeling: A Survey"
+title: '3D and 4D World Modeling: A Survey'
 type: paper
 paper_id: P009
 authors:
-  - "Kong, Lingdong"
-  - "Yang, Wesley"
-  - "Mei, Jianbiao"
-  - "Liu, Youquan"
-  - "Liang, Ao"
-  - "Zhu, Dekai"
-  - "Lu, Dongyue"
-  - "Yin, Wei"
-  - "Hu, Xiaotao"
-  - "Jia, Mingkai"
-  - "Deng, Junyuan"
-  - "Zhang, Kaiwen"
-  - "Wu, Yang"
-  - "Yan, Tianyi"
-  - "Gao, Shenyuan"
-  - "Wang, Song"
-  - "Li, Linfeng"
-  - "Pan, Liang"
-  - "Liu, Yong"
-  - "Zhu, Jianke"
-  - "Ooi, Wei Tsang"
-  - "Hoi, Steven C. H."
-  - "Liu, Ziwei"
+- Kong, Lingdong
+- Yang, Wesley
+- Mei, Jianbiao
+- Liu, Youquan
+- Liang, Ao
+- Zhu, Dekai
+- Lu, Dongyue
+- Yin, Wei
+- Hu, Xiaotao
+- Jia, Mingkai
+- Deng, Junyuan
+- Zhang, Kaiwen
+- Wu, Yang
+- Yan, Tianyi
+- Gao, Shenyuan
+- Wang, Song
+- Li, Linfeng
+- Pan, Liang
+- Liu, Yong
+- Zhu, Jianke
+- Ooi, Wei Tsang
+- Hoi, Steven C. H.
+- Liu, Ziwei
 year: 2025
 venue: arXiv
-arxiv_id: "2509.07996"
-url: "https://arxiv.org/abs/2509.07996"
-pdf: "../../raw/kong-2025-arxiv.pdf"
-tags: [world-model, survey, occupancy-grid, point-cloud, video-generation, autonomous-driving, robotics, NeRF, 3DGS, diffusion]
+arxiv_id: '2509.07996'
+url: https://arxiv.org/abs/2509.07996
+pdf: ../../raw/kong-2025-arxiv.pdf
+tags:
+- world-model
+- survey
+- occupancy-grid
+- point-cloud
+- video-generation
+- autonomous-driving
+- robotics
+- NeRF
+- 3DGS
+- diffusion
 created: 2026-04-10
 updated: 2026-04-10
 cites:
-  - ha-2018-neurips
-  - hu-2023-arxiv
-  - ding-2024-csur
-  - feng-2025-arxiv
-  - li-2025-arxiv
-cited_by: []
+- ding-2024-csur
+- feng-2025-arxiv
+- ha-2018-neurips
+- hu-2023-arxiv
+- li-2025-arxiv
+cited_by:
+- ding-2024-csur
+- feng-2025-arxiv
+- li-2025-arxiv
+
 ---
 
 # 3D and 4D World Modeling: A Survey

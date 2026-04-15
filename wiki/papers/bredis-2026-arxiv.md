@@ -12,7 +12,7 @@ venue: arXiv
 arxiv_id: "2603.02765"
 url: "https://arxiv.org/abs/2603.02765"
 pdf: "../../raw/bredis-2026-arxiv.pdf"
-tags: [world-model, decoder-free, embedding-prediction, Dreamer, model-based-RL]
+tags: [world-model, decoder-free, embedding-prediction, Dreamer, model-based-rl]
 created: 2026-04-15
 updated: 2026-04-15
 cites:

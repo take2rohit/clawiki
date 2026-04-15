@@ -1,36 +1,62 @@
 ---
-title: "A Path Towards Autonomous Machine Intelligence"
+title: A Path Towards Autonomous Machine Intelligence
 type: paper
 paper_id: P004
 authors:
-  - "LeCun, Yann"
+- LeCun, Yann
 year: 2022
 venue: OpenReview (position paper)
-arxiv_id: ""
-url: "https://openreview.net/forum?id=BZ5a1r-kVsf"
-pdf: "../../raw/lecun-2022-openreview.pdf"
-tags: [world-model, JEPA, self-supervised-learning]
+arxiv_id: ''
+url: https://openreview.net/forum?id=BZ5a1r-kVsf
+pdf: ../../raw/lecun-2022-openreview.pdf
+tags:
+- world-model
+- JEPA
+- self-supervised-learning
 created: 2026-04-10
 updated: 2026-04-10
 cites: []
 cited_by:
-  - assran-2023-cvpr
-  - bar-2024-cvpr
-  - bardes-2024-tmlr
-  - ding-2024-csur
-  - li-2025-arxiv
-  - balestriero-2025-iclr
-  - maes-2026-arxiv
-  - nam-2026-arxiv
-  - hauri-2026-iclrws
-  - li-2025-iclr
-  - terver-2025-iclr
-  - chen-2025-iclr
-  - destrade-2025-workshop
-  - ghaemi-2025-neurips
-  - zhang-2026-arxiv
-  - bagatella-2025-iclr
-  - assran-2025-arxiv
+- assran-2023-cvpr
+- assran-2025-arxiv
+- bagatella-2025-iclr
+- balestriero-2025-iclr
+- bar-2024-cvpr
+- bardes-2023-arxiv
+- bardes-2024-tmlr
+- chen-2024-iclr
+- chen-2025-iclr
+- destrade-2025-workshop
+- ding-2024-csur
+- drozdov-2024-arxiv
+- garrido-2026-arxiv
+- ghaemi-2025-neurips
+- gogl-2026-arxiv
+- hauri-2026-iclrws
+- huang-2025-arxiv
+- huang-2026-arxiv
+- hzhang-2026-arxiv
+- jaber-2026-arxiv
+- kenneweg-2025-esann
+- kobanda-2026-arxiv
+- kuang-2026-arxiv
+- kuo-2025-neurips
+- lei-2025-icml
+- li-2025-arxiv
+- li-2025-iclr
+- maes-2026-arxiv
+- mo-2024-neurips
+- mur-labadia-2026-arxiv
+- nam-2026-arxiv
+- parthasarathy-2025-arxiv
+- qiu-2026-arxiv
+- terver-2025-iclr
+- yu-2025-neurips
+- zhang-2026-arxiv
+- zhu-2025-aaai
+- zhu-2026-arxiv
+- zimmermann-2025-arxiv
+
 ---
 
 # A Path Towards Autonomous Machine Intelligence
@@ -186,13 +212,15 @@ This is a position paper; no empirical experiments are reported. The paper's con
 ---
 
 ## BibTeX
+
+{% raw %}
 ```bibtex
-@techreport{lecun2022path,
-  title     = {A Path Towards Autonomous Machine Intelligence},
-  author    = {LeCun, Yann},
-  year      = {2022},
-  month     = {June},
-  note      = {Version 0.9.2, OpenReview preprint},
-  url       = {https://openreview.net/forum?id=BZ5a1r-kVsf}
+@article{lecun2022path,
+  title={A Path Towards Autonomous Machine Intelligence},
+  author={LeCun, Yann},
+  journal={OpenReview preprint},
+  year={2022},
+  url={https://openreview.net/forum?id=BZ5a1r-kVsf}
 }
 ```
+{% endraw %}

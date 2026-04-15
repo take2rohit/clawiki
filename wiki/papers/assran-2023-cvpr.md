@@ -1,29 +1,52 @@
 ---
-title: "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture"
+title: Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture
 type: paper
 paper_id: P030
 authors:
-  - "Assran, Mahmoud"
-  - "Duval, Quentin"
-  - "Misra, Ishan"
-  - "Bojanowski, Piotr"
-  - "Vincent, Pascal"
-  - "Rabbat, Michael"
-  - "LeCun, Yann"
-  - "Ballas, Nicolas"
+- Assran, Mahmoud
+- Duval, Quentin
+- Misra, Ishan
+- Bojanowski, Piotr
+- Vincent, Pascal
+- Rabbat, Michael
+- LeCun, Yann
+- Ballas, Nicolas
 year: 2023
 venue: CVPR 2023
-arxiv_id: "2301.08243"
-url: "https://arxiv.org/abs/2301.08243"
-pdf: "../../raw/assran-2023-cvpr.pdf"
-tags: [JEPA, self-supervised-learning, vision-transformer, masked-prediction, representation-learning]
+arxiv_id: '2301.08243'
+url: https://arxiv.org/abs/2301.08243
+pdf: ../../raw/assran-2023-cvpr.pdf
+tags:
+- JEPA
+- self-supervised-learning
+- vision-transformer
+- masked-prediction
+- representation-learning
 created: 2026-04-15
 updated: 2026-04-15
 cites:
-  - lecun-2022-openreview
+- lecun-2022-openreview
 cited_by:
-  - balestriero-2025-iclr
-  - maes-2026-arxiv
+- balestriero-2025-iclr
+- chen-2024-iclr
+- chen-2025-iclr
+- drozdov-2024-arxiv
+- gogl-2026-arxiv
+- huang-2025-arxiv
+- huang-2026-arxiv
+- kenneweg-2025-esann
+- kobanda-2026-arxiv
+- kuang-2026-arxiv
+- lei-2025-icml
+- maes-2026-arxiv
+- mo-2024-neurips
+- mur-labadia-2026-arxiv
+- nam-2026-arxiv
+- parthasarathy-2025-arxiv
+- yu-2025-neurips
+- zhu-2025-aaai
+- zhu-2026-arxiv
+
 ---
 
 # Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture

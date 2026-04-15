@@ -10,7 +10,7 @@ venue: ICLR 2026 Workshop
 arxiv_id: "2603.07083"
 url: "https://arxiv.org/abs/2603.07083"
 pdf: "../../raw/hauri-2026-iclrws.pdf"
-tags: [world-model, JEPA, Dreamer, reconstruction-free, model-based-RL]
+tags: [world-model, JEPA, Dreamer, reconstruction-free, model-based-rl]
 created: 2026-04-15
 updated: 2026-04-15
 cites:

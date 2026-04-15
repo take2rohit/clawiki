@@ -13,7 +13,7 @@ venue: arXiv
 arxiv_id: "2512.19605"
 url: "https://arxiv.org/abs/2512.19605"
 pdf: "../../raw/zimmermann-2025-arxiv.pdf"
-tags: [JEPA, kernel-methods, self-supervised, regularization, SIGReg, MMD, KSD, slicing]
+tags: [JEPA, kernel-methods, self-supervised, regularization, sigreg, mmd, ksd, slicing]
 created: 2026-04-15
 updated: 2026-04-15
 cites:

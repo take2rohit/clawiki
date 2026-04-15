@@ -13,7 +13,7 @@ venue: "AAAI 2026"
 arxiv_id: "2501.04969"
 url: "https://arxiv.org/abs/2501.04969"
 pdf: "../../raw/zhu-2025-aaai.pdf"
-tags: [JEPA, autonomous-driving, LiDAR, self-supervised-learning, point-cloud, 3D-object-detection, BEV, representation-learning]
+tags: [JEPA, autonomous-driving, LiDAR, self-supervised-learning, point-cloud, 3D-object-detection, bev, representation-learning]
 created: 2026-04-15
 updated: 2026-04-15
 cites:

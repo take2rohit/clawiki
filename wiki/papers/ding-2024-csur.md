@@ -1,41 +1,53 @@
 ---
-title: "Understanding World or Predicting Future? A Comprehensive Survey of World Models"
+title: Understanding World or Predicting Future? A Comprehensive Survey of World Models
 type: paper
 paper_id: P006
 authors:
-  - "Ding, Jingtao"
-  - "Zhang, Yunke"
-  - "Shang, Yu"
-  - "Feng, Jie"
-  - "Zhang, Yuheng"
-  - "Zong, Zefang"
-  - "Yuan, Yuan"
-  - "Su, Hongyuan"
-  - "Li, Nian"
-  - "Piao, Jinghua"
-  - "Deng, Yucheng"
-  - "Sukiennik, Nicholas"
-  - "Gao, Chen"
-  - "Xu, Fengli"
-  - "Li, Yong"
+- Ding, Jingtao
+- Zhang, Yunke
+- Shang, Yu
+- Feng, Jie
+- Zhang, Yuheng
+- Zong, Zefang
+- Yuan, Yuan
+- Su, Hongyuan
+- Li, Nian
+- Piao, Jinghua
+- Deng, Yucheng
+- Sukiennik, Nicholas
+- Gao, Chen
+- Xu, Fengli
+- Li, Yong
 year: 2024
 venue: ACM Computing Surveys (2025)
-arxiv_id: "2411.14499"
-url: "https://arxiv.org/abs/2411.14499"
-pdf: "../../raw/ding-2024-csur.pdf"
-tags: [world-model, survey, video-generation, self-supervised-learning, autonomous-driving, robotics, embodied-AI, model-based-rl]
+arxiv_id: '2411.14499'
+url: https://arxiv.org/abs/2411.14499
+pdf: ../../raw/ding-2024-csur.pdf
+tags:
+- world-model
+- survey
+- video-generation
+- self-supervised-learning
+- autonomous-driving
+- robotics
+- embodied-AI
+- model-based-rl
 created: 2026-04-10
 updated: 2026-04-10
 cites:
-  - ha-2018-neurips
-  - hafner-2019-icml
-  - hafner-2021-iclr
-  - hafner-2023-arxiv
-  - lecun-2022-openreview
-  - feng-2025-arxiv
-  - li-2025-arxiv
-  - kong-2025-arxiv
-cited_by: []
+- feng-2025-arxiv
+- ha-2018-neurips
+- hafner-2019-icml
+- hafner-2021-iclr
+- hafner-2023-arxiv
+- kong-2025-arxiv
+- lecun-2022-openreview
+- li-2025-arxiv
+cited_by:
+- feng-2025-arxiv
+- kong-2025-arxiv
+- li-2025-arxiv
+
 ---
 
 # Understanding World or Predicting Future? A Comprehensive Survey of World Models

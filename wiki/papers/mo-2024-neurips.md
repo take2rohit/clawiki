@@ -10,7 +10,7 @@ venue: "NeurIPS 2024"
 arxiv_id: "2410.19560"
 url: "https://arxiv.org/abs/2410.19560"
 pdf: "../../raw/mo-2024-neurips.pdf"
-tags: [JEPA, contrastive-learning, VICReg, I-JEPA, collapse-prevention, self-supervised-learning]
+tags: [JEPA, contrastive-learning, VICReg, i-jepa, collapse-prevention, self-supervised-learning]
 created: 2026-04-15
 updated: 2026-04-15
 cites:

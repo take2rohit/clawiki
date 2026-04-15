@@ -12,7 +12,7 @@ venue: ICML 2025
 arxiv_id: "2410.08822"
 url: "https://arxiv.org/abs/2410.08822"
 pdf: "../../raw/mosbach-2025-icml.pdf"
-tags: [world-model, object-centric, slot-attention, latent-dynamics, model-based-RL, manipulation]
+tags: [world-model, object-centric, slot-attention, latent-dynamics, model-based-rl, manipulation]
 created: 2026-04-15
 updated: 2026-04-15
 cites: []

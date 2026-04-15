@@ -15,7 +15,7 @@ venue: ICLR 2026
 arxiv_id: "2509.24317"
 url: "https://arxiv.org/abs/2509.24317"
 pdf: "../../raw/li-2025-iclr.pdf"
-tags: [JEPA, video-SSL, frozen-teacher, compute-efficiency, SALT]
+tags: [JEPA, video-SSL, frozen-teacher, compute-efficiency, salt]
 created: 2026-04-15
 updated: 2026-04-15
 cites:
@@ -179,13 +179,13 @@ SALT curves dominate V-JEPA 2 at matched FLOPs across all allocation points.
 | SSv2 (frozen, ViT-L) | 74.9 | 68.2 (V-JEPA 2) | -- | -- |
 | K400 (frozen, ViT-L) | 85.4 | 83.8 (V-JEPA 2) | -- | -- |
 
-**vs. [LeCun 2022 (JEPA position paper)](lecun-2022-openreview.md):** LeCun proposed JEPA as a general architecture for autonomous intelligence, with prediction in latent space as the key principle. SALT is a concrete video instantiation that validates a surprising corollary: the teacher providing the latent targets need not be dynamic or co-evolved --- a frozen, independently trained encoder suffices, and may even be preferable. This challenges the assumption implicit in LeCun's framework that the teacher and student must jointly improve.
+**vs [[lecun-2022-openreview]] (JEPA position paper):** LeCun proposed JEPA as a general architecture for autonomous intelligence, with prediction in latent space as the key principle. SALT is a concrete video instantiation that validates a surprising corollary: the teacher providing the latent targets need not be dynamic or co-evolved --- a frozen, independently trained encoder suffices, and may even be preferable. This challenges the assumption implicit in LeCun's framework that the teacher and student must jointly improve.
 
-**vs. V-JEPA (Bardes et al., 2024) and V-JEPA 2 (Assran et al., 2025):** V-JEPA and V-JEPA 2 are the primary baselines. Both use EMA-updated teachers coupled to the student architecture. SALT replaces EMA with a frozen teacher and achieves +6.7% SSv2 accuracy at ViT-L scale with lower total compute. The architectural decoupling is the key enabler: SALT can train a 2B-parameter student from a 303M teacher, while V-JEPA 2 requires the teacher to match the student size.
+**vs [[bardes-2024-tmlr]] (V-JEPA) and [[assran-2025-arxiv]] (V-JEPA 2):** V-JEPA and V-JEPA 2 are the primary baselines. Both use EMA-updated teachers coupled to the student architecture. SALT replaces EMA with a frozen teacher and achieves +6.7% SSv2 accuracy at ViT-L scale with lower total compute. The architectural decoupling is the key enabler: SALT can train a 2B-parameter student from a 303M teacher, while V-JEPA 2 requires the teacher to match the student size.
 
-**vs. I-JEPA (Assran et al., 2023):** I-JEPA applies the same EMA teacher-student paradigm to images. SALT's insight that frozen teachers suffice could in principle apply to image JEPA as well, though this paper evaluates only video.
+**vs [[assran-2023-cvpr]] (I-JEPA):** I-JEPA applies the same EMA teacher-student paradigm to images. SALT's insight that frozen teachers suffice could in principle apply to image JEPA as well, though this paper evaluates only video.
 
-**vs. [LeJEPA](balestriero-2025-iclr.md) (Balestriero & LeCun, 2025):** LeJEPA eliminates anti-collapse heuristics via a provable regularizer (SIGReg) and removes the teacher entirely. SALT takes a complementary approach: it keeps the teacher but freezes it, eliminating the EMA dynamics while retaining the latent-prediction objective. Both papers converge on the conclusion that elaborate online student-teacher dynamics are unnecessary. LeJEPA provides theoretical foundations (isotropic Gaussian optimality); SALT provides empirical evidence from video at scale. LeJEPA does not evaluate on video.
+**vs [[balestriero-2025-iclr]] (LeJEPA):** LeJEPA eliminates anti-collapse heuristics via a provable regularizer (SIGReg) and removes the teacher entirely. SALT takes a complementary approach: it keeps the teacher but freezes it, eliminating the EMA dynamics while retaining the latent-prediction objective. Both papers converge on the conclusion that elaborate online student-teacher dynamics are unnecessary. LeJEPA provides theoretical foundations (isotropic Gaussian optimality); SALT provides empirical evidence from video at scale. LeJEPA does not evaluate on video.
 
 **vs. MVD (Masked Video Distillation, Wang et al., 2023c):** MVD also uses a two-stage pipeline with frozen teachers, but it (a) requires separate image and video teachers from strong pretrained models, (b) relies on fine-tuning for downstream evaluation, and (c) uses a teacher the same size or larger than the student. SALT uses a single video teacher, evaluates under frozen backbone protocol, uses a smaller teacher, and provides ablations showing teacher quality is surprisingly unimportant.
 
@@ -219,7 +219,7 @@ SALT curves dominate V-JEPA 2 at matched FLOPs across all allocation points.
 - **Compute should overwhelmingly favor the student**: The optimal teacher-student compute split is roughly 1:5 (40k teacher + 200k student at 240k total). Short, cheap teacher training is preferable to long, expensive teacher training.
 - **Sub-optimal teachers yield strong students**: A ViT-L teacher produces better students than ViT-H or ViT-G teachers. The student's learning process amplifies the teacher's signal beyond the teacher's own quality --- challenging the assumption that better teachers always produce better students.
 - **Training loss becomes a reliable model-selection signal**: SALT's decoupled design restores the loss-quality correlation (R^2 > 0.95) that is absent in EMA-based JEPAs, enabling practical hyperparameter search and checkpoint selection.
-- **Convergent evidence with LeJEPA**: Both SALT and [LeJEPA](balestriero-2025-iclr.md) independently conclude that elaborate online student-teacher dynamics and EMA-based collapse prevention are unnecessary for high-quality JEPA representations. SALT shows this empirically for video; LeJEPA proves it theoretically for images. Together, they suggest the field can move toward simpler, more principled JEPA training recipes.
+- **Convergent evidence with LeJEPA**: Both SALT and [[balestriero-2025-iclr]] independently conclude that elaborate online student-teacher dynamics and EMA-based collapse prevention are unnecessary for high-quality JEPA representations. SALT shows this empirically for video; LeJEPA proves it theoretically for images. Together, they suggest the field can move toward simpler, more principled JEPA training recipes.
 
 ---
 

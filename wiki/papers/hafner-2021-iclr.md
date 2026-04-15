@@ -1,32 +1,40 @@
 ---
-title: "Mastering Atari with Discrete World Models"
+title: Mastering Atari with Discrete World Models
 type: paper
 paper_id: P003
 authors:
-  - "Hafner, Danijar"
-  - "Lillicrap, Timothy"
-  - "Norouzi, Mohammad"
-  - "Ba, Jimmy"
+- Hafner, Danijar
+- Lillicrap, Timothy
+- Norouzi, Mohammad
+- Ba, Jimmy
 year: 2021
 venue: ICLR 2021
-arxiv_id: "2010.02193"
-url: "https://arxiv.org/abs/2010.02193"
-pdf: "../../raw/hafner-2021-iclr.pdf"
-tags: [world-model, rssm, categorical-latents, atari, actor-critic, model-based-rl]
+arxiv_id: '2010.02193'
+url: https://arxiv.org/abs/2010.02193
+pdf: ../../raw/hafner-2021-iclr.pdf
+tags:
+- world-model
+- rssm
+- categorical-latents
+- atari
+- actor-critic
+- model-based-rl
 created: 2026-04-10
 updated: 2026-04-10
 cites:
-  - ha-2018-neurips
-  - hafner-2019-icml
+- ha-2018-neurips
+- hafner-2019-icml
 cited_by:
-  - hafner-2023-arxiv
-  - micheli-2023-iclr
-  - alonso-2024-neurips
-  - robine-2023-iclr
-  - mazzaglia-2024-neurips
-  - ding-2024-csur
-  - li-2025-arxiv
-  - hauri-2026-iclrws
+- alonso-2024-neurips
+- ding-2024-csur
+- hafner-2023-arxiv
+- hauri-2026-iclrws
+- li-2025-arxiv
+- mazzaglia-2024-neurips
+- micheli-2023-iclr
+- robine-2023-iclr
+- wang-2025-iclr
+
 ---
 
 # Mastering Atari with Discrete World Models (DreamerV2)

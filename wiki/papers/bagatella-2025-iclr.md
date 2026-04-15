@@ -13,7 +13,7 @@ venue: ICLR 2026
 arxiv_id: "2510.00739"
 url: "https://arxiv.org/abs/2510.00739"
 pdf: "../../raw/bagatella-2025-iclr.pdf"
-tags: [JEPA, zero-shot-RL, unsupervised-RL, latent-prediction, world-model, successor-features, temporal-difference, representation-learning, off-policy]
+tags: [JEPA, zero-shot-rl, unsupervised-rl, latent-prediction, world-model, successor-features, temporal-difference, representation-learning, off-policy]
 created: 2026-04-15
 updated: 2026-04-15
 cites:

@@ -153,11 +153,11 @@ Encoder accuracies of 65.97-66.29% with varying RGG parameters, competitive with
 
 ## Comparison to Prior Work
 
-**vs [balestriero-2025-iclr](../papers/balestriero-2025-iclr.md) (LeJEPA):** Rectified LpJEPA is a strict generalization. LeJEPA uses SIGReg to match embeddings to $\mathcal{N}(0, I)$ -- equivalent to $\mathcal{GN}_2(0, \sigma)$ without rectification. Rectified LpJEPA generalizes in two ways: (1) ReLU rectification enforces non-negativity and sparsity, (2) Generalized Gaussian with $p \neq 2$ provides additional control over tail behavior and sparsity. When $p=2$, $\mu=0$, and no rectification, LpJEPA reduces to LeJEPA.
+**vs [[balestriero-2025-iclr]] (LeJEPA):** Rectified LpJEPA is a strict generalization. LeJEPA uses SIGReg to match embeddings to $\mathcal{N}(0, I)$ -- equivalent to $\mathcal{GN}_2(0, \sigma)$ without rectification. Rectified LpJEPA generalizes in two ways: (1) ReLU rectification enforces non-negativity and sparsity, (2) Generalized Gaussian with $p \neq 2$ provides additional control over tail behavior and sparsity. When $p=2$, $\mu=0$, and no rectification, LpJEPA reduces to LeJEPA.
 
-**vs [lecun-2022-openreview](../papers/lecun-2022-openreview.md) (JEPA position paper):** LeCun proposed representation space prediction without reconstruction. Rectified LpJEPA contributes to the regularization design space for JEPAs, showing that the target distribution can be extended beyond Gaussians to incorporate sparsity as a principled inductive bias.
+**vs [[lecun-2022-openreview]] (JEPA position paper):** LeCun proposed representation space prediction without reconstruction. Rectified LpJEPA contributes to the regularization design space for JEPAs, showing that the target distribution can be extended beyond Gaussians to incorporate sparsity as a principled inductive bias.
 
-**vs [assran-2023-cvpr](../papers/assran-2023-cvpr.md) (I-JEPA):** I-JEPA prevents collapse via EMA + stop-gradient. Rectified LpJEPA replaces these heuristics with explicit distribution matching, following the LeJEPA lineage but extending to sparse targets.
+**vs [[assran-2023-cvpr]] (I-JEPA):** I-JEPA prevents collapse via EMA + stop-gradient. Rectified LpJEPA replaces these heuristics with explicit distribution matching, following the LeJEPA lineage but extending to sparse targets.
 
 **vs VICReg (Bardes et al., 2022):** VICReg regularizes second-order statistics (variance and covariance). The paper proves (Appendix I) that RDMReg on rectified features recovers a form of Non-Negative VCReg, but goes beyond second-order by matching the full distribution.
 

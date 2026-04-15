@@ -18,7 +18,7 @@ venue: ICLR 2026
 arxiv_id: "2512.10942"
 url: "https://arxiv.org/abs/2512.10942"
 pdf: "../../raw/chen-2025-iclr.pdf"
-tags: [JEPA, vision-language, multimodal, self-supervised, selective-decoding, VQA, video-classification, retrieval]
+tags: [JEPA, vision-language, multimodal, self-supervised, selective-decoding, vqa, video-classification, retrieval]
 created: 2026-04-15
 updated: 2026-04-15
 cites:

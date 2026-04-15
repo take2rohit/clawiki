@@ -1,26 +1,34 @@
 ---
-title: "Transformers are Sample-Efficient World Models"
+title: Transformers are Sample-Efficient World Models
 type: paper
 paper_id: P010
 authors:
-  - "Micheli, Vincent"
-  - "Alonso, Eloi"
-  - "Fleuret, François"
+- Micheli, Vincent
+- Alonso, Eloi
+- Fleuret, François
 year: 2023
 venue: ICLR 2023 (Notable — Top 5%)
-arxiv_id: "2209.00588"
-url: "https://arxiv.org/abs/2209.00588"
-pdf: "../../raw/micheli-2023-iclr.pdf"
-tags: [world-model, transformer, actor-critic, autoregressive, model-based-rl]
+arxiv_id: '2209.00588'
+url: https://arxiv.org/abs/2209.00588
+pdf: ../../raw/micheli-2023-iclr.pdf
+tags:
+- world-model
+- transformer
+- actor-critic
+- autoregressive
+- model-based-rl
 created: 2026-04-10
 updated: 2026-04-10
 cites:
-  - ha-2018-neurips
-  - hafner-2019-icml
-  - hafner-2021-iclr
+- ha-2018-neurips
+- hafner-2019-icml
+- hafner-2021-iclr
 cited_by:
-  - alonso-2024-neurips
-  - robine-2023-iclr
+- alonso-2024-neurips
+- maes-2026-arxiv
+- robine-2023-iclr
+- wang-2025-iclr
+
 ---
 
 # Transformers are Sample-Efficient World Models (IRIS)

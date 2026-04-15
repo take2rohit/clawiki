@@ -1,34 +1,44 @@
 ---
-title: "Mastering Diverse Domains through World Models"
+title: Mastering Diverse Domains through World Models
 type: paper
 paper_id: P005
 authors:
-  - "Hafner, Danijar"
-  - "Pasukonis, Jurgis"
-  - "Ba, Jimmy"
-  - "Lillicrap, Timothy"
+- Hafner, Danijar
+- Pasukonis, Jurgis
+- Ba, Jimmy
+- Lillicrap, Timothy
 year: 2023
 venue: arXiv
-arxiv_id: "2301.04104"
-url: "https://arxiv.org/abs/2301.04104"
-pdf: "../../raw/hafner-2023-arxiv.pdf"
-tags: [world-model, rssm, atari, categorical-latents, model-based-rl]
+arxiv_id: '2301.04104'
+url: https://arxiv.org/abs/2301.04104
+pdf: ../../raw/hafner-2023-arxiv.pdf
+tags:
+- world-model
+- rssm
+- atari
+- categorical-latents
+- model-based-rl
 created: 2026-04-10
 updated: 2026-04-10
 cites:
-  - ha-2018-neurips
-  - hafner-2019-icml
-  - hafner-2021-iclr
+- ha-2018-neurips
+- hafner-2019-icml
+- hafner-2021-iclr
 cited_by:
-  - alonso-2024-neurips
-  - mazzaglia-2024-neurips
-  - ding-2024-csur
-  - li-2025-arxiv
-  - hansen-2024-iclr
-  - hauri-2026-iclrws
-  - terver-2025-iclr
-  - bagatella-2025-iclr
-  - zhang-2026-arxiv
+- alonso-2024-neurips
+- bagatella-2025-iclr
+- bredis-2026-arxiv
+- ding-2024-csur
+- hansen-2024-iclr
+- hauri-2026-iclrws
+- jaber-2026-arxiv
+- li-2025-arxiv
+- mazzaglia-2024-neurips
+- parthasarathy-2025-arxiv
+- terver-2025-iclr
+- wang-2025-iclr
+- zhang-2026-arxiv
+
 ---
 
 # Mastering Diverse Domains through World Models (DreamerV3)

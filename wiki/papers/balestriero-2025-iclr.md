@@ -1,27 +1,36 @@
 ---
-title: "LeJEPA: Provable and Scalable Self-Supervised Learning Without the Heuristics"
+title: 'LeJEPA: Provable and Scalable Self-Supervised Learning Without the Heuristics'
 type: paper
 paper_id: P039
 authors:
-  - "Balestriero, Randall"
-  - "LeCun, Yann"
+- Balestriero, Randall
+- LeCun, Yann
 year: 2025
 venue: ICLR 2026
-arxiv_id: "2511.08544"
-url: "https://arxiv.org/abs/2511.08544"
-pdf: "../../raw/balestriero-2025-iclr.pdf"
-tags: [JEPA, self-supervised-learning]
+arxiv_id: '2511.08544'
+url: https://arxiv.org/abs/2511.08544
+pdf: ../../raw/balestriero-2025-iclr.pdf
+tags:
+- JEPA
+- self-supervised-learning
 created: 2026-04-10
 updated: 2026-04-10
 cites:
-  - lecun-2022-openreview
-  - assran-2023-cvpr
+- assran-2023-cvpr
+- bardes-2024-tmlr
+- lecun-2022-openreview
 cited_by:
-  - maes-2026-arxiv
-  - zimmermann-2025-arxiv
-  - nam-2026-arxiv
-  - zhang-2026-arxiv
-  - li-2025-iclr
+- gogl-2026-arxiv
+- huang-2025-arxiv
+- kuang-2026-arxiv
+- li-2025-iclr
+- maes-2026-arxiv
+- nam-2026-arxiv
+- yu-2025-neurips
+- zhang-2026-arxiv
+- zhu-2026-arxiv
+- zimmermann-2025-arxiv
+
 ---
 
 # LeJEPA: Provable and Scalable Self-Supervised Learning Without the Heuristics

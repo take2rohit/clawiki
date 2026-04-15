@@ -1,27 +1,33 @@
 ---
-title: "Navigation World Models"
+title: Navigation World Models
 type: paper
 paper_id: P015
 authors:
-  - "Bar, Amir"
-  - "Zhou, Gaoyue"
-  - "Tran, Danny"
-  - "Darrell, Trevor"
-  - "LeCun, Yann"
+- Bar, Amir
+- Zhou, Gaoyue
+- Tran, Danny
+- Darrell, Trevor
+- LeCun, Yann
 year: 2024
 venue: CVPR 2025 (Best Paper Honorable Mention)
-arxiv_id: "2412.03572"
-url: "https://arxiv.org/abs/2412.03572"
-pdf: "../../raw/bar-2024-cvpr.pdf"
-tags: [world-model, diffusion, planning, robotics]
+arxiv_id: '2412.03572'
+url: https://arxiv.org/abs/2412.03572
+pdf: ../../raw/bar-2024-cvpr.pdf
+tags:
+- world-model
+- diffusion
+- planning
+- robotics
 created: 2026-04-10
 updated: 2026-04-10
 cites:
-  - lecun-2022-openreview
-  - alonso-2024-neurips
+- alonso-2024-neurips
+- lecun-2022-openreview
 cited_by:
-  - terver-2025-iclr
-  - zhang-2026-arxiv
+- garrido-2026-arxiv
+- terver-2025-iclr
+- zhang-2026-arxiv
+
 ---
 
 # Navigation World Models

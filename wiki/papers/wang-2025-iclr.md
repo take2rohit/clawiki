@@ -13,7 +13,7 @@ venue: ICLR 2025
 arxiv_id: "2410.08893"
 url: "https://arxiv.org/abs/2410.08893"
 pdf: "../../raw/wang-2025-iclr.pdf"
-tags: [world-model, Mamba, SSM, model-based-RL, Atari-100k]
+tags: [world-model, Mamba, ssm, model-based-rl, Atari-100k]
 created: 2026-04-15
 updated: 2026-04-15
 cites:

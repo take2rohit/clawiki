@@ -10,7 +10,7 @@ venue: "arXiv"
 arxiv_id: "2602.12540"
 url: "https://arxiv.org/abs/2602.12540"
 pdf: "../../raw/zhu-2026-arxiv.pdf"
-tags: [JEPA, world-model, autonomous-driving, LiDAR, occupancy-forecasting, self-supervised-learning, spatiotemporal, BEV]
+tags: [JEPA, world-model, autonomous-driving, LiDAR, occupancy-forecasting, self-supervised-learning, spatiotemporal, bev]
 created: 2026-04-15
 updated: 2026-04-15
 cites:

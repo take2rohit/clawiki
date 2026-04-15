@@ -11,7 +11,7 @@ venue: "arXiv"
 arxiv_id: "2509.14252"
 url: "https://arxiv.org/abs/2509.14252"
 pdf: "../../raw/huang-2025-arxiv.pdf"
-tags: [JEPA, LLM, language-model, self-supervised-learning, fine-tuning, pretraining, representation-learning, NLP]
+tags: [JEPA, llm, language-model, self-supervised-learning, fine-tuning, pretraining, representation-learning, nlp]
 created: 2026-04-15
 updated: 2026-04-15
 cites:

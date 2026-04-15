@@ -38,7 +38,7 @@ cited_by: []
 
 ## Problem & Motivation
 
-V-JEPA and V-JEPA 2 ([bardes-2024-tmlr](../papers/bardes-2024-tmlr.md), [assran-2025-arxiv](../papers/assran-2025-arxiv.md)) have demonstrated strong *global* video understanding through masked feature prediction. However, the learned representations lack *dense* spatial structure -- PCA visualizations of V-JEPA 2 patch features are noisy and fragmented, and linear probing on dense tasks gives poor results (22.2 mIoU on ADE20K, 0.682 RMSE on NYUv2).
+V-JEPA and V-JEPA 2 ([[bardes-2024-tmlr]], [[assran-2025-arxiv]]) have demonstrated strong *global* video understanding through masked feature prediction. However, the learned representations lack *dense* spatial structure -- PCA visualizations of V-JEPA 2 patch features are noisy and fragmented, and linear probing on dense tasks gives poor results (22.2 mIoU on ADE20K, 0.682 RMSE on NYUv2).
 
 The root cause: in standard V-JEPA, the prediction loss is applied **only to masked tokens**. The visible context tokens have no explicit self-supervision signal, so the model has no incentive to encode local spatial information in them. Context tokens can instead act as global aggregators (similar to register tokens), discarding fine-grained spatial grounding.
 
@@ -56,7 +56,7 @@ Apply the self-supervised predictive loss to **all tokens** -- both masked and v
 
 ### Architecture
 
-V-JEPA 2.1 follows the JEPA framework from [lecun-2022-openreview](../papers/lecun-2022-openreview.md) with key extensions:
+V-JEPA 2.1 follows the JEPA framework from [[lecun-2022-openreview]] with key extensions:
 
 - **Multi-Modal Tokenizer:** A 3D convolution (16x16x2) for video and a 2D convolution (16x16) for images, plus a learnable modality embedding added to both encoder and predictor inputs. This replaces V-JEPA 2's single 3D conv that wastefully duplicated images 16 times temporally.
 - **x-encoder** $E_\theta$: A ViT (up to ViT-G, 2B params) that processes visible context tokens and outputs multi-level representations from multiple intermediate layers plus the final layer.
@@ -144,15 +144,15 @@ The context loss alone causes a large drop in global tasks (82.2 -> 72.6 IN1K) b
 
 ## Comparison to Prior Work
 
-**vs [bardes-2024-tmlr](../papers/bardes-2024-tmlr.md) (V-JEPA):** V-JEPA established feature prediction from video but had no dense feature capability and used a single-level predictor. V-JEPA 2.1 adds dense prediction loss, multi-level supervision, and multi-modal tokenization -- transforming JEPA from a global-only to a unified dense+global representation learner.
+**vs [[bardes-2024-tmlr]] (V-JEPA):** V-JEPA established feature prediction from video but had no dense feature capability and used a single-level predictor. V-JEPA 2.1 adds dense prediction loss, multi-level supervision, and multi-modal tokenization -- transforming JEPA from a global-only to a unified dense+global representation learner.
 
-**vs [assran-2025-arxiv](../papers/assran-2025-arxiv.md) (V-JEPA 2):** V-JEPA 2 scaled V-JEPA to larger models and added action-conditioned prediction for robotics, but its dense features remained fragmented. V-JEPA 2.1 specifically addresses this with the context loss and deep self-supervision, improving ADE20K mIoU from 22.2 to 47.9 and NYUv2 RMSE from 0.682 to 0.307.
+**vs [[assran-2025-arxiv]] (V-JEPA 2):** V-JEPA 2 scaled V-JEPA to larger models and added action-conditioned prediction for robotics, but its dense features remained fragmented. V-JEPA 2.1 specifically addresses this with the context loss and deep self-supervision, improving ADE20K mIoU from 22.2 to 47.9 and NYUv2 RMSE from 0.682 to 0.307.
 
-**vs [assran-2023-cvpr](../papers/assran-2023-cvpr.md) (I-JEPA):** I-JEPA demonstrated JEPA for images; V-JEPA 2.1 extends the framework to joint image-video training with modality-specific tokenizers and dense feature extraction.
+**vs [[assran-2023-cvpr]] (I-JEPA):** I-JEPA demonstrated JEPA for images; V-JEPA 2.1 extends the framework to joint image-video training with modality-specific tokenizers and dense feature extraction.
 
 **vs DINOv3:** DINOv3 remains the reference for dense features (54.8 mIoU ADE20K), and V-JEPA 2.1 narrows this gap substantially (47.9) while greatly exceeding DINOv3 on video understanding tasks (SSv2: 77.7 vs. not reported for DINOv3). V-JEPA 2.1 surpasses DINOv3 on depth estimation (0.307 vs. 0.309 RMSE).
 
-**vs [balestriero-2025-iclr](../papers/balestriero-2025-iclr.md) (LeJEPA):** LeJEPA provides provable collapse avoidance via SIGReg for image JEPA. V-JEPA 2.1 continues to use the EMA-based collapse prevention but focuses on the orthogonal problem of dense feature quality through its novel context loss.
+**vs [[balestriero-2025-iclr]] (LeJEPA):** LeJEPA provides provable collapse avoidance via SIGReg for image JEPA. V-JEPA 2.1 continues to use the EMA-based collapse prevention but focuses on the orthogonal problem of dense feature quality through its novel context loss.
 
 ---
 
@@ -171,7 +171,7 @@ The context loss alone causes a large drop in global tasks (82.2 -> 72.6 IN1K) b
 - **Still trails DINOv3 on pure dense tasks:** ADE20K mIoU of 47.9 vs. 54.8 for DINOv3, suggesting room for improvement in spatial feature quality.
 - **Massive compute requirements:** ViT-G (2B params) trained on VisionMix-163M requires substantial GPU resources. The distilled smaller models (ViT-B, ViT-L) are not fully evaluated across all benchmarks.
 - **Context loss weighting is non-trivial:** The distance-weighted scheme with progressive warmup adds complexity; naive application of the context loss degrades global performance significantly.
-- **No formal collapse guarantee:** Like V-JEPA 2, relies on EMA + stop-gradient heuristics for collapse prevention, unlike [balestriero-2025-iclr](../papers/balestriero-2025-iclr.md) which provides provable guarantees.
+- **No formal collapse guarantee:** Like V-JEPA 2, relies on EMA + stop-gradient heuristics for collapse prevention, unlike [[balestriero-2025-iclr]] which provides provable guarantees.
 - **Limited evaluation beyond vision:** No evaluation on language-vision tasks or multi-modal understanding beyond VQA.
 
 ---

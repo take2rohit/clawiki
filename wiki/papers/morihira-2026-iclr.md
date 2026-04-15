@@ -14,7 +14,7 @@ venue: ICLR 2026
 arxiv_id: "2603.18202"
 url: "https://arxiv.org/abs/2603.18202"
 pdf: "../../raw/morihira-2026-iclr.pdf"
-tags: [world-model, decoder-free, self-supervised, Dreamer, Barlow-Twins, model-based-RL]
+tags: [world-model, decoder-free, self-supervised, Dreamer, Barlow-Twins, model-based-rl]
 created: 2026-04-15
 updated: 2026-04-15
 cites: []
@@ -23,9 +23,7 @@ cited_by: []
 
 # R2-Dreamer: Redundancy-Reduced World Models without Decoders or Augmentation
 
-## One-line Summary
-
-R2-Dreamer replaces the pixel decoder in DreamerV3 with a Barlow-Twins-inspired redundancy-reduction loss between image embeddings and projected latent states, achieving competitive performance on DMC / Meta-World and superior results on tasks with tiny, task-critical objects -- all without a decoder or data augmentation.
+> **R2-Dreamer** replaces the pixel decoder in DreamerV3 with a Barlow-Twins-inspired redundancy-reduction loss between image embeddings and projected latent states, achieving competitive performance on DMC / Meta-World and superior results on tasks with tiny, task-critical objects -- all without a decoder or data augmentation.
 
 ## Author Affiliations
 
@@ -40,7 +38,7 @@ R2-Dreamer replaces the pixel decoder in DreamerV3 with a Barlow-Twins-inspired 
 
 ## Problem & Motivation
 
-Image-based Model-Based Reinforcement Learning (MBRL) requires representations that capture task-essential information while discarding irrelevant visual details. The dominant Dreamer family ([DreamerV3](../papers/hafner-2023-arxiv.md)) learns representations via pixel-level reconstruction, which wastes capacity on task-irrelevant regions (e.g., backgrounds) and is computationally expensive. Existing decoder-free alternatives (e.g., DreamerPro, [TD-MPC2](../papers/hansen-2024-iclr.md)) avoid reconstruction but depend critically on Data Augmentation (DA) -- typically random image shifts -- to prevent representation collapse. DA is a fragile, task-dependent heuristic: random shifting can discard small but crucial objects, and color jittering is harmful when color itself is a key feature. The paper asks whether a principled internal regularizer can fully replace both the decoder and DA, yielding a more versatile and robust framework.
+Image-based Model-Based Reinforcement Learning (MBRL) requires representations that capture task-essential information while discarding irrelevant visual details. The dominant Dreamer family ([[hafner-2023-arxiv]] DreamerV3) learns representations via pixel-level reconstruction, which wastes capacity on task-irrelevant regions (e.g., backgrounds) and is computationally expensive. Existing decoder-free alternatives (e.g., DreamerPro, [[hansen-2024-iclr]] TD-MPC2) avoid reconstruction but depend critically on Data Augmentation (DA) -- typically random image shifts -- to prevent representation collapse. DA is a fragile, task-dependent heuristic: random shifting can discard small but crucial objects, and color jittering is harmful when color itself is a key feature. The paper asks whether a principled internal regularizer can fully replace both the decoder and DA, yielding a more versatile and robust framework.
 
 ## Core Idea (Plain Language)
 
@@ -50,7 +48,7 @@ Instead of teaching the world model by making it reconstruct pixels (expensive, 
 
 ### Architecture Components
 
-R2-Dreamer modifies [DreamerV3](../papers/hafner-2023-arxiv.md) in exactly two ways: (1) remove the image decoder, and (2) add a lightweight linear projector head from latent state to embedding space. Everything else -- the RSSM dynamics, actor-critic, KL balancing -- is identical to DreamerV3.
+R2-Dreamer modifies [[hafner-2023-arxiv]] DreamerV3 in exactly two ways: (1) remove the image decoder, and (2) add a lightweight linear projector head from latent state to embedding space. Everything else -- the RSSM dynamics, actor-critic, KL balancing -- is identical to DreamerV3.
 
 | Component | Definition |
 |---|---|
@@ -77,7 +75,7 @@ L_BT = sum_i (1 - C_ii)^2  +  alpha * sum_{i != j} C_ij^2
 - **Redundancy term**: off-diagonal entries should be 0, decorrelating different feature dimensions and preventing collapse to a low-dimensional subspace.
 - **alpha**: single hyperparameter weighting the redundancy term (set to 1/d where d is the feature dimension, following the original Barlow Twins paper).
 
-The target e_t is detached (stop-gradient) to enhance training stability, similar to the strategy in [TD-MPC2](../papers/hansen-2024-iclr.md). No augmented views are created; the "two views" are the image embedding e_t and the projected latent state k_t -- a natural pair of views from the model's own internal signals.
+The target e_t is detached (stop-gradient) to enhance training stability, similar to the strategy in [[hansen-2024-iclr]] TD-MPC2. No augmented views are created; the "two views" are the image embedding e_t and the projected latent state k_t -- a natural pair of views from the model's own internal signals.
 
 ### World Model Loss
 
@@ -91,7 +89,7 @@ where L_pred combines reward and continuation prediction losses, L_dyn and L_rep
 
 ### Actor-Critic Learning
 
-Unchanged from [DreamerV3](../papers/hafner-2023-arxiv.md). The critic predicts lambda-return distributions; the actor is trained with REINFORCE, entropy regularization, and robust return normalization (5th-95th percentile EMA scaling). The critic trains on both imagined rollouts and replay trajectories; the actor trains on imagined trajectories only.
+Unchanged from [[hafner-2023-arxiv]] DreamerV3. The critic predicts lambda-return distributions; the actor is trained with REINFORCE, entropy regularization, and robust return normalization (5th-95th percentile EMA scaling). The critic trains on both imagined rollouts and replay trajectories; the actor trains on imagined trajectories only.
 
 ### Training
 
@@ -147,16 +145,16 @@ Occlusion-based saliency maps (Figure 6) on DMC-Subtle Reacher show R2-Dreamer's
 
 | Method | Decoder | DA | Representation Objective | Key Limitation Addressed |
 |---|---|---|---|---|
-| [DreamerV3](../papers/hafner-2023-arxiv.md) | Yes | No | Pixel reconstruction | Wastes capacity on irrelevant pixels |
-| [DreamerV2](../papers/hafner-2021-iclr.md) | Yes | No | Pixel reconstruction | Same as DreamerV3 |
+| [[hafner-2023-arxiv]] DreamerV3 | Yes | No | Pixel reconstruction | Wastes capacity on irrelevant pixels |
+| [[hafner-2021-iclr]] DreamerV2 | Yes | No | Pixel reconstruction | Same as DreamerV3 |
 | DreamerPro (Deng et al., 2022) | No | **Yes** | Prototypical (SwAV-style) | Collapses without DA |
-| [TD-MPC2](../papers/hansen-2024-iclr.md) | No | **Yes** | Temporal difference + joint embedding | Needs DA for stability |
+| [[hansen-2024-iclr]] TD-MPC2 | No | **Yes** | Temporal difference + joint embedding | Needs DA for stability |
 | Dreamer-InfoNCE | No | No | Contrastive (InfoNCE) | Weaker than R2-Dreamer across benchmarks |
-| [DIAMOND](../papers/alonso-2024-neurips.md) | Yes (diffusion) | No | Full observation generation | Heavier decoder (diffusion model) |
-| [LeWorldModel](../papers/maes-2026-arxiv.md) | No | No | JEPA-style latent prediction | Different JEPA paradigm; also reconstruction-free |
+| [[alonso-2024-neurips]] DIAMOND | Yes (diffusion) | No | Full observation generation | Heavier decoder (diffusion model) |
+| [[maes-2026-arxiv]] LeWorldModel | No | No | JEPA-style latent prediction | Different JEPA paradigm; also reconstruction-free |
 | **R2-Dreamer** | **No** | **No** | **Barlow Twins redundancy reduction** | **No decoder, no DA, competitive performance** |
 
-R2-Dreamer is most directly comparable to DreamerPro (both are decoder-free Dreamer variants), but replaces DA-dependent contrastive/prototypical losses with DA-free redundancy reduction. Relative to the [JEPA](../papers/lecun-2022-openreview.md) paradigm explored by [LeWorldModel](../papers/maes-2026-arxiv.md), R2-Dreamer takes a complementary approach: rather than predicting latent targets in embedding space (JEPA-style), it aligns image embeddings with projected latent states via cross-correlation statistics. Both validate the broader thesis that reconstruction-free world models are viable.
+R2-Dreamer is most directly comparable to DreamerPro (both are decoder-free Dreamer variants), but replaces DA-dependent contrastive/prototypical losses with DA-free redundancy reduction. Relative to the [[lecun-2022-openreview]] JEPA paradigm explored by [[maes-2026-arxiv]] LeWorldModel, R2-Dreamer takes a complementary approach: rather than predicting latent targets in embedding space (JEPA-style), it aligns image embeddings with projected latent states via cross-correlation statistics. Both validate the broader thesis that reconstruction-free world models are viable.
 
 ## Strengths
 

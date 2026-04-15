@@ -1,48 +1,58 @@
 ---
-title: "V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning"
+title: 'V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and
+  Planning'
 type: paper
 paper_id: P024
 authors:
-  - "Assran, Mahmoud"
-  - "Bardes, Adrien"
-  - "Fan, David"
-  - "Garrido, Quentin"
-  - "Howes, Russell"
-  - "Komeili, Mojtaba"
-  - "Muckley, Matthew"
-  - "Rizvi, Ammar"
-  - "Roberts, Claire"
-  - "Sinha, Koustuv"
-  - "Zholus, Artem"
-  - "Arnaud, Sergio"
-  - "Gejji, Abha"
-  - "Martin, Ada"
-  - "Hogan, Francois Robert"
-  - "Dugas, Daniel"
-  - "Bojanowski, Piotr"
-  - "Khalidov, Vasil"
-  - "Labatut, Patrick"
-  - "Massa, Francisco"
-  - "Szafraniec, Marc"
-  - "Krishnakumar, Kapil"
-  - "Li, Yong"
-  - "Ma, Xiaodong"
-  - "Chandar, Sarath"
-  - "Meier, Franziska"
-  - "LeCun, Yann"
-  - "Rabbat, Michael"
-  - "Ballas, Nicolas"
+- Assran, Mahmoud
+- Bardes, Adrien
+- Fan, David
+- Garrido, Quentin
+- Howes, Russell
+- Komeili, Mojtaba
+- Muckley, Matthew
+- Rizvi, Ammar
+- Roberts, Claire
+- Sinha, Koustuv
+- Zholus, Artem
+- Arnaud, Sergio
+- Gejji, Abha
+- Martin, Ada
+- Hogan, Francois Robert
+- Dugas, Daniel
+- Bojanowski, Piotr
+- Khalidov, Vasil
+- Labatut, Patrick
+- Massa, Francisco
+- Szafraniec, Marc
+- Krishnakumar, Kapil
+- Li, Yong
+- Ma, Xiaodong
+- Chandar, Sarath
+- Meier, Franziska
+- LeCun, Yann
+- Rabbat, Michael
+- Ballas, Nicolas
 year: 2025
 venue: arXiv (Meta FAIR)
-arxiv_id: "2506.09985"
-url: "https://arxiv.org/abs/2506.09985"
-pdf: "../../raw/assran-2025-arxiv.pdf"
-tags: [V-JEPA, self-supervised, video, world-model, robotics, planning]
+arxiv_id: '2506.09985'
+url: https://arxiv.org/abs/2506.09985
+pdf: ../../raw/assran-2025-arxiv.pdf
+tags:
+- v-jepa
+- self-supervised
+- video
+- world-model
+- robotics
+- planning
 created: 2026-04-15
 updated: 2026-04-15
 cites:
-  - lecun-2022-openreview
-cited_by: []
+- lecun-2022-openreview
+cited_by:
+- huang-2026-arxiv
+- mur-labadia-2026-arxiv
+
 ---
 
 # V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning

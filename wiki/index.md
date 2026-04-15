@@ -1,6 +1,6 @@
 # Literature Review Index
 
-> Last updated: 2026-04-15 | Papers: 61 ingested, 0 downloaded, 0 discovered | Topics: 5 | Methods: 13
+> Last updated: 2026-04-15 | Papers: 61 ingested, 0 downloaded, 0 discovered | Topics: 7 | Methods: 13
 
 ## Overview & Log
 
@@ -68,20 +68,20 @@
 | P055 | Learning Latent Action World Models In The Wild | 2026 | arXiv | Garrido (Meta) | Rabbat (Meta) | — | ingested | [PDF](../raw/garrido-2026-arxiv.pdf) | [Notes](papers/garrido-2026-arxiv.md) | |
 | P056 | JEPA for RL: Investigating Joint-Embedding Predictive Architectures for Reinforcement Learning | 2025 | ESANN 2025 | Kenneweg (Bielefeld Univ.) | Hammer (Bielefeld Univ.) | — | ingested | [PDF](../raw/kenneweg-2025-esann.pdf) | [Notes](papers/kenneweg-2025-esann.md) | |
 | P057 | Closing the Train-Test Gap in World Models for Gradient-Based Planning | 2025 | arXiv | Parthasarathy (Columbia) | Goldblum (NYU) | — | ingested | [PDF](../raw/parthasarathy-2025-arxiv.pdf) | [Notes](papers/parthasarathy-2025-arxiv.md) | |
-| P058 | KerJEPA: Kernel Discrepancies for Euclidean Self-Supervised Learning | 2025 | arXiv | Zimmermann (MSR Cambridge) | Mackey (MSR) | — | ingested | [arXiv](https://arxiv.org/abs/2512.19605) | [wiki](papers/zimmermann-2025-arxiv.md) | |
+| P058 | KerJEPA: Kernel Discrepancies for Euclidean Self-Supervised Learning | 2025 | arXiv | Zimmermann (MSR Cambridge) | Mackey (MSR) | — | ingested | [PDF](../raw/zimmermann-2025-arxiv.pdf) | [Notes](papers/zimmermann-2025-arxiv.md) | |
 | P059 | Intrinsic-Energy Joint Embedding Predictive Architectures Induce Quasimetric Spaces | 2026 | arXiv | Kobanda (—) | Radji (—) | — | ingested | [PDF](../raw/kobanda-2026-arxiv.pdf) | [Notes](papers/kobanda-2026-arxiv.md) | |
 | P060 | HCLSM: Hierarchical Causal Latent State Machines for Object-Centric World Modeling | 2026 | arXiv | Jaber (—) | Jaber (—) | — | ingested | [PDF](../raw/jaber-2026-arxiv.pdf) | [Notes](papers/jaber-2026-arxiv.md) | |
 | P061 | Self-Improving World Modelling with Latent Actions (SWIRL) | 2026 | arXiv | Qiu (Univ. Edinburgh) | Ponti (Univ. Edinburgh) | — | ingested | [PDF](../raw/qiu-2026-arxiv.pdf) | [Notes](papers/qiu-2026-arxiv.md) | |
 
 ## Topics
 
-- **World Models in Reinforcement Learning** — Model-based RL agents that learn compact latent dynamics for planning and policy optimization; see [ha-2018-neurips](papers/ha-2018-neurips.md), [hafner-2019-icml](papers/hafner-2019-icml.md), [hafner-2021-iclr](papers/hafner-2021-iclr.md), [hafner-2023-arxiv](papers/hafner-2023-arxiv.md), [micheli-2023-iclr](papers/micheli-2023-iclr.md), [alonso-2024-neurips](papers/alonso-2024-neurips.md), [hansen-2022-icml](papers/hansen-2022-icml.md), [hansen-2024-iclr](papers/hansen-2024-iclr.md), [robine-2023-iclr](papers/robine-2023-iclr.md), [mazzaglia-2024-neurips](papers/mazzaglia-2024-neurips.md)
-- **World Models for Autonomous Driving** — Generative and predictive models for scene simulation, occupancy forecasting, and planning in driving contexts; see [hu-2023-arxiv](papers/hu-2023-arxiv.md), [min-2024-cvpr](papers/min-2024-cvpr.md), [agarwal-2025-arxiv](papers/agarwal-2025-arxiv.md), [feng-2025-arxiv](papers/feng-2025-arxiv.md)
-- **World Models for Embodied AI & Robotics** — World models applied to robotic manipulation, locomotion, and navigation; see [bar-2024-cvpr](papers/bar-2024-cvpr.md), [mazzaglia-2024-neurips](papers/mazzaglia-2024-neurips.md), [li-2025-arxiv](papers/li-2025-arxiv.md)
+- **[World Models in Reinforcement Learning](topics/rl-world-models.md)** — Model-based RL agents that learn compact latent dynamics for planning and policy optimization; see [ha-2018-neurips](papers/ha-2018-neurips.md), [hafner-2019-icml](papers/hafner-2019-icml.md), [hafner-2021-iclr](papers/hafner-2021-iclr.md), [hafner-2023-arxiv](papers/hafner-2023-arxiv.md), [micheli-2023-iclr](papers/micheli-2023-iclr.md), [alonso-2024-neurips](papers/alonso-2024-neurips.md), [hansen-2022-icml](papers/hansen-2022-icml.md), [hansen-2024-iclr](papers/hansen-2024-iclr.md), [robine-2023-iclr](papers/robine-2023-iclr.md), [mazzaglia-2024-neurips](papers/mazzaglia-2024-neurips.md)
+- **[World Models for Autonomous Driving](topics/autonomous-driving-world-models.md)** — Generative and predictive models for scene simulation, occupancy forecasting, and planning in driving contexts; see [hu-2023-arxiv](papers/hu-2023-arxiv.md), [min-2024-cvpr](papers/min-2024-cvpr.md), [agarwal-2025-arxiv](papers/agarwal-2025-arxiv.md), [feng-2025-arxiv](papers/feng-2025-arxiv.md)
+- **[World Models for Embodied AI & Robotics](topics/embodied-ai-world-models.md)** — World models applied to robotic manipulation, locomotion, and navigation; see [bar-2024-cvpr](papers/bar-2024-cvpr.md), [mazzaglia-2024-neurips](papers/mazzaglia-2024-neurips.md), [li-2025-arxiv](papers/li-2025-arxiv.md)
 - **Generative World Models (video/image)** — Large-scale video generation models serving as world simulators; see [hu-2023-arxiv](papers/hu-2023-arxiv.md), [agarwal-2025-arxiv](papers/agarwal-2025-arxiv.md), [bar-2024-cvpr](papers/bar-2024-cvpr.md)
 - **3D/4D World Modeling** — World models operating in native 3D/4D spatial representations (occupancy, LiDAR, NeRF/3DGS); see [kong-2025-arxiv](papers/kong-2025-arxiv.md), [min-2024-cvpr](papers/min-2024-cvpr.md)
-- **Evaluating World Models** — Formal frameworks for assessing whether a generative model has internalized a valid world model; see [vafa-2024-neurips](papers/vafa-2024-neurips.md)
-- **Foundation World Models** — Large pretrained world models intended as general-purpose priors for Physical AI; see [agarwal-2025-arxiv](papers/agarwal-2025-arxiv.md), [hu-2023-arxiv](papers/hu-2023-arxiv.md), [lecun-2022-openreview](papers/lecun-2022-openreview.md)
+- **[Evaluating World Models](topics/evaluating-world-models.md)** — Formal frameworks for assessing whether a generative model has internalized a valid world model; see [vafa-2024-neurips](papers/vafa-2024-neurips.md)
+- **[Foundation World Models](topics/foundation-world-models.md)** — Large pretrained world models intended as general-purpose priors for Physical AI; see [agarwal-2025-arxiv](papers/agarwal-2025-arxiv.md), [hu-2023-arxiv](papers/hu-2023-arxiv.md), [lecun-2022-openreview](papers/lecun-2022-openreview.md)
 
 ## Methods
 
@@ -107,3 +107,7 @@
 ## Queries / Syntheses
 
 - [LeJEPA vs LeWorldModel](queries/compare-balestriero-2025-iclr-vs-maes-2026-arxiv-2026-04-10.md) — 2026-04-10
+
+## Lint
+
+> Last linted: 2026-04-15 | Quality: 61 pass, 0 partial, 0 fail | Issues: 98 found, 98 auto-fixed

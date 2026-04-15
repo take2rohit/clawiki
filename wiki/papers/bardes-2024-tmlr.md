@@ -1,29 +1,52 @@
 ---
-title: "Revisiting Feature Prediction for Learning Visual Representations from Video"
+title: Revisiting Feature Prediction for Learning Visual Representations from Video
 type: paper
 paper_id: P029
 authors:
-  - "Bardes, Adrien"
-  - "Garrido, Quentin"
-  - "Ponce, Jean"
-  - "Chen, Xinlei"
-  - "Rabbat, Michael"
-  - "LeCun, Yann"
-  - "Assran, Mahmoud"
-  - "Ballas, Nicolas"
+- Bardes, Adrien
+- Garrido, Quentin
+- Ponce, Jean
+- Chen, Xinlei
+- Rabbat, Michael
+- LeCun, Yann
+- Assran, Mahmoud
+- Ballas, Nicolas
 year: 2024
 venue: TMLR 2024
-arxiv_id: "2404.08471"
-url: "https://arxiv.org/abs/2404.08471"
-pdf: "../../raw/bardes-2024-tmlr.pdf"
-tags: [JEPA, self-supervised-learning, video-representation, feature-prediction, masked-modeling, vision-transformer]
+arxiv_id: '2404.08471'
+url: https://arxiv.org/abs/2404.08471
+pdf: ../../raw/bardes-2024-tmlr.pdf
+tags:
+- JEPA
+- self-supervised-learning
+- video-representation
+- feature-prediction
+- masked-modeling
+- vision-transformer
 created: 2026-04-15
 updated: 2026-04-15
 cites:
-  - lecun-2022-openreview
+- bardes-2023-arxiv
+- lecun-2022-openreview
 cited_by:
-  - balestriero-2025-iclr
-  - maes-2026-arxiv
+- balestriero-2025-iclr
+- chen-2024-iclr
+- chen-2025-iclr
+- drozdov-2024-arxiv
+- gogl-2026-arxiv
+- huang-2025-arxiv
+- huang-2026-arxiv
+- hzhang-2026-arxiv
+- jaber-2026-arxiv
+- lei-2025-icml
+- maes-2026-arxiv
+- mur-labadia-2026-arxiv
+- nam-2026-arxiv
+- parthasarathy-2025-arxiv
+- yu-2025-neurips
+- zhu-2025-aaai
+- zhu-2026-arxiv
+
 ---
 
 # Revisiting Feature Prediction for Learning Visual Representations from Video

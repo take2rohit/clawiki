@@ -35,7 +35,7 @@ Video representation learning faces two fundamental challenges:
 
 1. **Pixel-level prediction wastes capacity on low-level detail.** Generative models that predict future frames in pixel space must reconstruct textures, lighting, and background dynamics -- details that may be irrelevant for understanding high-level dynamics like object motion, interactions, and actions.
 
-2. **Collapse in JEPAs without architectural asymmetry.** V-JEPA ([bardes-2024-tmlr](../papers/bardes-2024-tmlr.md)) prevents collapse through an asymmetric EMA teacher-student architecture with stop-gradients. This introduces hyperparameter sensitivity (EMA momentum, masking strategy) and lacks theoretical grounding for why it prevents collapse.
+2. **Collapse in JEPAs without architectural asymmetry.** V-JEPA ([[bardes-2024-tmlr]]) prevents collapse through an asymmetric EMA teacher-student architecture with stop-gradients. This introduces hyperparameter sensitivity (EMA momentum, masking strategy) and lacks theoretical grounding for why it prevents collapse.
 
 Additionally, real-world video dynamics are often **stochastic** -- the future is not fully determined by the past. Standard deterministic JEPA predictors cannot represent this uncertainty.
 
@@ -133,15 +133,15 @@ SVD analysis of the hidden representation matrix shows VJ-VCR has **more uniform
 
 ## Comparison to Prior Work
 
-**vs [lecun-2022-openreview](../papers/lecun-2022-openreview.md) (JEPA position paper):** LeCun 2022 proposed JEPA and argued for latent variables to handle uncertainty in predictions. VJ-VCR provides one of the first empirical explorations of discrete and sparse latent variables within the JEPA framework for video.
+**vs [[lecun-2022-openreview]] (JEPA position paper):** LeCun 2022 proposed JEPA and argued for latent variables to handle uncertainty in predictions. VJ-VCR provides one of the first empirical explorations of discrete and sparse latent variables within the JEPA framework for video.
 
-**vs [bardes-2024-tmlr](../papers/bardes-2024-tmlr.md) (V-JEPA):** V-JEPA uses masking + EMA teacher for collapse prevention and evaluates on large-scale action recognition. VJ-VCR takes a fundamentally different approach: VICReg-style regularization without EMA/stop-gradients, and focuses on small synthetic datasets (MovingMNIST, CLEVRER, CATER) to isolate the question of whether abstract prediction captures dynamics better than pixel prediction.
+**vs [[bardes-2024-tmlr]] (V-JEPA):** V-JEPA uses masking + EMA teacher for collapse prevention and evaluates on large-scale action recognition. VJ-VCR takes a fundamentally different approach: VICReg-style regularization without EMA/stop-gradients, and focuses on small synthetic datasets (MovingMNIST, CLEVRER, CATER) to isolate the question of whether abstract prediction captures dynamics better than pixel prediction.
 
-**vs [assran-2023-cvpr](../papers/assran-2023-cvpr.md) (I-JEPA):** I-JEPA is image-only. VJ-VCR extends JEPA to temporal video prediction (past frames -> future frame representations).
+**vs [[assran-2023-cvpr]] (I-JEPA):** I-JEPA is image-only. VJ-VCR extends JEPA to temporal video prediction (past frames -> future frame representations).
 
 **vs VICReg (Bardes et al., 2022):** VJ-VCR adapts VICReg's variance-covariance regularization from the image domain to video JEPA, applying it to both input and target frame representations across time.
 
-**vs [balestriero-2025-iclr](../papers/balestriero-2025-iclr.md) (LeJEPA):** LeJEPA provides a theoretically grounded alternative to heuristic collapse prevention via SIGReg. VJ-VCR uses VICReg-style regularization, which [balestriero-2025-iclr](../papers/balestriero-2025-iclr.md) shows is provably insufficient for guaranteeing collapse avoidance (only matches finite moments). However, VJ-VCR demonstrates it works empirically on synthetic video tasks.
+**vs [[balestriero-2025-iclr]] (LeJEPA):** LeJEPA provides a theoretically grounded alternative to heuristic collapse prevention via SIGReg. VJ-VCR uses VICReg-style regularization, which [[balestriero-2025-iclr]] shows is provably insufficient for guaranteeing collapse avoidance (only matches finite moments). However, VJ-VCR demonstrates it works empirically on synthetic video tasks.
 
 ---
 

@@ -19,3 +19,4 @@ layout: default
 - [2026-04-15 00:00] **ingest** -	hauri-2026-iclrws — Dreamer-CDP: reconstruction-free DreamerV3 via JEPA-style continuous deterministic prediction, 10 sections written, cross-referenced 6 existing pages (hafner-2021-iclr, hafner-2023-arxiv, lecun-2022-openreview, maes-2026-arxiv, micheli-2023-iclr, alonso-2024-neurips)
 - [2026-04-15 00:00] **ingest** -	destrade-2025-workshop — Value-guided action planning with JEPA world models: IQL-shaped representations for planning, 10 sections written, cross-referenced 5 existing pages (lecun-2022-openreview, maes-2026-arxiv, balestriero-2025-iclr, hansen-2022-icml, hafner-2019-icml)
 - [2026-04-15 11:13] **ingest** -	batch all — 39 discovered papers ingested (P021-P030, P032-P038, P040-P043, P044-P061), 39 wiki pages written, cross-referenced 22 existing pages
+- [2026-04-15 12:07] **lint** -	98 issues found, 98 auto-fixed, quality: 61 pass / 0 partial / 0 fail

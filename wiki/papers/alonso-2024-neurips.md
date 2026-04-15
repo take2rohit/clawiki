@@ -1,31 +1,39 @@
 ---
-title: "Diffusion for World Modeling: Visual Details Matter in Atari"
+title: 'Diffusion for World Modeling: Visual Details Matter in Atari'
 type: paper
 paper_id: P011
 authors:
-  - "Alonso, Eloi"
-  - "Jelley, Adam"
-  - "Micheli, Vincent"
-  - "Kanervisto, Anssi"
-  - "Storkey, Amos"
-  - "Pearce, Tim"
-  - "Fleuret, François"
+- Alonso, Eloi
+- Jelley, Adam
+- Micheli, Vincent
+- Kanervisto, Anssi
+- Storkey, Amos
+- Pearce, Tim
+- Fleuret, François
 year: 2024
 venue: NeurIPS 2024 (Spotlight)
-arxiv_id: "2405.12399"
-url: "https://arxiv.org/abs/2405.12399"
-pdf: "../../raw/alonso-2024-neurips.pdf"
-tags: [world-model, diffusion, atari, reinforcement-learning, model-based-rl]
+arxiv_id: '2405.12399'
+url: https://arxiv.org/abs/2405.12399
+pdf: ../../raw/alonso-2024-neurips.pdf
+tags:
+- world-model
+- diffusion
+- atari
+- reinforcement-learning
+- model-based-rl
 created: 2026-04-10
 updated: 2026-04-10
 cites:
-  - ha-2018-neurips
-  - hafner-2019-icml
-  - hafner-2021-iclr
-  - hafner-2023-arxiv
-  - micheli-2023-iclr
+- ha-2018-neurips
+- hafner-2019-icml
+- hafner-2021-iclr
+- hafner-2023-arxiv
+- micheli-2023-iclr
+- robine-2023-iclr
 cited_by:
-  - bar-2024-cvpr
+- bar-2024-cvpr
+- maes-2026-arxiv
+
 ---
 
 # Diffusion for World Modeling: Visual Details Matter in Atari

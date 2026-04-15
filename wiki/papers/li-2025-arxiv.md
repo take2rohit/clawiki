@@ -1,32 +1,47 @@
 ---
-title: "A Comprehensive Survey on World Models for Embodied AI"
+title: A Comprehensive Survey on World Models for Embodied AI
 type: paper
 paper_id: P008
 authors:
-  - "Li, Xinqing"
-  - "He, Xin"
-  - "Zhang, Le"
-  - "Wu, Min"
-  - "Li, Xiaoli"
-  - "Liu, Yun"
+- Li, Xinqing
+- He, Xin
+- Zhang, Le
+- Wu, Min
+- Li, Xiaoli
+- Liu, Yun
 year: 2025
 venue: arXiv
-arxiv_id: "2510.16732"
-url: "https://arxiv.org/abs/2510.16732"
-pdf: "../../raw/li-2025-arxiv.pdf"
-tags: [world-model, survey, embodied-AI, robotics, autonomous-driving, rssm, 3DGS, NeRF, JEPA, self-supervised-learning]
+arxiv_id: '2510.16732'
+url: https://arxiv.org/abs/2510.16732
+pdf: ../../raw/li-2025-arxiv.pdf
+tags:
+- world-model
+- survey
+- embodied-AI
+- robotics
+- autonomous-driving
+- rssm
+- 3DGS
+- NeRF
+- JEPA
+- self-supervised-learning
 created: 2026-04-10
 updated: 2026-04-10
 cites:
-  - ha-2018-neurips
-  - hafner-2019-icml
-  - hafner-2021-iclr
-  - hafner-2023-arxiv
-  - lecun-2022-openreview
-  - ding-2024-csur
-  - feng-2025-arxiv
-  - kong-2025-arxiv
-cited_by: []
+- ding-2024-csur
+- feng-2025-arxiv
+- ha-2018-neurips
+- hafner-2019-icml
+- hafner-2021-iclr
+- hafner-2023-arxiv
+- kong-2025-arxiv
+- lecun-2022-openreview
+- min-2024-cvpr
+cited_by:
+- ding-2024-csur
+- feng-2025-arxiv
+- kong-2025-arxiv
+
 ---
 
 # A Comprehensive Survey on World Models for Embodied AI

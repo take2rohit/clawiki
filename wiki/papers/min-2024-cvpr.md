@@ -40,7 +40,7 @@ cited_by:
 
 ## Problem & Motivation
 
-3D scene understanding for autonomous driving — 3D object detection, online mapping, motion forecasting, and planning — typically requires large amounts of expensive labeled 3D data. Self-supervised pre-training on driving video (without labels) can reduce annotation requirements, but prior approaches operate on 2D features or single-frame 3D representations, failing to capture the temporal dynamics that are critical for driving. Methods like DreamerV3 and MILE use 1D compressed RSSM states that cannot reconstruct 3D spatial structures. Existing autonomous driving pre-training methods (e.g., BEV-MAE, GeoMAE) focus on static 3D representations without modeling scene dynamics. There is no pre-training approach that jointly models spatial 3D scene structure and temporal dynamics in a way that directly transfers to all major AV perception and planning tasks.
+3D scene understanding for autonomous driving — 3D object detection, online mapping, motion forecasting, and planning — typically requires large amounts of expensive labeled 3D data. Self-supervised pre-training on driving video (without labels) can reduce annotation requirements, but prior approaches operate on 2D features or single-frame 3D representations, failing to capture the temporal dynamics that are critical for driving. Methods like [[hafner-2023-arxiv]] DreamerV3 and MILE use 1D compressed RSSM states that cannot reconstruct 3D spatial structures. Existing autonomous driving pre-training methods (e.g., BEV-MAE, GeoMAE) focus on static 3D representations without modeling scene dynamics. There is no pre-training approach that jointly models spatial 3D scene structure and temporal dynamics in a way that directly transfers to all major AV perception and planning tasks.
 
 ---
 
@@ -162,14 +162,14 @@ Removing the future occupancy prediction objective (keeping only past reconstruc
 | BEV-MAE | BEV (static) | None | Masked reconstruction | Detection, mapping |
 | GeoMAE | BEV (static) | None | Masked reconstruction | Detection |
 | MILE | BEV | RSSM (1D) | Reconstruction | Planning |
-| DreamerV3 | None (proprioceptive) | RSSM (1D) | ELBO | RL tasks |
+| [[hafner-2023-arxiv]] DreamerV3 | None (proprioceptive) | RSSM (1D) | ELBO | RL tasks |
 | **DriveWorld** | BEV + 3D occupancy | MSSM (2D BEV-structured) | Occupancy + action | Detection, mapping, motion, planning |
 
 **BEV-MAE / GeoMAE** are static masked autoencoders for BEV representations. They capture spatial structure but no temporal dynamics; DriveWorld outperforms them on detection by 3.8pp / 6.4pp respectively.
 
 **MILE** uses an RSSM-based world model in BEV space for imitation learning. It uses a 1D compressed state which cannot reconstruct 3D geometry; DriveWorld's MSSM uses BEV-structured context for 3D reconstruction, achieving better generalization across all tasks.
 
-**DreamerV3** is a general-purpose world model for RL; its 1D RSSM state is designed for scalar reward prediction, not 3D spatial understanding.
+**[[hafner-2023-arxiv]] DreamerV3** is a general-purpose world model for RL; its 1D RSSM state is designed for scalar reward prediction, not 3D spatial understanding.
 
 ---
 
@@ -185,7 +185,7 @@ Removing the future occupancy prediction objective (keeping only past reconstruc
 - 3D occupancy ground truth requires dense LiDAR fusion — itself a labeling bottleneck that limits the scalability of this pre-training scheme.
 - The task prompt design is currently simple and does not leverage LLM-scale semantic understanding; only a fixed set of AV-specific prompts are tested.
 - Planning results use L2 open-loop metrics which are known to be weakly correlated with actual closed-loop performance.
-- Unlike GAIA-1 or Cosmos, DriveWorld does not generate photorealistic video — it predicts 3D occupancy, not pixel-space observations.
+- Unlike [[hu-2023-arxiv]] GAIA-1 or [[agarwal-2025-arxiv]] Cosmos, DriveWorld does not generate photorealistic video — it predicts 3D occupancy, not pixel-space observations.
 
 ## Key Takeaways
 - DriveWorld pre-training improves 3D object detection mAP by +6.4pp (37.4→43.8), online mapping mIoU by +5.5pp, and planning L2 by 15.1% over supervised-only baselines.

@@ -1,34 +1,43 @@
 ---
-title: "LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels"
+title: 'LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from
+  Pixels'
 type: paper
 paper_id: P031
 authors:
-  - "Maes, Lucas"
-  - "Le Lidec, Quentin"
-  - "Scieur, Damien"
-  - "LeCun, Yann"
-  - "Balestriero, Randall"
+- Maes, Lucas
+- Le Lidec, Quentin
+- Scieur, Damien
+- LeCun, Yann
+- Balestriero, Randall
 year: 2026
 venue: arXiv
-arxiv_id: "2603.19312"
-url: "https://arxiv.org/abs/2603.19312"
-pdf: "../../raw/maes-2026-arxiv.pdf"
-tags: [world-model, JEPA, self-supervised-learning, latent-planning, robotics, model-predictive-control]
+arxiv_id: '2603.19312'
+url: https://arxiv.org/abs/2603.19312
+pdf: ../../raw/maes-2026-arxiv.pdf
+tags:
+- world-model
+- JEPA
+- self-supervised-learning
+- latent-planning
+- robotics
+- model-predictive-control
 created: 2026-04-10
 updated: 2026-04-10
 cites:
-  - lecun-2022-openreview
-  - assran-2023-cvpr
-  - balestriero-2025-iclr
-  - ha-2018-neurips
-  - micheli-2023-iclr
-  - alonso-2024-neurips
-  - hansen-2022-icml
-  - hansen-2024-iclr
-  - terver-2025-iclr
+- alonso-2024-neurips
+- assran-2023-cvpr
+- balestriero-2025-iclr
+- bardes-2024-tmlr
+- ha-2018-neurips
+- hansen-2022-icml
+- hansen-2024-iclr
+- lecun-2022-openreview
+- micheli-2023-iclr
+- terver-2025-iclr
 cited_by:
-  - nam-2026-arxiv
-  - zhang-2026-arxiv
+- nam-2026-arxiv
+- zhang-2026-arxiv
+
 ---
 
 # LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels

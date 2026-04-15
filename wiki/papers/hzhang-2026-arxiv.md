@@ -68,7 +68,43 @@ At test time, both pathways contribute to latent prediction: the JEPA branch pro
 
 ## Results
 
-From the abstract: experiments on hand-manipulation trajectory prediction show that ThinkJEPA outperforms both a strong VLM-only baseline and a JEPA-predictor baseline, yielding more robust long-horizon rollout behavior. Specific numbers are not available from the abstract.
+### Main Results (EgoDex — Hand Manipulation Trajectory Prediction)
+
+| Method | ADE ↓ | FDE ↓ | Acc ↑ | FD ↓ | SL1 ↓ | CD ↓ |
+|--------|-------|-------|-------|------|-------|------|
+| Qwen3-VL Thinking | 0.142 | 0.144 | 0.084 | 99.54 | 1.656 | 0.615 |
+| V-JEPA Predictor | 0.071 | 0.066 | 0.471 | 74.22 | 1.252 | 0.317 |
+| **ThinkJEPA** | **0.061** | **0.056** | **0.596** | **74.03** | **1.248** | **0.315** |
+
+ThinkJEPA reduces ADE by 14% over V-JEPA Predictor and boosts accuracy from 47.1% to 59.6% — a 26% relative improvement. The VLM-only baseline (Qwen3-VL) performs poorly on fine-grained trajectory metrics (ADE 0.142 vs 0.061), confirming that VLMs alone cannot handle dense dynamics prediction.
+
+### EgoExo4D (Cross-Domain Generalization)
+
+| Method | ADE ↓ | FDE ↓ | Acc ↑ | FD ↓ | SL1 ↓ | CD ↓ |
+|--------|-------|-------|-------|------|-------|------|
+| Qwen3-VL Thinking | 0.661 | 0.690 | 0.038 | 104.55 | 1.756 | 0.690 |
+| V-JEPA Predictor | 0.659 | 0.636 | 0.074 | 89.24 | 1.520 | 0.469 |
+| **ThinkJEPA** | **0.622** | **0.597** | **0.171** | **79.65** | **1.364** | **0.359** |
+
+Gains are even larger on EgoExo4D: accuracy jumps from 7.4% (V-JEPA) to 17.1% (ThinkJEPA) — a 2.3× improvement — suggesting VLM guidance is most valuable for diverse, out-of-domain scenarios.
+
+### Recursive Rollout Stability (EgoDex)
+
+| Model | A@4 | A@8 | A@16 | A@32 |
+|-------|-----|-----|------|------|
+| Qwen3-VL | 0.140 | 0.819 | 1.375 | 1.026 |
+| V-JEPA Predictor | 0.121 | 0.126 | 0.134 | 0.142 |
+| **ThinkJEPA** | **0.071** | **0.078** | **0.092** | **0.111** |
+
+ThinkJEPA maintains lower error at all horizons. The VLM-only baseline explodes at horizon 16 (A@16 = 1.375), while ThinkJEPA stays at 0.092 — demonstrating the robustness of hybrid VLM+JEPA over pure VLM rollouts.
+
+### Ablations
+
+**Hierarchical pyramid (all-layer) is critical:** Using only last-layer or mid-layer VLM features gives ADE 0.128; aggregating all layers drops it to 0.061 — a 52% reduction. This is the single most important design choice.
+
+**Dual-temporal pathway matters:** Without separate dense/sparse branches, accuracy drops from 59.6% to 9.9%, confirming that the VLM thinker branch provides essential long-horizon context.
+
+**ThinkJEPA vs trajectory baselines:** ThinkJEPA (ADE 0.061) outperforms all decoder-only and encoder-decoder baselines (best: BC at 0.077), despite not being specifically designed for trajectory output.
 
 ---
 

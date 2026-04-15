@@ -1,37 +1,45 @@
 ---
-title: "Learning Latent Dynamics for Planning from Pixels"
+title: Learning Latent Dynamics for Planning from Pixels
 type: paper
 paper_id: P002
 authors:
-  - "Hafner, Danijar"
-  - "Lillicrap, Timothy"
-  - "Fischer, Ian"
-  - "Villegas, Ruben"
-  - "Ha, David"
-  - "Lee, Honglak"
-  - "Davidson, James"
+- Hafner, Danijar
+- Lillicrap, Timothy
+- Fischer, Ian
+- Villegas, Ruben
+- Ha, David
+- Lee, Honglak
+- Davidson, James
 year: 2019
 venue: ICML 2019
-arxiv_id: "1811.04551"
-url: "https://arxiv.org/abs/1811.04551"
-pdf: "../../raw/hafner-2019-icml.pdf"
-tags: [world-model, rssm, latent-planning, continuous-control, latent-dynamics]
+arxiv_id: '1811.04551'
+url: https://arxiv.org/abs/1811.04551
+pdf: ../../raw/hafner-2019-icml.pdf
+tags:
+- world-model
+- rssm
+- latent-planning
+- continuous-control
+- latent-dynamics
 created: 2026-04-10
 updated: 2026-04-10
 cites:
-  - ha-2018-neurips
+- ha-2018-neurips
 cited_by:
-  - hafner-2021-iclr
-  - hafner-2023-arxiv
-  - micheli-2023-iclr
-  - alonso-2024-neurips
-  - robine-2023-iclr
-  - mazzaglia-2024-neurips
-  - ding-2024-csur
-  - li-2025-arxiv
-  - terver-2025-iclr
-  - zhang-2026-arxiv
-  - destrade-2025-workshop
+- alonso-2024-neurips
+- destrade-2025-workshop
+- ding-2024-csur
+- garrido-2026-arxiv
+- hafner-2021-iclr
+- hafner-2023-arxiv
+- li-2025-arxiv
+- mazzaglia-2024-neurips
+- micheli-2023-iclr
+- parthasarathy-2025-arxiv
+- robine-2023-iclr
+- terver-2025-iclr
+- zhang-2026-arxiv
+
 ---
 
 # Learning Latent Dynamics for Planning from Pixels (PlaNet)

@@ -128,17 +128,17 @@ VJEPA and BJEPA successfully filter out the high-variance nuisance distractors b
 
 ## Comparison to Prior Work
 
-**vs [lecun-2022-openreview](../papers/lecun-2022-openreview.md) (JEPA position paper):** LeCun proposed Hierarchical JEPA (H-JEPA) as a conceptual blueprint for world models with multi-level, multi-timescale predictive representations. VJEPA formalizes one aspect of this vision: making the predictive distribution explicit. However, VJEPA does not address the hierarchical or multi-timescale aspects.
+**vs [[lecun-2022-openreview]] (JEPA position paper):** LeCun proposed Hierarchical JEPA (H-JEPA) as a conceptual blueprint for world models with multi-level, multi-timescale predictive representations. VJEPA formalizes one aspect of this vision: making the predictive distribution explicit. However, VJEPA does not address the hierarchical or multi-timescale aspects.
 
-**vs [bardes-2024-tmlr](../papers/bardes-2024-tmlr.md) (V-JEPA) and [assran-2025-arxiv](../papers/assran-2025-arxiv.md) (V-JEPA 2):** These are deterministic instantiations of clip-level JEPA for video. VJEPA provides the probabilistic generalization, replacing MSE/L1 loss with a variational objective. The paper clarifies that clip-level V-JEPA captures intra-clip correlations but does not define a compositional temporal transition model -- VJEPA's time-indexed formulation fills this gap.
+**vs [[bardes-2024-tmlr]] (V-JEPA) and [[assran-2025-arxiv]] (V-JEPA 2):** These are deterministic instantiations of clip-level JEPA for video. VJEPA provides the probabilistic generalization, replacing MSE/L1 loss with a variational objective. The paper clarifies that clip-level V-JEPA captures intra-clip correlations but does not define a compositional temporal transition model -- VJEPA's time-indexed formulation fills this gap.
 
-**vs [balestriero-2025-iclr](../papers/balestriero-2025-iclr.md) (LeJEPA):** LeJEPA proves that isotropic Gaussian embeddings are optimal for downstream probing and enforces this via SIGReg. VJEPA takes a complementary approach: it derives collapse avoidance from the variational objective structure (Theorem 1) rather than from distributional regularization. The two are compatible -- SIGReg could be used within VJEPA's framework.
+**vs [[balestriero-2025-iclr]] (LeJEPA):** LeJEPA proves that isotropic Gaussian embeddings are optimal for downstream probing and enforces this via SIGReg. VJEPA takes a complementary approach: it derives collapse avoidance from the variational objective structure (Theorem 1) rather than from distributional regularization. The two are compatible -- SIGReg could be used within VJEPA's framework.
 
 **vs PlaNet/Dreamer (latent world models):** These learn latent dynamics conditioned on actions but require observation reconstruction (ELBO over pixels) and reward supervision. VJEPA eliminates observation-level likelihood, learning purely through representation prediction. This makes VJEPA invariant to observation noise (demonstrated in the Noisy TV experiment).
 
 **vs MuZero:** MuZero learns latent dynamics without observation reconstruction but relies on value and policy heads, requiring reward supervision. VJEPA is purely self-supervised.
 
-**vs [maes-2026-arxiv](../papers/maes-2026-arxiv.md) (LeWorldModel):** LeWorldModel combines LeJEPA representations with action-conditioned prediction for end-to-end world modeling. VJEPA provides the theoretical foundation for why such JEPA-based world models work (predictive sufficiency for control) and extends them with explicit uncertainty modeling.
+**vs [[maes-2026-arxiv]] (LeWorldModel):** LeWorldModel combines LeJEPA representations with action-conditioned prediction for end-to-end world modeling. VJEPA provides the theoretical foundation for why such JEPA-based world models work (predictive sufficiency for control) and extends them with explicit uncertainty modeling.
 
 ---
 

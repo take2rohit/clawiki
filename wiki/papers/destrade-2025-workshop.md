@@ -13,7 +13,7 @@ venue: World Modeling Workshop 2026
 arxiv_id: "2601.00844"
 url: "https://arxiv.org/abs/2601.00844"
 pdf: "../../raw/destrade-2025-workshop.pdf"
-tags: [JEPA, world-model, planning, value-function, goal-conditioned, IQL, MPC, quasi-distance]
+tags: [JEPA, world-model, planning, value-function, goal-conditioned, iql, mpc, quasi-distance]
 created: 2026-04-15
 updated: 2026-04-15
 cites:

@@ -1,26 +1,38 @@
 ---
-title: "A Survey of World Models for Autonomous Driving"
+title: A Survey of World Models for Autonomous Driving
 type: paper
 paper_id: P007
 authors:
-  - "Feng, Tuo"
-  - "Wang, Wenguan"
-  - "Yang, Yi"
+- Feng, Tuo
+- Wang, Wenguan
+- Yang, Yi
 year: 2025
 venue: arXiv
-arxiv_id: "2501.11260"
-url: "https://arxiv.org/abs/2501.11260"
-pdf: "../../raw/feng-2025-arxiv.pdf"
-tags: [world-model, survey, autonomous-driving, occupancy-grid, point-cloud, diffusion, self-supervised-learning]
+arxiv_id: '2501.11260'
+url: https://arxiv.org/abs/2501.11260
+pdf: ../../raw/feng-2025-arxiv.pdf
+tags:
+- world-model
+- survey
+- autonomous-driving
+- occupancy-grid
+- point-cloud
+- diffusion
+- self-supervised-learning
 created: 2026-04-10
 updated: 2026-04-10
 cites:
-  - ha-2018-neurips
-  - hu-2023-arxiv
-  - ding-2024-csur
-  - li-2025-arxiv
-  - kong-2025-arxiv
-cited_by: []
+- ding-2024-csur
+- ha-2018-neurips
+- hu-2023-arxiv
+- kong-2025-arxiv
+- li-2025-arxiv
+- min-2024-cvpr
+cited_by:
+- ding-2024-csur
+- kong-2025-arxiv
+- li-2025-arxiv
+
 ---
 
 # A Survey of World Models for Autonomous Driving

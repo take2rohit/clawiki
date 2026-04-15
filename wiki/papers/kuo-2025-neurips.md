@@ -12,7 +12,7 @@ venue: "NeurIPS 2025"
 arxiv_id: "2510.22039"
 url: "https://arxiv.org/abs/2510.22039"
 pdf: "../../raw/kuo-2025-neurips.pdf"
-tags: [predictive-coding, meta-RL, reinforcement-learning, belief-states, POMDP, Bayes-optimal, representation-learning, world-model, self-supervised-learning]
+tags: [predictive-coding, meta-rl, reinforcement-learning, belief-states, pomdp, Bayes-optimal, representation-learning, world-model, self-supervised-learning]
 created: 2026-04-15
 updated: 2026-04-15
 cites:

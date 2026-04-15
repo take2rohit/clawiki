@@ -1,27 +1,34 @@
 ---
-title: "Transformer-based World Models Are Happy With 100k Interactions"
+title: Transformer-based World Models Are Happy With 100k Interactions
 type: paper
 paper_id: P014
 authors:
-  - "Robine, Jan"
-  - "Höftmann, Marc"
-  - "Uelwer, Tobias"
-  - "Harmeling, Stefan"
+- Robine, Jan
+- Höftmann, Marc
+- Uelwer, Tobias
+- Harmeling, Stefan
 year: 2023
 venue: ICLR 2023
-arxiv_id: "2303.07109"
-url: "https://arxiv.org/abs/2303.07109"
-pdf: "../../raw/robine-2023-iclr.pdf"
-tags: [world-model, transformer, atari, reinforcement-learning, model-based-rl]
+arxiv_id: '2303.07109'
+url: https://arxiv.org/abs/2303.07109
+pdf: ../../raw/robine-2023-iclr.pdf
+tags:
+- world-model
+- transformer
+- atari
+- reinforcement-learning
+- model-based-rl
 created: 2026-04-10
 updated: 2026-04-10
 cites:
-  - ha-2018-neurips
-  - hafner-2019-icml
-  - hafner-2021-iclr
-  - micheli-2023-iclr
+- ha-2018-neurips
+- hafner-2019-icml
+- hafner-2021-iclr
+- micheli-2023-iclr
 cited_by:
-  - alonso-2024-neurips
+- alonso-2024-neurips
+- wang-2025-iclr
+
 ---
 
 # Transformer-based World Models Are Happy With 100k Interactions

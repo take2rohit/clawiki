@@ -164,6 +164,10 @@ GPT-4 achieves perfect task accuracy (1.00) but sequence compression precision o
 
 **Burns et al. / Nanda et al.:** Prior work showing emergent world representations in transformers focuses on internal probes. This paper argues that behavioral evidence (continuation distributions) is the correct criterion — probes are necessary but not sufficient.
 
+**vs [[ha-2018-neurips]] (World Models):** Ha & Schmidhuber's world model learns an internal representation for policy training in imagination. Vafa et al.'s framework provides a formal way to evaluate whether such a model has truly internalized environment dynamics versus merely memorizing trajectory patterns.
+
+**vs [[hafner-2023-arxiv]] (DreamerV3):** DreamerV3 evaluates world models via downstream task reward. This paper argues reward-based evaluation is structurally insensitive to world model quality — a model can achieve high reward by exploiting shortcuts without learning the true dynamics.
+
 ---
 
 ## Theoretical Contribution
