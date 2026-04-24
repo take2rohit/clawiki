@@ -1,6 +1,6 @@
 ---
 name: discover
-description: "Discover new papers via web search. Adds discovered rows to wiki/index.md only — no wiki pages created. Run /ingest discovered afterwards to fully ingest them."
+description: "Discover new papers via web search. Adds discovered rows to the index only — no wiki pages created. Run /ingest discovered afterwards to fully ingest them."
 argument-hint: "[query] [--n=<count>] [--since=<year>] [--venue=<v1,v2>] [--cite-expand]"
 disable-model-invocation: true
 ---
@@ -9,7 +9,7 @@ disable-model-invocation: true
 
 Query: **$ARGUMENTS**
 
-> **ONLY FILE CHANGED: `wiki/index.md`** — adds rows with status `discovered`. No wiki pages, no stubs, no other files touched.
+> **ONLY FILE CHANGED: `$BRANCH/index.md`** — adds rows with status `discovered`. No wiki pages, no stubs, no other files touched.
 
 > **TOOL RULES:**
 > - **Search:** Use **WebSearch** (Claude's built-in tool). Spawn searches **in parallel**.
@@ -18,16 +18,21 @@ Query: **$ARGUMENTS**
 > - **No direct API calls.** Do not call `api.semanticscholar.org`, `export.arxiv.org/api`, or any other API endpoint.
 > - **Abstracts:** Use **WebFetch** on arXiv/OpenReview HTML pages (`https://arxiv.org/abs/XXXX`) — regular web pages, not APIs.
 
+**Important:** The wiki directory is named after the current branch. Get it with:
+```bash
+BRANCH=$(git branch --show-current)
+```
+
 ---
 
 ## Phase 1 — Load context
 
-1. Read `wiki/index.md`:
+1. Read `$BRANCH/index.md`:
    - Infer research topic from existing paper titles if no `query` given
    - Build **dedup set**: all existing arXiv IDs and normalized titles (including any already-`discovered` rows)
    - Note the next available P-ID
 
-2. Read `wiki/overview.md` for topic keywords and themes. Used to score relevance.
+2. Read `$BRANCH/overview.md` for topic keywords and themes. Used to score relevance.
 
 3. Parse `$ARGUMENTS`:
    - `query`: primary search terms (defaults to workspace topic)
@@ -114,7 +119,7 @@ Do **not** hold up the batch for a single failed download.
 
 ## Phase 6 — Update index
 
-Add one row per discovered paper to the Papers table in `wiki/index.md`:
+Add one row per discovered paper to the Papers table in `$BRANCH/index.md`:
 
 ```
 | P0XX | {Title} | {Year} | {Venue} | {FirstAuthor} ({1stInst.}) | {LastAuthor} ({LastInst.}) | {Citations} | {status} | {pdf_link} | — | |
@@ -129,9 +134,10 @@ Add one row per discovered paper to the Papers table in `wiki/index.md`:
 
 Update the header stats: add `, K downloaded, J discovered` to the papers count and update `Last updated`.
 
-Append to `wiki/log.md`:
+Append to `$BRANCH/log.md`:
 ```bash
-echo "- [$(date "+%Y-%m-%d %H:%M")] **discover** -	\"{query}\" — added N rows ({D} downloaded, {F} discovered), {dup} duplicates skipped" >> wiki/log.md
+BRANCH=$(git branch --show-current)
+echo "- [$(date "+%Y-%m-%d %H:%M")] **discover** -	\"{query}\" — added N rows ({D} downloaded, {F} discovered), {dup} duplicates skipped" >> $BRANCH/log.md
 ```
 
 ---

@@ -9,10 +9,10 @@ Inspired by [karpathy/llm-wiki](https://gist.github.com/karpathy/442a6bf55591489
 ```bash
 # 1. Clone and open in Claude Code
 git clone git@github.com:take2rohit/clawiki.git
-cd claude-research
+cd clawiki
 claude
 
-# 2. Discover papers on your topic (no downloads — populates wiki/index.md)
+# 2. Discover papers on your topic (creates a branch, populates index)
 /lit-init "world models for robotics"
 
 # 3. Download PDFs and build wiki pages for all discovered papers
@@ -46,16 +46,18 @@ The LLM **incrementally builds and maintains a persistent wiki** — structured 
 
 | Command | What it does | Files Modified |
 |---------|-------------|----------------|
-| `/lit-init <topic>` | Discover papers via web search, create workspace structure, populate index | `wiki/index.md` (created), `wiki/log.md` (created), `wiki/overview.md` (created), `bibtex/references.bib` (created) |
-| `/discover [query]` | Web-scan for new papers → adds `discovered` rows to index (no PDF download) | `wiki/index.md`, `wiki/log.md` |
-| `/ingest <name\|all\|discovered>` | Download PDF(s), build wiki pages, cross-reference | `raw/{name}.pdf` (downloaded), `wiki/papers/{name}.md` (created), `wiki/index.md`, `wiki/log.md`, relevant `wiki/topics/`, `wiki/methods/`, `wiki/benchmarks/` pages |
-| `/ask <question>` | Query the knowledge base with cited answers | `wiki/queries/{slug}.md` (created), `wiki/log.md` |
-| `/related <name>` | Find related papers → adds `discovered` rows to index (no PDF download) | `wiki/index.md`, `wiki/log.md` |
-| `/compare <n1> <n2> ...` | Side-by-side method comparison table | `wiki/queries/compare-{slug}.md` (created), `wiki/log.md` |
-| `/gaps` | Find missing coverage, broken cross-references | `wiki/log.md` (report only, no structural changes) |
-| `/lint` | Health-check, fix broken links, remove singleton tags | `wiki/index.md`, `wiki/papers/*.md` (tag fixes), `wiki/log.md` |
-| `/bibtex [id\|all]` | Export citations to `bibtex/references.bib` | `bibtex/references.bib`, `wiki/log.md` |
-| `/host` | Publish the knowledge base to GitHub Pages via the `web` branch | `web` branch: `wiki/`, `raw/`, `_config.yml`, root `index.md` |
+| `/lit-init <topic>` | Discover papers via web search, create workspace structure, populate index | `$BRANCH/index.md` (created), `$BRANCH/log.md` (created), `$BRANCH/overview.md` (created), `bibtex/references.bib` (created) |
+| `/discover [query]` | Web-scan for new papers → adds `discovered` rows to index (no PDF download) | `$BRANCH/index.md`, `$BRANCH/log.md` |
+| `/ingest <name\|all\|discovered>` | Download PDF(s), build wiki pages, cross-reference | `raw/{name}.pdf` (downloaded), `$BRANCH/papers/{name}.md` (created), `$BRANCH/index.md`, `$BRANCH/log.md`, relevant topic/method/benchmark pages |
+| `/ask <question>` | Query the knowledge base with cited answers | `$BRANCH/queries/{slug}.md` (created), `$BRANCH/log.md` |
+| `/related <name>` | Find related papers → adds `discovered` rows to index (no PDF download) | `$BRANCH/index.md`, `$BRANCH/log.md` |
+| `/compare <n1> <n2> ...` | Side-by-side method comparison table | `$BRANCH/queries/compare-{slug}.md` (created), `$BRANCH/log.md` |
+| `/gaps` | Find missing coverage, broken cross-references | `$BRANCH/log.md` (report only, no structural changes) |
+| `/lint` | Health-check, fix broken links, remove singleton tags | `$BRANCH/index.md`, `$BRANCH/papers/*.md` (tag fixes), `$BRANCH/log.md` |
+| `/bibtex [id\|all]` | Export citations to `bibtex/references.bib` | `bibtex/references.bib`, `$BRANCH/log.md` |
+| `/host` | Publish the knowledge base to GitHub Pages | Commits, pushes, and builds the current topic branch |
+
+`$BRANCH` = the current git branch name. The wiki directory is always named after the branch (e.g., `world_models/` on branch `world_models`).
 
 ## Discovery Flow
 
@@ -77,21 +79,21 @@ discovered  ──>  (ingest downloads PDF + creates wiki page)  ──>  ingest
 downloaded  ──>  (ingest reads PDF + creates wiki page)      ──>  ingested
 ```
 
-`wiki/index.md` is the single source of truth for all papers and their status.
+`$BRANCH/index.md` is the single source of truth for all papers and their status.
 
 ## Structure
 
 ```
-├── raw/                    # Downloaded PDFs (immutable)
-├── wiki/
-│   ├── index.md            # Master index
-│   ├── overview.md         # Narrative synthesis
-│   ├── log.md              # Activity log
-│   ├── papers/             # One page per ingested paper
-│   ├── topics/             # Concept pages
-│   ├── methods/            # Method descriptions
-│   ├── benchmarks/         # Leaderboard tables
-│   └── queries/            # Saved comparisons and reviews
+├── raw/                      # Downloaded PDFs (immutable)
+├── $BRANCH/                  # Wiki directory (named after the git branch)
+│   ├── index.md              # Master index
+│   ├── overview.md           # Narrative synthesis
+│   ├── log.md                # Activity log
+│   ├── papers/               # One page per ingested paper
+│   ├── topics/               # Concept pages
+│   ├── methods/              # Method descriptions
+│   ├── benchmarks/           # Leaderboard tables
+│   └── queries/              # Saved comparisons and reviews
 └── bibtex/
     └── references.bib
 ```
@@ -106,18 +108,18 @@ Clone, open in Claude Code, run `/lit-init`.
 ## Hosting on GitHub Pages
 
 ```bash
-/host   # pushes wiki/ + raw/ to the web branch, rebuilds GitHub Pages
+/host   # commits, pushes, and rebuilds GitHub Pages from the current topic branch
 ```
 
-First-time setup: after the first `/host`, go to repo **Settings → Pages → Branch: `web` → Save**. Every subsequent `/host` auto-updates the site.
+The URL matches the branch name: branch `world_models` is served at `/clawiki/world_models/`. Running `/host` auto-configures Pages. Use `/lit-switch` + `/host` to switch which review is live.
 
-**Branch policy:** `main` contains only skills. `wiki/` and `raw/` only live on the `web` branch. See `CLAUDE.md` for the full rules.
+**Branch policy:** `main` contains only skills and docs. Wiki content and PDFs live on topic branches. See `CLAUDE.md` for the full rules.
 
 ## Tips
 
-- **`wiki/index.md` is your home page.** Every paper links to `[PDF]` and `[Notes]`.
+- **`$BRANCH/index.md` is your home page.** Every paper links to `[PDF]` and `[Notes]`.
 - **`/ingest all` after any operation that adds papers** (`/lit-init`, `/related`, `/discover`).
 - **Papers are identified flexibly:** filename (`hafner-2023-jmlr`), P-ID (`P001`), or arXiv ID (`2301.04104`).
-- **`raw/` is immutable.** Notes live in `wiki/`. PDFs are never modified.
+- **`raw/` is immutable.** Notes live in the branch wiki directory. PDFs are never modified.
 - **Git-friendly.** Everything is plaintext markdown. Commit after each session.
-- **`wiki/log.md`** is your audit trail — every operation is logged.
+- **`$BRANCH/log.md`** is your audit trail — every operation is logged.

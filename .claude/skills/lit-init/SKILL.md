@@ -19,7 +19,7 @@ Bootstrap and populate workspace for: **$ARGUMENTS**
 
 ## Phase 0 — Create topic branch
 
-Generate a short branch name from the topic, create the branch, and ensure `wiki/` and `raw/` are tracked on it.
+Generate a short branch name from the topic, create the branch, and set up the branch-named wiki directory.
 
 ```bash
 # Generate branch name: lowercase, underscores, max 30 chars
@@ -33,9 +33,15 @@ fi
 
 git checkout -b $BRANCH
 
-# Remove wiki/ and raw/ from .gitignore if present (main ignores them; topic branches track them)
+# Remove legacy wiki/ and raw/ from .gitignore if present (main may ignore them; topic branches track them)
 sed -i '' '/^wiki\/$/d; /^raw\/$/d' .gitignore
 git add .gitignore
+```
+
+**Set the branch key in `_config.yml`** so the root `index.md` redirect works:
+```bash
+grep -q "^branch:" _config.yml && sed -i '' "s/^branch:.*/branch: \"$BRANCH\"/" _config.yml || echo "branch: \"$BRANCH\"" >> _config.yml
+git add _config.yml
 ```
 
 Tell the user: "Created branch `{branch}` — all work for this review will live here."
@@ -44,11 +50,11 @@ Tell the user: "Created branch `{branch}` — all work for this review will live
 
 ## Phase 1 — Create workspace
 
-Create directories: `raw/`, `wiki/papers/`, `wiki/topics/`, `wiki/methods/`, `wiki/benchmarks/`, `wiki/queries/`, `bibtex/`.
+Create directories: `raw/`, `$BRANCH/papers/`, `$BRANCH/topics/`, `$BRANCH/methods/`, `$BRANCH/benchmarks/`, `$BRANCH/queries/`, `bibtex/`.
 
-Create `wiki/overview.md` (placeholder) and empty `bibtex/references.bib`.
+Create `$BRANCH/overview.md` (placeholder) and empty `bibtex/references.bib`.
 
-Create `wiki/log.md` with this exact content:
+Create `$BRANCH/log.md` with this exact content:
 ```markdown
 ---
 title: "Activity Log"
@@ -58,7 +64,17 @@ layout: default
 # Activity Log
 ```
 
-**Files created:** `wiki/log.md`, `wiki/overview.md`, `bibtex/references.bib`
+**Update root `index.md`** to redirect to the branch-named directory:
+```markdown
+---
+layout: default
+title: "Literature Review"
+---
+<meta http-equiv="refresh" content="0; url={{ site.branch }}/">
+<p>→ <a href="{{ site.branch }}/">Open the Literature Review Index</a></p>
+```
+
+**Files created:** `$BRANCH/log.md`, `$BRANCH/overview.md`, `bibtex/references.bib`, updated `index.md`
 
 ---
 
@@ -125,7 +141,7 @@ Do **not** hold up the batch for a single failed download.
 
 ## Phase 3 — Create the index
 
-Create `wiki/index.md` with the following structure. See the [schema](../literature-review/SKILL.md) for the full column format.
+Create `$BRANCH/index.md` with the following structure. See the [schema](../literature-review/SKILL.md) for the full column format.
 
 Start the file with:
 ```markdown
@@ -163,7 +179,7 @@ Each row:
 
 List seminal and survey papers first in the table, then remaining papers by descending citation count / recency.
 
-**Files created/modified:** `wiki/index.md`
+**Files created/modified:** `$BRANCH/index.md`
 
 ---
 
@@ -171,9 +187,10 @@ List seminal and survey papers first in the table, then remaining papers by desc
 
 Tell the user how many papers were found and downloaded. Show the index table. Suggest `/ingest all` to build wiki pages from the downloaded PDFs.
 
-Append to `wiki/log.md`:
+Append to `$BRANCH/log.md`:
 ```bash
-echo "- [$(date "+%Y-%m-%d %H:%M")] **init** -	\"{topic}\" — found N papers ({D} downloaded, {F} discovered-only), workspace ready" >> wiki/log.md
+BRANCH=$(git branch --show-current)
+echo "- [$(date "+%Y-%m-%d %H:%M")] **init** -	\"{topic}\" — found N papers ({D} downloaded, {F} discovered-only), workspace ready" >> $BRANCH/log.md
 ```
 
 Create `README.md` at the repo root on this branch:
@@ -186,4 +203,4 @@ Create `README.md` at the repo root on this branch:
 A Clawiki knowledge base. See `main` branch for full documentation and quick-start guide.
 ```
 
-**Files modified:** `wiki/log.md`, `README.md`
+**Files modified:** `$BRANCH/log.md`, `README.md`

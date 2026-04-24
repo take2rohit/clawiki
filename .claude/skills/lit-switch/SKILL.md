@@ -18,14 +18,14 @@ Switch between topic branches: **$ARGUMENTS**
 git branch --format='%(refname:short) %(committerdate:short)' | grep -v '^main '
 ```
 
-For each branch found, read its state without switching:
+For each branch found, read its state without switching. The wiki directory on each branch is named after the branch:
 
 ```bash
-# Paper count from wiki/index.md (ingested + discovered)
-git show {branch}:wiki/index.md 2>/dev/null | grep -c "| P[0-9]"
+# Paper count from {branch}/{branch}/index.md (the wiki dir matches the branch name)
+git show {branch}:{branch}/index.md 2>/dev/null | grep -c "| P[0-9]"
 
 # Last log entry
-git show {branch}:wiki/log.md 2>/dev/null | grep "^\- \[" | tail -1
+git show {branch}:{branch}/log.md 2>/dev/null | grep "^\- \[" | tail -1
 
 # README first line (topic name)
 git show {branch}:README.md 2>/dev/null | head -1
@@ -64,12 +64,12 @@ Switched to: world_models
 
   Topic:   World Models Literature Review
   Papers:  22 ingested, 21 discovered (43 total)
-  Last:    [2026-04-10 00:00] host - pushed main — 22 wiki pages, 22 PDFs
+  Last:    [2026-04-10 00:00] host - pushed world_models — 22 wiki pages, 22 PDFs
 
 Run /ask, /ingest, /discover, or /host to continue working.
 ```
 
 Read this from:
 - `README.md` first line → topic
-- `wiki/index.md` header → paper counts
-- `wiki/log.md` last line → last activity
+- `$BRANCH/index.md` header → paper counts (where $BRANCH is the branch just switched to)
+- `$BRANCH/log.md` last line → last activity

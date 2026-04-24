@@ -19,9 +19,15 @@ Read [reference.md](../literature-review/reference.md) for download details.
 > - **No direct API calls.** Do not call `api.semanticscholar.org` or any other API endpoint.
 > - **HTML pages:** WebFetch on arXiv/OpenReview HTML pages is allowed for metadata — web pages, not API endpoints.
 
+**Important:** The wiki directory is named after the current branch. Get it with:
+```bash
+BRANCH=$(git branch --show-current)
+```
+All paths below use `$BRANCH/` (e.g., `$BRANCH/papers/`, `$BRANCH/index.md`).
+
 ## Resolve what to ingest
 
-- **`/ingest discovered`**: Read `wiki/index.md`. Find every row with Status `discovered`. Ingest each one sequentially: download PDF first, then create wiki page. This is the primary way to process papers found by `/discover`.
+- **`/ingest discovered`**: Read `$BRANCH/index.md`. Find every row with Status `discovered`. Ingest each one sequentially: download PDF first, then create wiki page. This is the primary way to process papers found by `/discover`.
 - **`/ingest all`**: Find every row with Status `downloaded` or `discovered`. Process `downloaded` first, then `discovered`.
 - **`/ingest <name>`**: Match `<name>` against the index by P-ID, arXiv ID, slug, or partial title. If not in the index, use **WebSearch** to find the paper, download the PDF via Bash `curl`, add a row, then proceed.
 
@@ -88,7 +94,7 @@ Extract and record all of the following before writing anything:
 
 ### Step 3 — Write the wiki page
 
-Create `wiki/papers/{name}.md` using the [paper template](../literature-review/templates/paper.md). The goal is a page so complete that a reader never needs to open the PDF.
+Create `$BRANCH/papers/{name}.md` using the [paper template](../literature-review/templates/paper.md). The goal is a page so complete that a reader never needs to open the PDF.
 
 **Section-by-section quality bar:**
 
@@ -103,7 +109,7 @@ Create `wiki/papers/{name}.md` using the [paper template](../literature-review/t
 **Results:** Never copy a table without interpreting it. For every result: is the gap large or small in context? What does it prove about the method? Summarize ablations in prose: "Removing X drops performance by Y%, which shows Z is the critical component."
 
 **Comparison to Prior Work:** This is the most important section for making the page self-contained. For every competing method that appears in the paper:
-- Read its existing wiki page if it exists (grep `wiki/papers/` for the method name)
+- Read its existing wiki page if it exists (grep `$BRANCH/papers/` for the method name)
 - Write 2–4 sentences: what does that method do, what does this paper do differently, which wins where and why
 - Use `[[slug]] ([Name](../papers/slug.md))` dual-format links
 - Include a comparison table covering: core approach, key difference, benchmark scores, when to prefer each
@@ -112,7 +118,7 @@ Create `wiki/papers/{name}.md` using the [paper template](../literature-review/t
 
 ### Step 4 — Cross-reference with existing wiki
 
-- Grep `wiki/` for this paper's authors, method names, benchmark names, key acronyms
+- Grep `$BRANCH/` for this paper's authors, method names, benchmark names, key acronyms
 - For every related paper found:
   - Add this paper's slug to that paper's `cited_by` frontmatter (or `cites`, as appropriate)
   - Add that paper's slug to this paper's `cites` or `cited_by`
@@ -121,23 +127,24 @@ Create `wiki/papers/{name}.md` using the [paper template](../literature-review/t
 
 ### Step 5 — Update topic, method, and benchmark pages
 
-**Topic pages** (`wiki/topics/`): add this paper under the relevant topic. If no topic page exists for this paper's subject, create one.
+**Topic pages** (`$BRANCH/topics/`): add this paper under the relevant topic. If no topic page exists for this paper's subject, create one.
 
-**Method pages** (`wiki/methods/`): if this paper introduces a new method, create a method page. Update existing method pages that this paper extends or compares against.
+**Method pages** (`$BRANCH/methods/`): if this paper introduces a new method, create a method page. Update existing method pages that this paper extends or compares against.
 
-**Benchmark pages** (`wiki/benchmarks/`): add this paper's scores to every benchmark it evaluates on. Create a benchmark page if one doesn't exist.
+**Benchmark pages** (`$BRANCH/benchmarks/`): add this paper's scores to every benchmark it evaluates on. Create a benchmark page if one doesn't exist.
 
 ### Step 6 — Update index and logs
 
-**`wiki/index.md`:** set Status → `ingested`, Wiki → `[Notes](papers/{name}.md)`, update header stats (ingested count, last updated date), add any new topic/method/benchmark pages to their index sections.
+**`$BRANCH/index.md`:** set Status → `ingested`, Wiki → `[Notes](papers/{name}.md)`, update header stats (ingested count, last updated date), add any new topic/method/benchmark pages to their index sections.
 
 Also backfill any `—` values in the `1st Author (Inst.)`, `Last Author (Inst.)`, and `Citations` columns for this row — the PDF and wiki page now provide authoritative data for institutions, and the Semantic Scholar citation count can be looked up via WebSearch `"{title}" citations site:semanticscholar.org` if still missing.
 
-**`wiki/overview.md`:** update if this paper materially shifts the landscape — new SOTA, new paradigm, new benchmark, or contradicts existing understanding.
+**`$BRANCH/overview.md`:** update if this paper materially shifts the landscape — new SOTA, new paradigm, new benchmark, or contradicts existing understanding.
 
-**`wiki/log.md`:** append one line:
+**`$BRANCH/log.md`:** append one line:
 ```bash
-echo "- [$(date "+%Y-%m-%d %H:%M")] **ingest** -	{slug} — {title}, {N} sections written, cross-referenced {M} existing pages" >> wiki/log.md
+BRANCH=$(git branch --show-current)
+echo "- [$(date "+%Y-%m-%d %H:%M")] **ingest** -	{slug} — {title}, {N} sections written, cross-referenced {M} existing pages" >> $BRANCH/log.md
 ```
 
 ## Quality checklist before finishing
@@ -158,7 +165,7 @@ Before marking a paper as done, verify:
 
 ## When ingesting all
 
-After all papers are ingested, run a final pass to update `wiki/overview.md` with a synthesis that reflects the full corpus. Report totals (papers ingested, pages updated, new topic/method/benchmark pages created).
+After all papers are ingested, run a final pass to update `$BRANCH/overview.md` with a synthesis that reflects the full corpus. Report totals (papers ingested, pages updated, new topic/method/benchmark pages created).
 
 ## After ingestion — recommend next commands
 
