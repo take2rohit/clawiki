@@ -1,7 +1,7 @@
 # World Models Literature Review
 
 > Branch: `world_models` | Papers: 22 ingested, 21 discovered (43 total) | Created: 2026-04-10
-> Live: run `/host` to publish
+> Live: http://rohitlal.com/clawiki/
 
 A Clawiki knowledge base covering world models for reinforcement learning, autonomous driving, embodied AI, and JEPA-style predictive architectures. See `main` branch for full documentation and quick-start guide.
 
