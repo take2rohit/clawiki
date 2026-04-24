@@ -1,4 +1,5 @@
 title: "Clawiki"
+branch: "world_models"
 description: "A structured, cross-referenced literature review knowledge base maintained with Claude Code."
 theme: jekyll-theme-slate
 markdown: kramdown

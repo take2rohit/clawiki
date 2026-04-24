@@ -8,13 +8,18 @@ argument-hint: "<question>"
 
 Question: **$ARGUMENTS**
 
+**Important:** The wiki directory is named after the current branch. Get it with:
+```bash
+BRANCH=$(git branch --show-current)
+```
+
 ## Workflow
 
 1. **Parse the question.** Identify key entities: author names, method names, benchmark names, concepts.
 
 2. **Search the wiki** for relevant content:
-   - Grep `wiki/` for each key entity
-   - Read `wiki/index.md` to identify relevant paper, topic, and method pages
+   - Grep `$BRANCH/` for each key entity
+   - Read `$BRANCH/index.md` to identify relevant paper, topic, and method pages
    - Check the index for papers matching the query terms (by title, venue)
 
 3. **Read relevant pages** (prioritized):
@@ -22,7 +27,7 @@ Question: **$ARGUMENTS**
    - Method pages if the question is about techniques
    - Benchmark pages if the question is about results/performance
    - Paper pages that discuss the relevant concepts
-   - `wiki/overview.md` for high-level context
+   - `$BRANCH/overview.md` for high-level context
 
 4. **Synthesize an answer** that:
    - Directly answers the question
@@ -49,7 +54,8 @@ Question: **$ARGUMENTS**
      - `/command arg` — reason
      ```
 
-7. **Append to `wiki/log.md`:**
+7. **Append to `$BRANCH/log.md`:**
    ```bash
-   echo "- [$(date "+%Y-%m-%d %H:%M")] **ask** -	\"{question}\" — answered from N sources, confidence: {level}" >> wiki/log.md
+   BRANCH=$(git branch --show-current)
+   echo "- [$(date "+%Y-%m-%d %H:%M")] **ask** -	\"{question}\" — answered from N sources, confidence: {level}" >> $BRANCH/log.md
    ```

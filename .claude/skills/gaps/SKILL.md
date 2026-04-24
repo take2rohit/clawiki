@@ -5,11 +5,16 @@ description: "Identify research gaps, missing citations, contradictions, and ope
 
 # Research Gap Analysis
 
+**Important:** The wiki directory is named after the current branch. Get it with:
+```bash
+BRANCH=$(git branch --show-current)
+```
+
 ## Workflow
 
-1. **Read `wiki/overview.md`** and all topic pages in `wiki/topics/`.
+1. **Read `$BRANCH/overview.md`** and all topic pages in `$BRANCH/topics/`.
 
-2. **Read all paper pages** with status `ingested` (check `wiki/index.md` — rows where Wiki column has a `[Notes]` link).
+2. **Read all paper pages** with status `ingested` (check `$BRANCH/index.md` — rows where Wiki column has a `[Notes]` link).
 
 3. **Identify gaps across these dimensions:**
 
@@ -44,9 +49,10 @@ description: "Identify research gaps, missing citations, contradictions, and ope
    → `/command arg` — what this will fix
    ```
 
-5. **Append to `wiki/log.md`:**
+5. **Append to `$BRANCH/log.md`:**
    ```bash
-   echo "- [$(date "+%Y-%m-%d %H:%M")] **gaps** -	N gaps identified across M dimensions" >> wiki/log.md
+   BRANCH=$(git branch --show-current)
+   echo "- [$(date "+%Y-%m-%d %H:%M")] **gaps** -	N gaps identified across M dimensions" >> $BRANCH/log.md
    ```
 
 6. **Recommend next commands** at the end:

@@ -6,10 +6,16 @@ disable-model-invocation: true
 
 # Wiki Health Check
 
+**Important:** The wiki directory is named after the current branch. Get it with:
+```bash
+BRANCH=$(git branch --show-current)
+```
+All paths below use `$BRANCH/` (e.g., `$BRANCH/papers/`, `$BRANCH/index.md`).
+
 ## Deterministic Checks (auto-fix)
 
 1. **Index ↔ Wiki consistency:**
-   - Every paper with status `ingested` in `wiki/index.md` must have a page in `wiki/papers/`
+   - Every paper with status `ingested` in `$BRANCH/index.md` must have a page in `$BRANCH/papers/`
    - Every wiki paper page must have a corresponding row in the index
    - Fix: add missing index rows, report missing wiki pages
 
@@ -19,7 +25,7 @@ disable-model-invocation: true
    - Fix: report missing PDFs, add index rows for orphan PDFs
 
 3. **Index completeness:**
-   - Every `.md` file in `wiki/` subdirectories must appear in `wiki/index.md` (in the appropriate section: Papers, Topics, Methods, Benchmarks, Queries)
+   - Every `.md` file in `$BRANCH/` subdirectories must appear in `$BRANCH/index.md` (in the appropriate section: Papers, Topics, Methods, Benchmarks, Queries)
    - Every index entry must point to an existing file
    - Fix: add missing entries, remove stale entries pointing to nonexistent files
 
@@ -39,7 +45,7 @@ disable-model-invocation: true
 
 7. **One-way links (bidirectional gap):** Paper A's `cites` includes B, but B's `cited_by` doesn't include A (or vice versa). Fix by adding the missing backlink.
 
-8. **Unreferenced topics/methods:** Topics or methods mentioned in 3+ paper pages but lacking a dedicated `wiki/topics/` or `wiki/methods/` page.
+8. **Unreferenced topics/methods:** Topics or methods mentioned in 3+ paper pages but lacking a dedicated `$BRANCH/topics/` or `$BRANCH/methods/` page.
 
 9. **Stale index stats:** The header line counts (Papers: N ingested, M downloaded) don't match the actual row counts. Fix by recounting.
 
@@ -53,7 +59,7 @@ disable-model-invocation: true
 
 ### Skip already-verified pages
 
-Read `wiki/index.md`. If a paper row has `Quality` = `pass` in the Notes column AND the `Last linted` date in the index Lint section is recent (within 7 days), **skip quality checking that page**. Only re-check pages that:
+Read `$BRANCH/index.md`. If a paper row has `Quality` = `pass` in the Notes column AND the `Last linted` date in the index Lint section is recent (within 7 days), **skip quality checking that page**. Only re-check pages that:
 - Have never been linted (no `[pass]` tag)
 - Were modified since last lint (compare file mtime vs last linted date)
 - Previously failed (`[quality:fail]` tag)
@@ -98,7 +104,7 @@ For each checked page, output one line:
 
 ## Update Index with Lint Results
 
-After running all checks, update `wiki/index.md`:
+After running all checks, update `$BRANCH/index.md`:
 
 1. **Add a Lint section** at the bottom of the index (after Queries/Syntheses), or update if it already exists:
 
@@ -133,9 +139,10 @@ Then show the full quality audit table for any non-pass pages.
 
 Auto-fix deterministic issues. Ask user before deleting any files. Report heuristic issues as a prioritized action list.
 
-**Append to `wiki/log.md`:**
+**Append to `$BRANCH/log.md`:**
 ```bash
-echo "- [$(date "+%Y-%m-%d %H:%M")] **lint** -	N issues found, M auto-fixed, quality: {P} pass / {Q} partial / {R} fail" >> wiki/log.md
+BRANCH=$(git branch --show-current)
+echo "- [$(date "+%Y-%m-%d %H:%M")] **lint** -	N issues found, M auto-fixed, quality: {P} pass / {Q} partial / {R} fail" >> $BRANCH/log.md
 ```
 
 **Recommend next commands** at the end of the report:

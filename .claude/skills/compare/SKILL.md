@@ -8,9 +8,14 @@ argument-hint: "<paper1_slug> <paper2_slug> [paper3_slug ...]"
 
 Compare: **$ARGUMENTS**
 
+**Important:** The wiki directory is named after the current branch. Get it with:
+```bash
+BRANCH=$(git branch --show-current)
+```
+
 ## Workflow
 
-1. **Read the wiki pages** for each specified paper slug from `wiki/papers/`.
+1. **Read the wiki pages** for each specified paper slug from `$BRANCH/papers/`.
 
 2. **Extract per paper:** method name, architecture type, key design choices, loss function, training details, parameter count, computational cost, results per benchmark.
 
@@ -22,7 +27,7 @@ Compare: **$ARGUMENTS**
    - Results across all shared benchmarks
    - Strengths and weaknesses of each approach
 
-4. **Write to `wiki/queries/compare-{slug1}-vs-{slug2}-{date}.md`** with YAML frontmatter:
+4. **Write to `$BRANCH/queries/compare-{slug1}-vs-{slug2}-{date}.md`** with YAML frontmatter:
    ```yaml
    ---
    title: "Comparison: Method A vs Method B"
@@ -32,11 +37,12 @@ Compare: **$ARGUMENTS**
    ---
    ```
 
-5. **Update `wiki/index.md`** — add to Queries/Syntheses section.
+5. **Update `$BRANCH/index.md`** — add to Queries/Syntheses section.
 
-6. **Append to `wiki/log.md`:**
+6. **Append to `$BRANCH/log.md`:**
    ```bash
-   echo "- [$(date "+%Y-%m-%d %H:%M")] **compare** -	{slug1} vs {slug2} — written to wiki/queries/{filename}" >> wiki/log.md
+   BRANCH=$(git branch --show-current)
+   echo "- [$(date "+%Y-%m-%d %H:%M")] **compare** -	{slug1} vs {slug2} — written to $BRANCH/queries/{filename}" >> $BRANCH/log.md
    ```
 
 7. **Recommend next commands:**

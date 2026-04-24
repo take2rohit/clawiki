@@ -2,9 +2,11 @@
 
 ## Branch model
 
-`main` is a clean template — it contains only skills, config, and docs. Never commit `wiki/` or `raw/` to `main`.
+`main` is a clean template — it contains only skills, config, and docs. Never commit wiki content or `raw/` to `main`.
 
 Each `/lit-init` creates a **topic branch** (e.g. `world_models`, `jepa_research`). All research work — wiki pages, PDFs, logs — lives on that branch. Use `/lit-switch` to move between reviews.
+
+**The wiki directory is named after the branch.** On branch `world_models`, the wiki lives in `world_models/`. On branch `jepa_research`, it lives in `jepa_research/`. This means the GitHub Pages URL matches the branch name (e.g., `/clawiki/world_models/`).
 
 ## Hosting
 
