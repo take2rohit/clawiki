@@ -30,7 +30,7 @@ cited_by: []
 
 ## Problem & Motivation
 
-Existing JEPA formulations ([lecun-2022-openreview](../papers/lecun-2022-openreview.md), [assran-2023-cvpr](../papers/assran-2023-cvpr.md), [bardes-2024-tmlr](../papers/bardes-2024-tmlr.md)) rely on **deterministic** regression objectives (MSE or L1 loss), producing point-estimate predictions in representation space. This has four fundamental limitations:
+Existing JEPA formulations ([[lecun-2022-openreview]], [[assran-2023-cvpr]], [[bardes-2024-tmlr]]) rely on **deterministic** regression objectives (MSE or L1 loss), producing point-estimate predictions in representation space. This has four fundamental limitations:
 
 1. **No explicit uncertainty quantification:** Deterministic predictors output a single embedding for each target, providing no information about predictive confidence or the spread of possible futures.
 2. **No multi-modal futures:** Real-world dynamics are often stochastic -- a single point prediction cannot represent multiple plausible outcomes.
@@ -170,7 +170,7 @@ VJEPA and BJEPA successfully filter out the high-variance nuisance distractors b
 - **JEPA representations can serve as sufficient information states for optimal control:** This is the first formal proof that JEPA's learned latent states are predictively sufficient for planning and control without observation reconstruction.
 - **JEPA is sequential but not autoregressive:** A critical distinction -- JEPA predicts latent representations directly, avoiding the need to factorize an observation-level likelihood, which is what gives it invariance to observation noise.
 - **The variational objective provides principled collapse avoidance:** Unlike EMA/stop-gradient heuristics, collapse avoidance is a mathematical consequence of the VJEPA objective under mild conditions.
-- **BJEPA enables modular world models:** Factorizing predictive belief into dynamics experts and prior experts allows zero-shot transfer and constraint injection -- a step toward the modular cognitive architecture envisioned in [lecun-2022-openreview](../papers/lecun-2022-openreview.md).
+- **BJEPA enables modular world models:** Factorizing predictive belief into dynamics experts and prior experts allows zero-shot transfer and constraint injection -- a step toward the modular cognitive architecture envisioned in [[lecun-2022-openreview]].
 
 ---
 

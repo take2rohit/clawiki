@@ -33,7 +33,7 @@ cited_by: []
 
 ## Problem & Motivation
 
-JEPA methods regularize feature distributions via projection-based distribution matching to prevent collapse. [balestriero-2025-iclr](../papers/balestriero-2025-iclr.md) (LeJEPA) introduced SIGReg, which aligns one-dimensional projected feature marginals toward a univariate Gaussian, enforcing isotropic Gaussian embeddings. While provably optimal for downstream probing, this approach has a fundamental limitation: it **inherently favors dense representations** and cannot capture **sparsity** -- a key property observed in efficient neural codes across neuroscience, signal processing, and deep learning.
+JEPA methods regularize feature distributions via projection-based distribution matching to prevent collapse. [[balestriero-2025-iclr]] (LeJEPA) introduced SIGReg, which aligns one-dimensional projected feature marginals toward a univariate Gaussian, enforcing isotropic Gaussian embeddings. While provably optimal for downstream probing, this approach has a fundamental limitation: it **inherently favors dense representations** and cannot capture **sparsity** -- a key property observed in efficient neural codes across neuroscience, signal processing, and deep learning.
 
 Sparsity matters for several reasons:
 - **Biological plausibility:** Neurons in sensory cortex produce sparse, non-negative activations under metabolic constraints.
