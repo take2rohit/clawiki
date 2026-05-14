@@ -8,7 +8,8 @@ Inspired by [karpathy/llm-wiki](https://gist.github.com/karpathy/442a6bf55591489
 
 ```bash
 # 1. Clone and open in Claude Code
-git clone git@github.com:take2rohit/clawiki.git
+## Please note only clone the latest main branch commit only otherwise its very heavy!
+git clone --depth 1 --filter=blob:none --single-branch --branch main git@github.com:take2rohit/clawiki.git
 cd clawiki
 claude
 
